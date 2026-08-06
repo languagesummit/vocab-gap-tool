@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { SetupNotice } from "../setup-notice";
 import { Quiz, type Question } from "./quiz";
 
 const BATCH_SIZE = 20;
 const DISTRACTOR_POOL = 300;
 
 export default async function TestPage() {
+  if (!isSupabaseConfigured) return <SetupNotice />;
+
   const supabase = await createClient();
   const {
     data: { user },

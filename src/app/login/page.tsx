@@ -1,7 +1,11 @@
 import { Suspense } from "react";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { SetupNotice } from "../setup-notice";
 import { LoginForm } from "./login-form";
 
 export default function LoginPage() {
+  if (!isSupabaseConfigured) return <SetupNotice />;
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-8 bg-white p-8 dark:bg-black">
       <div className="text-center">

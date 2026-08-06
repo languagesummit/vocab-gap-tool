@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { SetupNotice } from "../setup-notice";
 
 export default async function DashboardPage() {
+  if (!isSupabaseConfigured) return <SetupNotice />;
+
   const supabase = await createClient();
   const {
     data: { user },
