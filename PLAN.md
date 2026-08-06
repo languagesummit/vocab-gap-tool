@@ -49,14 +49,25 @@ content recommendation to fill gaps).
 
 ## Build phases
 
-1. ✅ Scaffold Next.js app, Supabase libs. → Connect GitHub repo, Vercel
-   auto-deploy, hello-world live on Vercel subdomain.
-2. Auth (Google OAuth + magic link) + protected app shell.
-3. Schema migration + Korean word list ingest + LLM tagging pass (build-time,
-   committed as seed data).
-4. Per-word test UI: translation MCQ first, 3s timer, keyboard-first,
-   frontier progress ("cleared ranks 1–2,400"), resumable sessions.
-5. Pre-generated constrained-definition test mode.
-6. Analytics: category × status heatmap, coverage breakdown.
-7. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
-8. Image-based MCQ for concrete nouns (after sourcing decision).
+1. ✅ Scaffold Next.js app, Supabase libs, Vercel auto-deploy from GitHub.
+2. ✅ Auth (magic link; Google OAuth behind `NEXT_PUBLIC_ENABLE_GOOGLE_AUTH`)
+   + protected app shell.
+3. ✅ Schema migration + Korean word list ingest. 5,897 sense-level entries
+   from the NIKL/TOPIK frequency list, glosses joined from kengdic (99.1%
+   coverage), top 200 ranks hand-curated with categories.
+4. ✅ Per-word test UI: translation MCQ, 3s timer, keyboard 1–4 and space,
+   frontier progress, resumable sessions.
+5. Curate glosses beyond rank 200 (5,644 rows still flagged `needs_review`).
+6. Pre-generated constrained-definition test mode.
+7. Analytics: category × status heatmap, coverage breakdown.
+8. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
+9. Image-based MCQ for concrete nouns (after sourcing decision).
+
+## Regenerating the word data
+
+```
+npm run data:parse   # raw NIKL TSV  -> data/korean_words.json
+node scripts/join-glosses.mjs data/korean_words.json <kengdic.tsv> data/korean_words_glossed.json
+npm run data:build   # + curated overrides -> data/korean_seed.json
+npm run db:seed      # -> Supabase (needs SUPABASE_SERVICE_ROLE_KEY in .env.local)
+```
