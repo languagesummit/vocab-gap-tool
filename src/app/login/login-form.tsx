@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
+// Google sign-in stays hidden until the provider is actually configured in
+// Supabase, so the button is never present-but-broken.
+const googleEnabled = process.env.NEXT_PUBLIC_ENABLE_GOOGLE_AUTH === "true";
+
 export function LoginForm() {
   const searchParams = useSearchParams();
   const urlError = searchParams.get("error");
@@ -67,6 +71,7 @@ export function LoginForm() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-4">
+      {googleEnabled && (
       <button
         onClick={signInWithGoogle}
         disabled={status === "google"}
@@ -92,12 +97,15 @@ export function LoginForm() {
         </svg>
         {status === "google" ? "Redirecting…" : "Continue with Google"}
       </button>
+      )}
 
-      <div className="flex items-center gap-3 text-xs text-zinc-400">
-        <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
-        or
-        <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
-      </div>
+      {googleEnabled && (
+        <div className="flex items-center gap-3 text-xs text-zinc-400">
+          <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+          or
+          <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+        </div>
+      )}
 
       <form onSubmit={sendMagicLink} className="flex flex-col gap-3">
         <input

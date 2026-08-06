@@ -9,7 +9,7 @@ export default function LoginPage() {
           Sign in
         </h1>
         <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-          No password needed — use Google or a magic link.
+          No password needed — we&apos;ll email you a sign-in link.
         </p>
       </div>
       <Suspense>
