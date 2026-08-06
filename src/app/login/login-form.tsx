@@ -16,9 +16,9 @@ export function LoginForm() {
   const [status, setStatus] = useState<
     "idle" | "sending" | "sent" | "error" | "google"
   >("idle");
-  const [errorMsg, setErrorMsg] = useState<string | null>(
-    urlError ? "That sign-in link was invalid or expired. Try again." : null
-  );
+  // The callback route passes the provider's own message through, so show it
+  // verbatim rather than guessing at the cause.
+  const [errorMsg, setErrorMsg] = useState<string | null>(urlError);
 
   async function signInWithGoogle() {
     setStatus("google");
@@ -44,7 +44,7 @@ export function LoginForm() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/auth/confirm`,
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
       },
     });
     if (error) {
