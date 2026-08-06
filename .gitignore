@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# regenerable intermediates (npm run data:parse / data:build)
+data/korean_words.json
+data/korean_words_glossed.json

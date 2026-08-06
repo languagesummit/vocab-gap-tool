@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "data:parse": "node scripts/parse-korean-list.mjs data/korean_nikl_raw.tsv data/korean_words.json",
+    "data:build": "node scripts/build-seed-data.mjs",
+    "db:seed": "node --env-file=.env.local scripts/seed-supabase.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
