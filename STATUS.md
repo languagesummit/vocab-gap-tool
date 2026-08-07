@@ -277,6 +277,38 @@ Licence obligations differ and shouldn't be mixed carelessly: 공유마당 expir
 works carry none; KOGL Type 1 requires attribution; 위키문헌 (Wikisource) is
 CC BY-SA, which is share-alike and stickier.
 
+**Tatoeba — the best fit found so far, and verified.** 15,868 Korean sentences
+under CC BY 2.0 FR, median 15 characters, 15,517 of them under 40, with English
+translations alongside. Downloaded and counted directly from
+`downloads.tatoeba.org/exports/per_language/kor/`. Natural modern Korean written
+by speakers, at sentence rather than story length — which also makes it the
+right first target for the scorer, since a lemmatiser's mistakes stay visible in
+a 15-character sentence instead of being buried in a page.
+
+**Folk tales — the stories are free, the retellings are not.** 흥부와 놀부,
+콩쥐팥쥐 and the rest are traditional and anonymous, so no one holds copyright in
+the *story*. Every modern written retelling is nonetheless a new work with its
+own copyright — the same trap as modernised spelling editions. What's usable is
+either a public-domain-era transcription or a 공공누리-licensed retelling.
+[위키문헌's 공유마당 list](https://ko.wikisource.org/wiki/위키문헌:공유마당에_등록된_문서_목록)
+carries several hundred already-transcribed works including classical narratives
+and folk tales.
+
+Unconfirmed lead: 국립어린이청소년도서관 publishes 한국전래동화 through
+data.go.kr under 공공누리 제1유형, but the advertised fields (title, author,
+publisher, year) read like bibliographic metadata rather than story text, and
+the portal returned 503 when checked. Verify before relying on it.
+
+**On generating text instead.** Fits the architecture — `PLAN.md` already locks
+zero runtime LLM calls, with generation happening at build time and committed as
+data. The risk isn't disclosure, it's that a learner cannot detect the errors:
+wrong particles, unnatural collocations, off register, all learned as if
+correct. The mitigation that makes it defensible is to constrain generation to
+words already tested as known and then *mechanically verify* the output stays in
+that set — "is every word in range" is machine-checkable in a way "is this
+natural Korean" is not, and it's the same technique the plan already specifies
+for pre-generated definitions. Still second choice behind real sources.
+
 **Sequencing.** Hosting text is the easy part; what makes it this tool rather
 than a library is scoring it against the user's lexicon, and that still needs
 the Korean lemmatizer (list is lemma-based 먹다, real text is inflected
