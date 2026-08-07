@@ -10,6 +10,7 @@ import {
   pct,
   type Group,
   type Split,
+  type TimedWord,
 } from "@/lib/local/analysis";
 
 export function Results() {
@@ -62,6 +63,8 @@ export function Results() {
 
   const range = knownRange(a.overall);
   const timedOutPct = pct(a.overall.unsure, a.overall.tested);
+  const knownTimed =
+    a.recall.automatic.length + a.recall.solid.length + a.recall.effortful.length;
 
   /** Clears the timed-out words so they return to the front of the queue. */
   function retestUnsure() {
@@ -192,15 +195,53 @@ export function Results() {
 
       {a.medianKnownMs !== null && (
         <Card>
-          <h2 className="font-semibold text-black dark:text-zinc-50">Pace</h2>
+          <h2 className="font-semibold text-black dark:text-zinc-50">
+            How readily it comes back
+          </h2>
           <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            When you know a word you answer in{" "}
+            Knowing a word and reaching it instantly are different things. A
+            word you recall automatically costs nothing when reading; one you
+            have to dig for still breaks the flow. Your median on a known word
+            is{" "}
             <span className="font-mono text-black dark:text-zinc-50">
               {(a.medianKnownMs / 1000).toFixed(1)}s
-            </span>{" "}
-            typically. Words you know tend to come fast, so a timer comfortably
-            above this mostly buys hesitation rather than accuracy.
+            </span>
+            . Reading the options is discounted out of the split below, so a
+            long definition isn&apos;t counted against you.
           </p>
+
+          <div className="mt-4 flex flex-col gap-4">
+            <RecallRow
+              label="Automatic"
+              blurb="Came back with no hunting."
+              words={a.recall.automatic}
+              colour="bg-emerald-500"
+              total={knownTimed}
+            />
+            <RecallRow
+              label="Solid"
+              blurb="Known, with a beat of thought."
+              words={a.recall.solid}
+              colour="bg-sky-500"
+              total={knownTimed}
+            />
+            <RecallRow
+              label="Effortful"
+              blurb="Known, but slow enough to interrupt reading."
+              words={a.recall.effortful}
+              colour="bg-violet-500"
+              total={knownTimed}
+            />
+          </div>
+
+          {a.knownWithoutTiming > 0 && (
+            <p className="mt-4 text-xs text-zinc-500">
+              {a.knownWithoutTiming.toLocaleString()} known{" "}
+              {a.knownWithoutTiming === 1 ? "word carries" : "words carry"} no
+              timing and {a.knownWithoutTiming === 1 ? "is" : "are"} left out of
+              this split.
+            </p>
+          )}
         </Card>
       )}
 
@@ -255,6 +296,64 @@ function Groups({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+function RecallRow({
+  label,
+  blurb,
+  words,
+  colour,
+  total,
+}: {
+  label: string;
+  blurb: string;
+  words: TimedWord[];
+  colour: string;
+  total: number;
+}) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button
+        onClick={() => words.length > 0 && setOpen((o) => !o)}
+        className="flex w-full items-baseline justify-between gap-3 text-left"
+      >
+        <span className="text-sm">
+          <span className="text-black dark:text-zinc-50">{label}</span>
+          <span className="ml-2 text-zinc-500">{blurb}</span>
+        </span>
+        <span className="shrink-0 text-sm font-medium text-black dark:text-zinc-50">
+          {words.length.toLocaleString()}
+        </span>
+      </button>
+      <div className="mt-1.5 h-3 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-900">
+        <div
+          className={`h-full ${colour}`}
+          style={{ width: `${total === 0 ? 0 : (words.length / total) * 100}%` }}
+        />
+      </div>
+      {open && (
+        <ul className="mt-2 flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
+          {words.slice(0, LIST_LIMIT).map((t) => (
+            <li
+              key={t.word.key}
+              className="flex items-baseline justify-between gap-4 py-2"
+            >
+              <span className="flex items-baseline gap-3">
+                <span className="text-lg text-black dark:text-zinc-50">
+                  {t.word.lemma}
+                </span>
+                <span className="text-sm text-zinc-500">{t.word.gloss}</span>
+              </span>
+              <span className="shrink-0 font-mono text-xs text-zinc-400">
+                {(t.ms / 1000).toFixed(1)}s
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

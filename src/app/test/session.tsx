@@ -160,6 +160,7 @@ export function Session() {
         status,
         at: Date.now(),
         ms: timedOut ? null : activeMs,
+        chars: options.reduce((n, o) => n + o.length, 0),
       };
       saved.frontierRank = Math.max(saved.frontierRank, word.rank);
       // Written after every answer, so quitting the tab never loses work.
@@ -169,7 +170,7 @@ export function Session() {
       setFrontier((f) => Math.max(f, word.rank));
       setPosition((p) => p + 1);
     },
-    [queue, position, timerMs]
+    [queue, position, timerMs, options]
   );
 
   // Steps back to the previous word and un-records it, so a mis-click or a

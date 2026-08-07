@@ -13,6 +13,13 @@ export type WordRecord = {
   status: Status;
   at: number; // epoch ms
   ms: number | null; // response time, null when the timer expired
+  /**
+   * Characters of gloss text on screen when answered. A long or awkwardly
+   * worded definition takes longer to read whether or not the word is known,
+   * so response time only means something against how much there was to read.
+   * Absent on records written before this was tracked.
+   */
+  chars?: number;
 };
 
 export type Progress = {
