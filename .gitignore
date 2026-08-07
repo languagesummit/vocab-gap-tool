@@ -43,3 +43,5 @@ next-env.d.ts
 # regenerable intermediates (npm run data:parse / data:build)
 data/korean_words.json
 data/korean_words_glossed.json
+# regenerable from data/korean_curriculum_raw.tsv
+data/korean_levels.json

@@ -1,155 +1,60 @@
 /**
- * What the tested vocabulary says about exam readiness.
+ * What the tested vocabulary says about a proficiency framework.
  *
- * Two independent gradings ride along with every word, and they answer
- * different questions:
+ * Framework-agnostic by construction: everything specific to TOPIK or to any
+ * other grading lives in `src/lib/frameworks`, and this file only knows that a
+ * framework has levels, maybe groups, and that words carry a level index for
+ * it. Adding a language's exam means adding data, not editing this.
  *
- *   - **TOPIK tier** (I or II) comes from the 2015 TOPIK vocabulary list and is
- *     the exam-facing one. TOPIK I covers levels 1–2, TOPIK II covers 3–6.
- *     1,438 words in the list are on neither, being ordinary vocabulary the
- *     exam list doesn't cover.
- *   - **NIKL grade** (A/B/C = 초급/중급/고급) comes from 국립국어원's graded
- *     learner list (조남호, 2003) and is a judgement of difficulty made by
- *     panel, independent of the exam.
+ * Two things it takes care to keep separate, because conflating them is how a
+ * vocabulary tool starts making claims it can't support:
  *
- * Neither resolves TOPIK's six levels on its own: the exam list stops at two
- * tiers. Crossing them gets closer — within TOPIK II, NIKL's B and C grades
- * separate the intermediate half from the advanced half — and that crossing is
- * what `BANDS` below describes. It is an alignment, not an official mapping,
- * and everything that renders it is required to say so.
+ *   - **Coverage** — the share of a level's words you know. Meaningful only
+ *     over what you've actually been asked.
+ *   - **Reach** — how much of the level you've been asked at all. Testing runs
+ *     in frequency order, which is not level order, so a level can be almost
+ *     entirely unasked while the words you *have* seen from it all came back.
+ *     Reporting coverage without reach turns a small sample into a grade.
  */
 
 import type { Word } from "./words";
 import type { Progress } from "./progress";
+import type { Framework, FrameworkGroup, FrameworkLevel } from "../frameworks";
 import { pct, type Split } from "./analysis";
 
-export type NiklGrade = "A" | "B" | "C";
-export type TopikTier = "I" | "II";
-
-/**
- * The exam-facing split. This is the part taken straight from the TOPIK list,
- * with no inference layered on it.
- */
-export const TIERS: Array<{
-  tier: TopikTier;
-  label: string;
-  levels: string;
-  cefr: string;
-  blurb: string;
-}> = [
-  {
-    tier: "I",
-    label: "TOPIK I",
-    levels: "Levels 1–2",
-    cefr: "A1–A2",
-    blurb:
-      "The beginner paper. Listening and reading only, no writing section.",
-  },
-  {
-    tier: "II",
-    label: "TOPIK II",
-    levels: "Levels 3–6",
-    cefr: "B1–C2",
-    blurb:
-      "One paper covering four levels — your score decides which you're awarded.",
-  },
-];
-
-/**
- * The finer bands, from crossing the exam tier with the NIKL grade. Order is
- * the order they'd be met.
- *
- * The off-diagonal cells are deliberately folded into the nearest band rather
- * than shown separately: a word on the TOPIK I list that NIKL graded advanced
- * is still TOPIK I vocabulary, because exam membership is the thing being
- * measured and the grade is only refining it. So the tier decides the band
- * first, and the grade subdivides TOPIK II.
- */
-export const BANDS: Array<{
-  key: string;
-  label: string;
-  cefr: string;
-  approximate: boolean;
-  describe: (n: number) => string;
-}> = [
-  {
-    key: "I",
-    label: "TOPIK I · levels 1–2",
-    cefr: "A1–A2",
-    approximate: false,
-    describe: (n) => `${n.toLocaleString()} words on the TOPIK I list.`,
-  },
-  {
-    key: "II-B",
-    label: "TOPIK II · lower, around levels 3–4",
-    cefr: "B1–B2",
-    approximate: true,
-    describe: (n) =>
-      `${n.toLocaleString()} TOPIK II words NIKL grades intermediate.`,
-  },
-  {
-    key: "II-C",
-    label: "TOPIK II · upper, around levels 5–6",
-    cefr: "C1–C2",
-    approximate: true,
-    describe: (n) =>
-      `${n.toLocaleString()} TOPIK II words NIKL grades advanced.`,
-  },
-  {
-    key: "none",
-    label: "Not on a TOPIK list",
-    cefr: "—",
-    approximate: false,
-    describe: (n) =>
-      `${n.toLocaleString()} words from the frequency list the exam vocabulary doesn't cover.`,
-  },
-];
-
-/** Which band a word falls in. Exam tier first, NIKL grade only to subdivide. */
-export function bandOf(word: Word): string {
-  if (word.topik === "I") return "I";
-  if (word.topik === "II") return word.nikl === "C" ? "II-C" : "II-B";
-  return "none";
-}
-
 export type LevelGroup = Split & {
-  key: string;
-  label: string;
-  cefr: string;
-  approximate: boolean;
-  blurb: string;
-  /** Untested words in this band, nearest rank first — what's left to prove. */
+  level: FrameworkLevel;
+  /** Untested words at this level, nearest rank first — what's left to prove. */
   unasked: Word[];
 };
 
-export type Readiness = {
-  /** The two published tiers, unrefined. */
-  tiers: Array<
-    Split & { tier: TopikTier; label: string; levels: string; cefr: string; blurb: string }
-  >;
-  /** The finer crossed bands, flagged where they're an approximation. */
-  bands: LevelGroup[];
-  /** Highest tier whose vocabulary is comfortably covered, or null. */
-  clearedTier: TopikTier | null;
-  /** Words graded by NIKL difficulty, ignoring the exam entirely. */
-  byNikl: Array<Split & { grade: NiklGrade; label: string }>;
-  /** Total words carrying no TOPIK tier. */
-  untiered: number;
+export type GroupSplit = Split & {
+  group: FrameworkGroup;
+  /**
+   * Words counted into this group only via the coarse tier, having no level of
+   * their own. Reported so the group's total is never quietly larger than the
+   * levels beneath it appear to justify.
+   */
+  viaTier: number;
+};
+
+export type FrameworkAnalysis = {
+  framework: Framework;
+  levels: LevelGroup[];
+  groups: GroupSplit[];
+  /** Words this framework doesn't grade at all. */
+  ungraded: number;
+  /** Whether anything at all has been tested against this framework. */
+  tested: number;
 };
 
 /**
- * The share of a tier's vocabulary that has to be known before calling it
- * covered. Not a pass mark — TOPIK tests listening, reading and writing, and
- * vocabulary is only the floor under those. Set where a learner would stop
- * meeting unfamiliar words often enough for them to be the limiting factor.
+ * The share of a level's vocabulary that must be known before calling it
+ * covered — and separately, how much of it must have been asked before the
+ * number means anything. Both have to hold: 90% of a 5% sample is not a level.
  */
 export const COVERED_AT = 0.9;
-
-const NIKL_LABELS: Record<NiklGrade, string> = {
-  A: "A · 초급 · beginner",
-  B: "B · 중급 · intermediate",
-  C: "C · 고급 · advanced",
-};
+export const REACHED_AT = 0.5;
 
 const empty = (): Split => ({
   known: 0,
@@ -159,96 +64,119 @@ const empty = (): Split => ({
   total: 0,
 });
 
-export function readiness(progress: Progress, words: Word[]): Readiness {
-  const tierSplits = new Map<TopikTier, Split>([
-    ["I", empty()],
-    ["II", empty()],
-  ]);
-  const bandSplits = new Map(BANDS.map((b) => [b.key, empty()]));
-  const bandUnasked = new Map<string, Word[]>(BANDS.map((b) => [b.key, []]));
-  const niklSplits = new Map<NiklGrade, Split>([
-    ["A", empty()],
-    ["B", empty()],
-    ["C", empty()],
-  ]);
+function count(split: Split, progress: Progress, word: Word) {
+  split.total += 1;
+  const record = progress.words[word.key];
+  if (!record) return;
+  split[record.status] += 1;
+  split.tested += 1;
+}
 
-  let untiered = 0;
+export function analyseFramework(
+  progress: Progress,
+  words: Word[],
+  framework: Framework
+): FrameworkAnalysis {
+  const levelSplits = new Map<number, Split>(
+    framework.levels.map((l) => [l.index, empty()])
+  );
+  const unasked = new Map<number, Word[]>(
+    framework.levels.map((l) => [l.index, []])
+  );
+  const groupSplits = new Map<string, Split>(
+    framework.groups.map((g) => [g.id, empty()])
+  );
+  const viaTier = new Map<string, number>(
+    framework.groups.map((g) => [g.id, 0])
+  );
+
+  let ungraded = 0;
+  let tested = 0;
 
   for (const word of words) {
-    const band = bandOf(word);
-    const record = progress.words[word.key];
+    const level = word.lv[framework.id];
 
-    const buckets: Split[] = [];
-    const bandSplit = bandSplits.get(band);
-    if (bandSplit) buckets.push(bandSplit);
-
-    if (word.topik) {
-      const tierSplit = tierSplits.get(word.topik);
-      if (tierSplit) buckets.push(tierSplit);
-    } else {
-      untiered += 1;
-    }
-
-    if (word.nikl) {
-      const niklSplit = niklSplits.get(word.nikl);
-      if (niklSplit) buckets.push(niklSplit);
-    }
-
-    for (const bucket of buckets) {
-      bucket.total += 1;
-      if (record) {
-        bucket[record.status] += 1;
-        bucket.tested += 1;
+    if (level) {
+      const split = levelSplits.get(level);
+      if (split) {
+        count(split, progress, word);
+        if (!progress.words[word.key]) unasked.get(level)?.push(word);
       }
+    } else if (!framework.useTierFallback || !word.tier) {
+      ungraded += 1;
     }
 
-    if (!record) bandUnasked.get(band)?.push(word);
+    // Groups gather levels, and fall back to the coarse tier for words the
+    // level-graded source never listed.
+    const group = level
+      ? framework.groups.find((g) => g.levels.includes(level))
+      : framework.useTierFallback && word.tier
+        ? framework.groups.find((g) => g.id === word.tier)
+        : undefined;
+
+    if (group) {
+      count(groupSplits.get(group.id) as Split, progress, word);
+      if (!level) viaTier.set(group.id, (viaTier.get(group.id) ?? 0) + 1);
+    }
+
+    if ((level || (framework.useTierFallback && word.tier)) &&
+        progress.words[word.key]) {
+      tested += 1;
+    }
   }
 
-  for (const list of bandUnasked.values()) list.sort((a, b) => a.rank - b.rank);
-
-  const tiers = TIERS.map((t) => ({
-    ...t,
-    ...(tierSplits.get(t.tier) as Split),
-  }));
-
-  // Covered means known outright — the timed-out words are exactly the ones a
-  // readiness claim shouldn't lean on, so they don't count toward it.
-  const covered = (s: Split) => s.total > 0 && s.known / s.total >= COVERED_AT;
-  const clearedTier: TopikTier | null = covered(
-    tierSplits.get("II") as Split
-  )
-    ? "II"
-    : covered(tierSplits.get("I") as Split)
-      ? "I"
-      : null;
+  for (const list of unasked.values()) list.sort((a, b) => a.rank - b.rank);
 
   return {
-    tiers,
-    bands: BANDS.map((b) => {
-      const split = bandSplits.get(b.key) as Split;
-      return {
-        ...b,
-        ...split,
-        blurb: b.describe(split.total),
-        unasked: bandUnasked.get(b.key) ?? [],
-      };
-    }),
-    clearedTier,
-    byNikl: (["A", "B", "C"] as NiklGrade[]).map((grade) => ({
-      grade,
-      label: NIKL_LABELS[grade],
-      ...(niklSplits.get(grade) as Split),
+    framework,
+    levels: framework.levels.map((level) => ({
+      level,
+      ...(levelSplits.get(level.index) as Split),
+      unasked: unasked.get(level.index) ?? [],
     })),
-    untiered,
+    groups: framework.groups.map((group) => ({
+      group,
+      ...(groupSplits.get(group.id) as Split),
+      viaTier: viaTier.get(group.id) ?? 0,
+    })),
+    ungraded,
+    tested,
   };
 }
 
+/** How much of a level has been asked at all. */
+export function reachPct(split: Split): number {
+  return pct(split.tested, split.total);
+}
+
+/** How much of what was asked came back known. Null when nothing was asked. */
+export function coveragePct(split: Split): number | null {
+  return split.tested === 0 ? null : pct(split.known, split.tested);
+}
+
 /**
- * How much of a tier is still unasked. The frequency-first test order walks
- * ranks, not exam tiers, so a long way into the list can still leave a lot of
- * beginner vocabulary never shown — this is the number that says so.
+ * The highest level that is both well covered and well enough sampled to say
+ * so, walking upward and stopping at the first that fails. Levels build on each
+ * other, so a gap low down isn't redeemed by strength above it.
  */
-export function unaskedPct(split: Split): number {
-  return pct(split.total - split.tested, split.total);
+export function clearedThrough(analysis: FrameworkAnalysis): LevelGroup | null {
+  let cleared: LevelGroup | null = null;
+  for (const level of analysis.levels) {
+    const reached = level.total > 0 && level.tested / level.total >= REACHED_AT;
+    const covered = level.tested > 0 && level.known / level.tested >= COVERED_AT;
+    if (!reached || !covered) break;
+    cleared = level;
+  }
+  return cleared;
+}
+
+/**
+ * Levels too thinly sampled to report on. Worth naming explicitly: the reason
+ * is usually that the word list itself doesn't reach that far, not that the
+ * learner hasn't got there.
+ */
+export function underSampled(analysis: FrameworkAnalysis): LevelGroup[] {
+  return analysis.levels.filter(
+    (l) => l.total > 0 && l.tested / l.total < REACHED_AT
+  );
 }

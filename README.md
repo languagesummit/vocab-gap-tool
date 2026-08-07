@@ -10,10 +10,12 @@ multiple meanings and lemma-based lists so conjugations never count as
 separate words. The known-word list powers gap analysis by semantic category
 and a comprehensible-input scorer for finding texts in your 95–98% sweet spot.
 
-For Korean it also places what you know against the **TOPIK vocabulary lists**
-and 국립국어원's graded learner list — how much of TOPIK I and TOPIK II you can
-actually prove, and which of the exam's own words the frequency-first test
-order hasn't shown you yet.
+It also places what you know against a language's **proficiency frameworks**,
+where a graded list exists — for Korean, TOPIK levels 1–6 and 국립국어원's
+difficulty grades: how much of each level you can actually prove, and which
+words the frequency-first test order hasn't shown you yet. Frameworks are data
+files, so adding JLPT or HSK is a matter of sourcing a graded list rather than
+writing code.
 
 **Stack**: Next.js (App Router, TypeScript, Tailwind) · Supabase (passwordless
 auth + Postgres) · Vercel.

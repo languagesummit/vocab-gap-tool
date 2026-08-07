@@ -12,6 +12,38 @@ import { readFileSync, writeFileSync, mkdirSync, statSync } from "node:fs";
 import { decodeLevels, topikTierCode } from "./levels.mjs";
 
 const seed = JSON.parse(readFileSync("data/korean_seed.json", "utf8"));
+const curriculum = JSON.parse(
+  readFileSync("data/korean_levels.json", "utf8")
+).levels;
+
+/**
+ * Resolves a word to a curriculum level 1–6.
+ *
+ * Both lists number homographs (가격02), so where the seed row carries a sense
+ * code and the curriculum has that same code, the match is sense-exact. Where
+ * it doesn't, a lemma whose senses all sit at one level is still unambiguous —
+ * which covers all but a few hundred. Only when the codes miss *and* the
+ * senses genuinely disagree is there a real choice to make, and there the
+ * lowest level is taken: those are common words whose rarer senses are graded
+ * higher, and overstating difficulty would hide them from the level they're
+ * actually first met at.
+ */
+function levelFor(word) {
+  const entry = curriculum[word.lemma];
+  if (!entry) return { level: null, resolution: "unmatched" };
+
+  const code = word.notes?.nikl_sense;
+  if (code) {
+    const exact = entry.senses.find((s) => s.code === code);
+    if (exact) return { level: exact.level, resolution: "sense" };
+  }
+
+  if (entry.levels.length === 1) {
+    return { level: entry.levels[0], resolution: "lemma" };
+  }
+
+  return { level: entry.levels[0], resolution: "ambiguous" };
+}
 
 /**
  * Strips parenthetical annotations — "(auxiliary)", "(a thing)" — from
@@ -48,9 +80,20 @@ function senseHint(w) {
   return w.part_of_speech ?? null;
 }
 
+const resolutions = {};
 const words = kept.map((w) => {
   const { niklGrade, topikTier } = decodeLevels(w.notes);
+  const { level, resolution } = levelFor(w);
+  resolutions[resolution] = (resolutions[resolution] ?? 0) + 1;
+
+  // Framework level indices, keyed by framework id. Absent keys mean the word
+  // isn't graded by that framework — which is information, not a gap to fill.
+  const lv = {};
+  if (level) lv.topik = level;
+  if (niklGrade) lv.nikl = { A: 1, B: 2, C: 3 }[niklGrade];
+
   return {
+    lv,
     // Stable identity for saved progress. Ranks can shift if the source list
     // is ever rebuilt; lemma+sense does not, so exported files stay valid.
     key: `${w.lemma}#${w.sense_index}`,
@@ -60,10 +103,9 @@ const words = kept.map((w) => {
     pos: w.part_of_speech ?? null,
     category: w.semantic_category ?? null,
     hint: senseHint(w),
-    // NIKL 등급 A/B/C, and TOPIK I/II — null where the word is on neither the
-    // graded list nor the TOPIK list respectively.
-    nikl: niklGrade,
-    topik: topikTierCode(topikTier),
+    // TOPIK I/II from the 2015 exam list. Coarser than the curriculum level
+    // but independent of it, so it still places words the curriculum skips.
+    tier: topikTierCode(topikTier),
   };
 });
 
@@ -75,14 +117,16 @@ console.log(`public/korean.json — ${words.length} words, ${kb} KB`);
 console.log(`ranks ${words[0].rank}–${words[words.length - 1].rank}`);
 console.log(`dropped ${seed.length - words.length} entries with no gloss`);
 
-const tally = (key) =>
+const tally = (get) =>
   words.reduce((acc, w) => {
-    const k = w[key] ?? "(none)";
+    const k = get(w) ?? "(none)";
     acc[k] = (acc[k] ?? 0) + 1;
     return acc;
   }, {});
-console.log("\nNIKL grade:", tally("nikl"));
-console.log("TOPIK tier:", tally("topik"));
+console.log("\nTOPIK tier (2015 list):", tally((w) => w.tier));
+console.log("NIKL grade:", tally((w) => w.lv.nikl));
+console.log("Curriculum level 1–6:", tally((w) => w.lv.topik));
+console.log("How each level was resolved:", resolutions);
 
 const ambiguous = words.filter((w) => (senseCount.get(w.lemma) ?? 0) > 1);
 console.log(

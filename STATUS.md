@@ -88,11 +88,31 @@ sample as though it were knowledge.
 
 ## What this session added
 
-`/levels` — tested vocabulary placed against both gradings: TOPIK I/II coverage
-with honest known/unsure ranges, the finer crossed bands, how much of each tier
-has never been asked, and the NIKL A/B/C view. Verified end-to-end against a
-simulated 1,200-word progress file; tier counts sum to the seeded total and the
-bands sum to 5,897.
+**`/levels`** — tested vocabulary placed against whatever proficiency
+frameworks a language has. Korean has two: TOPIK (6 levels, 2 papers) and the
+국립국어원 등급 (3 difficulty grades).
+
+**Real levels 1–6.** The two-tier TOPIK list can't separate a level-3 word from
+a level-6 one, so the first cut of this page inferred a lower/upper split and
+badged it `approx`. That's now replaced by 국제 통용 한국어 표준 교육과정
+(국립국어원 2017) — 10,635 words graded 1급–6급, downloaded from the published
+xlsx and committed as `data/korean_curriculum_raw.tsv`. It numbers homographs
+the same way the frequency list does, so the join is sense-aware: **5,052 of
+5,897 words carry a real level**, and the `approx` badge is gone.
+
+**Frameworks are data.** `src/lib/frameworks/` holds the definitions; nothing in
+the reporting code or the page knows what TOPIK is. Adding JLPT or HSK is a
+definition file plus a level per word.
+
+**Levels 5 and 6 are barely covered** — 304 and 124 words, because the
+curriculum's advanced vocabulary is rarer than this 5,897-word list reaches.
+The page reports *reach* (how much was asked) separately from *coverage* (how
+much of that came back known) and refuses to grade a level sampled under 50%.
+Extending the word list with the curriculum's advanced entries is the fix, and
+isn't done.
+
+Verified end-to-end against a simulated 1,200-word progress file: level totals
+plus ungraded plus tier-only reconcile to exactly 5,897.
 
 ## Regenerating the word data
 

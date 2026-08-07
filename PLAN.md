@@ -85,24 +85,66 @@ them by value rather than by name and is the single place that knows this.
   levels 1–2) and TOPIK II (levels 3–6). There is no third tier: the 2014
   reform merged 초급/중급/고급 into two papers. 1,438 words are on neither list.
 
-**TOPIK's six levels cannot be scored from this data** — the exam list stops at
-two tiers. Crossing the tier with the NIKL grade splits TOPIK II into a lower
-(B ≈ levels 3–4 ≈ CEFR B1–B2) and an upper half (C ≈ levels 5–6 ≈ C1–C2), which
-is the closest available to per-level detail. That crossing is an alignment
-between two independent gradings, not an official mapping, and the UI is
-required to label it as approximate wherever it appears.
+- **Curriculum level 1–6** — from 국제 통용 한국어 표준 교육과정 적용 연구
+  (4단계), 국립국어원 2017: 10,635 words graded 1급–6급 (735 / 1,100 / 1,655 /
+  2,200 / 2,365 / 2,580). This is what makes levels 3, 4, 5 and 6 separable.
 
-Exam membership decides the band first and the grade only subdivides, so a
-TOPIK I word NIKL graded advanced still counts as TOPIK I vocabulary.
+TOPIK itself publishes no per-level vocabulary list — only the two-tier one.
+The standard curriculum was built against TOPIK's level descriptors, so a level
+means "what a syllabus aiming at that TOPIK level teaches", which is enough to
+name a level but is not the exam board speaking. Every view says so.
+
+The curriculum numbers homographs the same way the frequency list does
+(가격02), so the join is sense-aware: 5,052 of 5,897 words get a level — 649
+sense-exact, 4,147 unambiguous because every sense of the lemma shares a level,
+256 ambiguous (lowest taken, since a common word whose rare sense is graded
+higher should surface at the level it's first met). 845 are ungraded; 3 of
+those still carry a TOPIK tier and are placed by paper only.
 
 TOPIK level ↔ CEFR, the correspondence used throughout: 1→A1, 2→A2, 3→B1,
 4→B2, 5→C1, 6→C2.
 
+**Levels 5 and 6 are barely testable from the current list.** They hold only
+304 and 124 words here, because the curriculum's advanced vocabulary is mostly
+rarer than the 5,897-word frequency list reaches. Assessing them properly needs
+the word list extended with the curriculum's own advanced entries. The levels
+page reports reach separately from coverage so a 5% sample never reads as a
+grade.
+
+## Frameworks are data, not code
+
+Nothing in the core knows what TOPIK is. `src/lib/frameworks/` defines a
+framework as a list of levels, optional groups (an exam setting one paper
+across several levels), provenance and caveats; `src/lib/local/levels.ts`
+reports against any of them; words carry `lv: { <framework>: <level> }`.
+
+Adding JLPT N5–N1, HSK 1–9 or DELE is a definition file plus a level per word —
+no change to the reporting code or the page. A language with no framework
+sourced simply doesn't offer the view. Finding a trustworthy graded list per
+language is the real work, and it's a sourcing problem rather than an
+engineering one.
+
+Korean currently has two: TOPIK (exam, 6 levels, 2 papers) and the 국립국어원
+등급 (difficulty, 3 grades). They were arrived at independently, so showing both
+is useful — where they disagree, that's signal.
+
 Worth knowing: **frequency rank and exam level disagree badly.** 안녕 is rank
 5,018 and 냉장고 is 2,987, both beginner vocabulary. Testing densely from rank 1
-therefore walks past a lot of exam vocabulary — at a frontier of 1,200, 59% of
-TOPIK I is still unasked. The levels page reports that gap explicitly rather
-than letting a percentage of a small sample stand in for knowledge.
+therefore walks past a lot of exam vocabulary — at a frontier of 1,200, only
+53% of curriculum level 1 has been asked. The levels page reports reach
+alongside coverage rather than letting a percentage of a small sample stand in
+for knowledge.
+
+## Regenerating the level data
+
+```
+node scripts/parse-curriculum-levels.mjs   # curriculum TSV -> data/korean_levels.json
+npm run data:static                        # joins levels into public/korean.json
+```
+
+`data/korean_curriculum_raw.tsv` was extracted from the published xlsx
+(국립국어원 report 932, "어휘, 문법 등급 목록"), one row per graded word with
+whitespace collapsed so every row is a single line.
 
 ## Regenerating the word data
 

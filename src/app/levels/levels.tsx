@@ -4,11 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, type Progress } from "@/lib/local/progress";
-import { knownRange, pct, type Split } from "@/lib/local/analysis";
+import { knownRange, type Split } from "@/lib/local/analysis";
+import { frameworksFor } from "@/lib/frameworks";
 import {
-  COVERED_AT,
-  readiness,
-  unaskedPct,
+  analyseFramework,
+  clearedThrough,
+  coveragePct,
+  reachPct,
+  underSampled,
+  REACHED_AT,
+  type FrameworkAnalysis,
   type LevelGroup,
 } from "@/lib/local/levels";
 
@@ -42,10 +47,26 @@ export function Levels() {
     );
   }
 
-  const r = readiness(progress, words);
-  const tested = r.tiers.reduce((n, t) => n + t.tested, 0);
+  const frameworks = frameworksFor(progress.language);
 
-  if (tested === 0) {
+  if (frameworks.length === 0) {
+    return (
+      <Shell>
+        <Header />
+        <Card>
+          <p className="text-zinc-500">
+            No proficiency framework has been sourced for this language yet, so
+            there&apos;s nothing to place your vocabulary against. What you know
+            is still tracked in full on the results page.
+          </p>
+        </Card>
+      </Shell>
+    );
+  }
+
+  const analyses = frameworks.map((f) => analyseFramework(progress, words, f));
+
+  if (analyses.every((a) => a.tested === 0)) {
     return (
       <Shell>
         <Header />
@@ -68,227 +89,188 @@ export function Levels() {
   return (
     <Shell>
       <Header />
+      {analyses.map((a) => (
+        <FrameworkSection key={a.framework.id} analysis={a} />
+      ))}
+    </Shell>
+  );
+}
 
+function FrameworkSection({ analysis }: { analysis: FrameworkAnalysis }) {
+  const { framework: f } = analysis;
+  const cleared = clearedThrough(analysis);
+  const thin = underSampled(analysis);
+
+  return (
+    <>
       <Card>
         <h2 className="font-semibold text-black dark:text-zinc-50">
-          Where the vocabulary puts you
+          {f.name}
         </h2>
-        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          {r.clearedTier === null ? (
+        <p className="mt-0.5 text-sm text-zinc-500">{f.fullName}</p>
+
+        <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          {cleared ? (
             <>
-              Not enough of either tier is confirmed yet to call it covered.
-              Keep going — the bars below fill as you test.
+              Your vocabulary holds up through{" "}
+              <strong className="font-semibold text-black dark:text-zinc-50">
+                {cleared.level.label}
+              </strong>
+              {cleared.level.cefr && ` (${cleared.level.cefr})`} — known
+              outright, on enough of the level to mean it.
             </>
           ) : (
             <>
-              You know at least {Math.round(COVERED_AT * 100)}% of the{" "}
-              <strong className="font-semibold text-black dark:text-zinc-50">
-                {r.clearedTier === "II" ? "TOPIK II" : "TOPIK I"}
-              </strong>{" "}
-              vocabulary outright.
+              No level is yet both well known and well enough sampled to call
+              it cleared. The bars below show which part is missing.
             </>
           )}
         </p>
 
         <div className="mt-5 flex flex-col gap-5">
-          {r.tiers.map((t) => {
-            const range = knownRange(t);
-            return (
-              <div key={t.tier}>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-3">
-                  <span className="font-medium text-black dark:text-zinc-50">
-                    {t.label}
-                  </span>
-                  <span className="text-sm text-zinc-500">
-                    {t.levels} · CEFR {t.cefr}
-                  </span>
-                </div>
-                <Bar split={t} />
-                <p className="mt-1.5 text-sm text-zinc-600 dark:text-zinc-400">
-                  {range.low.toLocaleString()}
-                  {range.high !== range.low && `–${range.high.toLocaleString()}`}{" "}
-                  of {t.total.toLocaleString()} known
-                  {t.total > t.tested && (
-                    <span className="text-zinc-400">
-                      {" "}
-                      · {(t.total - t.tested).toLocaleString()} never asked
-                    </span>
-                  )}
-                </p>
-                <p className="mt-0.5 text-xs text-zinc-500">{t.blurb}</p>
-              </div>
-            );
-          })}
-        </div>
-      </Card>
-
-      <Card tone="amber">
-        <h2 className="font-semibold text-amber-900 dark:text-amber-200">
-          What this can and can&apos;t tell you
-        </h2>
-        <ul className="mt-2 flex list-disc flex-col gap-1.5 pl-5 text-sm text-amber-900/80 dark:text-amber-200/80">
-          <li>
-            TOPIK grades vocabulary in two tiers, not six. Nothing in this data
-            separates a level-3 word from a level-6 one, so the six levels
-            can&apos;t be scored directly — the finer bands below are inferred.
-          </li>
-          <li>
-            The exam tests listening, reading and writing. Vocabulary is the
-            floor under those, not a substitute for them. Knowing the words is
-            necessary, not sufficient.
-          </li>
-          <li>
-            Only what you&apos;ve been asked counts. Where a tier is largely
-            unasked, the percentage describes a sample, not your knowledge.
-          </li>
-        </ul>
-      </Card>
-
-      {r.tiers.some((t) => unaskedPct(t) >= 25) && (
-        <Card>
-          <h2 className="font-semibold text-black dark:text-zinc-50">
-            Testing by frequency skips past exam vocabulary
-          </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            Words are asked in frequency order, but the TOPIK lists aren&apos;t
-            ordered that way — 안녕 sits at rank 5,018 and 냉장고 at 2,987, both
-            beginner vocabulary. So a frontier deep into the list can still
-            leave a lot of the exam&apos;s own words never shown to you.
-          </p>
-          <div className="mt-4 flex flex-col gap-3">
-            {r.tiers.map((t) => (
-              <div
-                key={t.tier}
-                className="flex items-baseline justify-between gap-3 text-sm"
-              >
-                <span className="text-black dark:text-zinc-50">{t.label}</span>
-                <span className="text-zinc-500">
-                  {unaskedPct(t)}% never asked (
-                  {(t.total - t.tested).toLocaleString()} words)
-                </span>
-              </div>
-            ))}
-          </div>
-        </Card>
-      )}
-
-      <Card>
-        <h2 className="font-semibold text-black dark:text-zinc-50">
-          Finer bands
-        </h2>
-        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          TOPIK II spans four levels in one paper. Crossing it with NIKL&apos;s
-          own difficulty grade splits it into a lower and an upper half — the
-          closest this data gets to per-level detail. The two middle bands are
-          an alignment between two separate gradings, not an official mapping.
-        </p>
-        <div className="mt-4 flex flex-col gap-5">
-          {r.bands.map((b) => (
-            <BandRow key={b.key} band={b} />
+          {analysis.levels.map((l) => (
+            <LevelRow key={l.level.index} row={l} />
           ))}
         </div>
-        {r.untiered > 0 && (
-          <p className="mt-4 text-xs text-zinc-500">
-            {r.untiered.toLocaleString()} words in the frequency list appear on
-            neither TOPIK list. They still count as Korean you know — they just
-            can&apos;t be placed against the exam.
+
+        {analysis.ungraded > 0 && (
+          <p className="mt-5 text-xs text-zinc-500">
+            {analysis.ungraded.toLocaleString()} words in your list aren&apos;t
+            graded by {f.name} at all. They still count as language you know —
+            they just can&apos;t be placed on this scale.
           </p>
         )}
       </Card>
 
-      <Card>
-        <h2 className="font-semibold text-black dark:text-zinc-50">
-          By difficulty, ignoring the exam
-        </h2>
-        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          국립국어원&apos;s graded learner list (조남호, 2003), judged by panel
-          rather than by frequency. A useful second opinion: it disagrees with
-          rank often enough to be worth reading on its own.
-        </p>
-        <div className="mt-4 flex flex-col gap-4">
-          {r.byNikl.map((g) => (
-            <div key={g.grade}>
-              <div className="flex items-baseline justify-between gap-3 text-sm">
-                <span className="text-black dark:text-zinc-50">{g.label}</span>
-                <span className="text-zinc-500">
-                  {g.tested === 0
-                    ? "untested"
-                    : `${pct(g.known, g.tested)}% known of ${g.tested.toLocaleString()} asked`}
-                </span>
-              </div>
-              <Bar split={g} />
-              {g.total > g.tested && (
-                <p className="mt-1 text-xs text-zinc-500">
-                  {(g.total - g.tested).toLocaleString()} of{" "}
-                  {g.total.toLocaleString()} never asked — the bar is drawn
-                  against the whole grade, so the empty part is what&apos;s
-                  still unknown territory.
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-      </Card>
+      {f.groups.length > 0 && (
+        <Card>
+          <h3 className="font-semibold text-black dark:text-zinc-50">
+            By paper
+          </h3>
+          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            {f.name} sets one paper across several levels, so &ldquo;ready to
+            sit this paper&rdquo; is a different question from &ldquo;at this
+            level&rdquo;.
+          </p>
+          <div className="mt-4 flex flex-col gap-5">
+            {analysis.groups.map((g) => {
+              const range = knownRange(g);
+              return (
+                <div key={g.group.id}>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-3">
+                    <span className="font-medium text-black dark:text-zinc-50">
+                      {g.group.label}
+                    </span>
+                    <span className="text-sm text-zinc-500">
+                      Levels {g.group.levels.join(", ")}
+                    </span>
+                  </div>
+                  <Bar split={g} />
+                  <p className="mt-1.5 text-sm text-zinc-600 dark:text-zinc-400">
+                    {range.low.toLocaleString()}
+                    {range.high !== range.low &&
+                      `–${range.high.toLocaleString()}`}{" "}
+                    of {g.total.toLocaleString()} known
+                    {g.total > g.tested && (
+                      <span className="text-zinc-400">
+                        {" "}
+                        · {(g.total - g.tested).toLocaleString()} never asked
+                      </span>
+                    )}
+                  </p>
+                  <p className="mt-0.5 text-xs text-zinc-500">
+                    {g.group.blurb}
+                    {g.viaTier > 0 && (
+                      <>
+                        {" "}
+                        {g.viaTier.toLocaleString()} of these are placed by the
+                        exam&apos;s own two-tier list only, with no finer level.
+                      </>
+                    )}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </Card>
+      )}
 
-      <p className="text-xs text-zinc-500">
-        Tier membership from the 2015 TOPIK vocabulary list; grades from
-        국립국어원&apos;s 한국어 학습용 어휘 목록 (조남호, 2003). TOPIK↔CEFR
-        correspondence is the widely used one: levels 1–6 to A1–C2.
-      </p>
-    </Shell>
+      {thin.length > 0 && (
+        <Card tone="amber">
+          <h3 className="font-semibold text-amber-900 dark:text-amber-200">
+            Too thin to judge:{" "}
+            {thin.map((l) => l.level.label.replace("Level ", "")).join(", ")}
+          </h3>
+          <p className="mt-1 text-sm text-amber-900/80 dark:text-amber-200/80">
+            Fewer than {Math.round(REACHED_AT * 100)}% of these levels&apos;
+            words have been asked, so any percentage would describe the sample
+            rather than your knowledge. Usually this means the frequency list
+            itself doesn&apos;t reach that far — the advanced levels are largely
+            made of words rarer than the list goes.
+          </p>
+          <ul className="mt-3 flex flex-col gap-1 text-sm text-amber-900/80 dark:text-amber-200/80">
+            {thin.map((l) => (
+              <li key={l.level.index} className="flex justify-between gap-3">
+                <span>{l.level.label}</span>
+                <span>
+                  {l.tested.toLocaleString()} of {l.total.toLocaleString()}{" "}
+                  asked
+                </span>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
+
+      {f.caveat && (
+        <p className="-mt-2 text-xs text-zinc-500">
+          <strong className="font-medium">{f.name}:</strong> {f.caveat} Source:{" "}
+          {f.source}.
+        </p>
+      )}
+    </>
   );
 }
 
 const LIST_LIMIT = 100;
 
-function BandRow({ band }: { band: LevelGroup }) {
+function LevelRow({ row }: { row: LevelGroup }) {
   const [open, setOpen] = useState(false);
-  const range = knownRange(band);
+  const range = knownRange(row);
+  const coverage = coveragePct(row);
+  const reach = reachPct(row);
 
   return (
     <div>
       <div className="flex flex-wrap items-baseline justify-between gap-x-3">
         <span className="font-medium text-black dark:text-zinc-50">
-          {band.label}
-          {band.approximate && (
-            <span
-              className="ml-2 rounded bg-zinc-100 px-1.5 py-0.5 align-middle text-[11px] font-normal text-zinc-500 dark:bg-zinc-900"
-              title="Inferred by crossing the TOPIK tier with the NIKL grade — not an official mapping."
-            >
-              approx
-            </span>
-          )}
+          {row.level.label}
         </span>
-        {band.cefr !== "—" && (
-          <span className="text-sm text-zinc-500">CEFR {band.cefr}</span>
-        )}
+        <span className="text-sm text-zinc-500">
+          {row.level.cefr && <>CEFR {row.level.cefr} · </>}
+          {coverage === null ? "none asked" : `${coverage}% of asked known`}
+        </span>
       </div>
-      <Bar split={band} />
+      <Bar split={row} />
       <p className="mt-1.5 text-sm text-zinc-600 dark:text-zinc-400">
-        {band.tested === 0 ? (
-          "None asked yet."
-        ) : (
-          <>
-            {range.low.toLocaleString()}
-            {range.high !== range.low && `–${range.high.toLocaleString()}`} of{" "}
-            {band.total.toLocaleString()} known
-          </>
-        )}
+        {range.low.toLocaleString()}
+        {range.high !== range.low && `–${range.high.toLocaleString()}`} of{" "}
+        {row.total.toLocaleString()} known
+        <span className="text-zinc-400"> · {reach}% of the level asked</span>
       </p>
-      <p className="mt-0.5 text-xs text-zinc-500">{band.blurb}</p>
 
-      {band.unasked.length > 0 && (
+      {row.unasked.length > 0 && (
         <>
           <button
             onClick={() => setOpen((o) => !o)}
             className="mt-1.5 text-xs text-zinc-500 underline hover:text-black dark:hover:text-zinc-50"
           >
-            {open ? "Hide" : "Show"} {band.unasked.length.toLocaleString()} never
+            {open ? "Hide" : "Show"} {row.unasked.length.toLocaleString()} never
             asked
           </button>
           {open && (
             <ul className="mt-2 flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
-              {band.unasked.slice(0, LIST_LIMIT).map((w) => (
+              {row.unasked.slice(0, LIST_LIMIT).map((w) => (
                 <li
                   key={w.key}
                   className="flex items-baseline justify-between gap-4 py-2"
@@ -304,10 +286,10 @@ function BandRow({ band }: { band: LevelGroup }) {
                   </span>
                 </li>
               ))}
-              {band.unasked.length > LIST_LIMIT && (
+              {row.unasked.length > LIST_LIMIT && (
                 <li className="py-2 text-sm text-zinc-500">
                   Showing the first {LIST_LIMIT} of{" "}
-                  {band.unasked.length.toLocaleString()}.
+                  {row.unasked.length.toLocaleString()}.
                 </li>
               )}
             </ul>
@@ -319,8 +301,8 @@ function BandRow({ band }: { band: LevelGroup }) {
 }
 
 function Bar({ split }: { split: Split }) {
-  // Bars are drawn against the whole band, not just what's been asked, so a
-  // tier that's mostly unasked reads as mostly empty rather than as mastered.
+  // Drawn against the whole level, not just what's been asked, so a level
+  // barely sampled reads as barely known rather than as mastered.
   const total = split.total || 1;
   const seg = (n: number) => `${(n / total) * 100}%`;
   return (
@@ -342,7 +324,7 @@ function Header() {
         Exam levels
       </h1>
       <p className="mt-1 text-zinc-600 dark:text-zinc-400">
-        Korean · your tested vocabulary against TOPIK and 국립국어원 grades
+        Korean · your tested vocabulary against the graded lists
       </p>
     </header>
   );

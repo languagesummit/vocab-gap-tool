@@ -10,11 +10,18 @@ export type Word = {
    * lemma appears more than once. Null elsewhere, where it would be clutter.
    */
   hint: string | null;
-  /** NIKL 등급 — A 초급, B 중급, C 고급. Null for the handful ungraded. */
-  nikl: "A" | "B" | "C" | null;
-  /** TOPIK tier — I covers exam levels 1–2, II covers 3–6. Null when the word
-   * is on neither TOPIK vocabulary list. */
-  topik: "I" | "II" | null;
+  /**
+   * Level index per proficiency framework, keyed by framework id — e.g.
+   * `{ topik: 4, nikl: 2 }`. A missing key means that framework doesn't grade
+   * this word, which is information rather than a gap.
+   */
+  lv: Record<string, number>;
+  /**
+   * TOPIK's own two-tier grading — I covers exam levels 1–2, II covers 3–6.
+   * Coarser than `lv.topik` but drawn from a different source, so it still
+   * places words the curriculum never graded. Null when on neither list.
+   */
+  tier: "I" | "II" | null;
 };
 
 let cache: Word[] | null = null;
