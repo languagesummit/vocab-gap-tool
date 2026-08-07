@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, type Progress } from "@/lib/local/progress";
-import type { Split } from "@/lib/local/analysis";
+import { BasisToggle, SplitBar, type Basis } from "@/components/split-bar";
 import {
   analyseGaps,
   isWellSampled,
@@ -22,6 +22,7 @@ export function Gaps() {
   const [progress, setProgress] = useState<Progress | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [dimension, setDimension] = useState<Dimension>(DIMENSIONS[0]);
+  const [basis, setBasis] = useState<Basis>("asked");
 
   useEffect(() => {
     // localStorage is client-only, so state has to be filled in after mount.
@@ -80,6 +81,8 @@ export function Gaps() {
           </button>
         ))}
       </div>
+
+      <BasisToggle basis={basis} onChange={setBasis} />
 
       <Card>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -183,7 +186,7 @@ export function Gaps() {
       </h2>
       <div className="flex flex-col gap-3">
         {g.majors.map((m) => (
-          <MajorRow key={m.label} major={m} />
+          <MajorRow key={m.label} major={m} basis={basis} />
         ))}
       </div>
 
@@ -197,7 +200,7 @@ export function Gaps() {
   );
 }
 
-function MajorRow({ major }: { major: MajorCategory }) {
+function MajorRow({ major, basis }: { major: MajorCategory; basis: Basis }) {
   const [open, setOpen] = useState(false);
   const s = strength(major);
 
@@ -230,7 +233,7 @@ function MajorRow({ major }: { major: MajorCategory }) {
             )}
           </span>
         </div>
-        <Bar split={major} />
+        <SplitBar split={major} basis={basis} />
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-zinc-500">
           <span>{major.total.toLocaleString()} words</span>
           {major.missed.length > 0 && (
@@ -251,7 +254,7 @@ function MajorRow({ major }: { major: MajorCategory }) {
       {open && (
         <div className="flex flex-col gap-4 border-t border-zinc-100 px-5 py-4 dark:border-zinc-800">
           {major.subs.map((sub) => (
-            <SubRow key={sub.label} sub={sub} />
+            <SubRow key={sub.label} sub={sub} basis={basis} />
           ))}
         </div>
       )}
@@ -259,7 +262,7 @@ function MajorRow({ major }: { major: MajorCategory }) {
   );
 }
 
-function SubRow({ sub }: { sub: CategoryNode }) {
+function SubRow({ sub, basis }: { sub: CategoryNode; basis: Basis }) {
   const [show, setShow] = useState<"missed" | "unasked" | null>(null);
   const s = strength(sub);
 
@@ -275,7 +278,7 @@ function SubRow({ sub }: { sub: CategoryNode }) {
           </span>
         </span>
       </div>
-      <Bar split={sub} />
+      <SplitBar split={sub} basis={basis} thin />
 
       <div className="mt-1.5 flex flex-wrap gap-x-4 text-xs">
         {sub.missed.length > 0 && (
@@ -329,20 +332,6 @@ function SubRow({ sub }: { sub: CategoryNode }) {
 }
 
 const LIST_LIMIT = 80;
-
-function Bar({ split }: { split: Split }) {
-  // Against the whole category, so the untested remainder stays visible as
-  // empty track rather than being hidden by a percentage of a small sample.
-  const total = split.total || 1;
-  const seg = (n: number) => `${(n / total) * 100}%`;
-  return (
-    <div className="mt-1 flex h-2.5 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-900">
-      <div className="bg-emerald-500" style={{ width: seg(split.known) }} />
-      <div className="bg-amber-400" style={{ width: seg(split.unsure) }} />
-      <div className="bg-red-500" style={{ width: seg(split.unknown) }} />
-    </div>
-  );
-}
 
 function Card({ children }: { children: React.ReactNode }) {
   return (

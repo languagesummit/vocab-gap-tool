@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, type Progress } from "@/lib/local/progress";
-import { knownRange, type Split } from "@/lib/local/analysis";
+import { knownRange } from "@/lib/local/analysis";
+import { BasisToggle, SplitBar, type Basis } from "@/components/split-bar";
 import { frameworksFor } from "@/lib/frameworks";
 import {
   analyseFramework,
@@ -21,6 +22,7 @@ export function Levels() {
   const [words, setWords] = useState<Word[] | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [basis, setBasis] = useState<Basis>("asked");
 
   useEffect(() => {
     // localStorage is client-only, so state has to be filled in after mount.
@@ -89,14 +91,21 @@ export function Levels() {
   return (
     <Shell>
       <Header />
+      <BasisToggle basis={basis} onChange={setBasis} />
       {analyses.map((a) => (
-        <FrameworkSection key={a.framework.id} analysis={a} />
+        <FrameworkSection key={a.framework.id} analysis={a} basis={basis} />
       ))}
     </Shell>
   );
 }
 
-function FrameworkSection({ analysis }: { analysis: FrameworkAnalysis }) {
+function FrameworkSection({
+  analysis,
+  basis,
+}: {
+  analysis: FrameworkAnalysis;
+  basis: Basis;
+}) {
   const { framework: f } = analysis;
   const cleared = clearedThrough(analysis);
   const thin = underSampled(analysis);
@@ -129,7 +138,7 @@ function FrameworkSection({ analysis }: { analysis: FrameworkAnalysis }) {
 
         <div className="mt-5 flex flex-col gap-5">
           {analysis.levels.map((l) => (
-            <LevelRow key={l.level.index} row={l} />
+            <LevelRow key={l.level.index} row={l} basis={basis} />
           ))}
         </div>
 
@@ -165,7 +174,7 @@ function FrameworkSection({ analysis }: { analysis: FrameworkAnalysis }) {
                       Levels {g.group.levels.join(", ")}
                     </span>
                   </div>
-                  <Bar split={g} />
+                  <SplitBar split={g} basis={basis} />
                   <p className="mt-1.5 text-sm text-zinc-600 dark:text-zinc-400">
                     {range.low.toLocaleString()}
                     {range.high !== range.low &&
@@ -234,7 +243,7 @@ function FrameworkSection({ analysis }: { analysis: FrameworkAnalysis }) {
 
 const LIST_LIMIT = 100;
 
-function LevelRow({ row }: { row: LevelGroup }) {
+function LevelRow({ row, basis }: { row: LevelGroup; basis: Basis }) {
   const [open, setOpen] = useState(false);
   const range = knownRange(row);
   const coverage = coveragePct(row);
@@ -251,7 +260,7 @@ function LevelRow({ row }: { row: LevelGroup }) {
           {coverage === null ? "none asked" : `${coverage}% of asked known`}
         </span>
       </div>
-      <Bar split={row} />
+      <SplitBar split={row} basis={basis} />
       <p className="mt-1.5 text-sm text-zinc-600 dark:text-zinc-400">
         {range.low.toLocaleString()}
         {range.high !== range.low && `–${range.high.toLocaleString()}`} of{" "}
@@ -296,20 +305,6 @@ function LevelRow({ row }: { row: LevelGroup }) {
           )}
         </>
       )}
-    </div>
-  );
-}
-
-function Bar({ split }: { split: Split }) {
-  // Drawn against the whole level, not just what's been asked, so a level
-  // barely sampled reads as barely known rather than as mastered.
-  const total = split.total || 1;
-  const seg = (n: number) => `${(n / total) * 100}%`;
-  return (
-    <div className="mt-1.5 flex h-3 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-900">
-      <div className="bg-emerald-500" style={{ width: seg(split.known) }} />
-      <div className="bg-amber-400" style={{ width: seg(split.unsure) }} />
-      <div className="bg-red-500" style={{ width: seg(split.unknown) }} />
     </div>
   );
 }

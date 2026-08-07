@@ -200,6 +200,15 @@ where the semantic tagging reaches 3,151, verbs being thinly tagged at source
 (399 of 1,345). It was previously the weaker view, a plain percentage bar on
 the results page with no missed/unasked split at all.
 
+**Bars have a basis toggle** — share of *what you were asked*, or share of
+*every word that exists* — on `/gaps`, `/levels` and `/results`, via the shared
+`src/components/split-bar.tsx`. Both are honest and they answer different
+questions, but against all 5,897 words everything renders as a sliver on an
+empty track, which reads as hopeless and flattens the difference between doing
+well and doing badly. Defaults to the asked basis; the raw counts stay on
+screen either way so nothing has to be inferred from the bar alone. Measured on
+a simulated profile the same bar reads 86% against asked and 29% against all.
+
 ## Where the source data comes from
 
 All published by 국립국어원 and downloadable without an account. Recorded here

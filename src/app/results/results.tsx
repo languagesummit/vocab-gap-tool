@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, saveProgress, type Progress } from "@/lib/local/progress";
+import { BasisToggle, SplitBar, type Basis } from "@/components/split-bar";
 import {
   analyse,
   knownRange,
@@ -17,6 +18,7 @@ export function Results() {
   const [words, setWords] = useState<Word[] | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [basis, setBasis] = useState<Basis>("asked");
 
   useEffect(() => {
     // localStorage is client-only, so state has to be filled in after mount.
@@ -106,6 +108,8 @@ export function Results() {
         </p>
       </header>
 
+      <BasisToggle basis={basis} onChange={setBasis} />
+
       <Card>
         <div className="text-sm text-zinc-500">Words you know</div>
         <div className="mt-1 flex items-baseline gap-2">
@@ -124,7 +128,7 @@ export function Results() {
           all of them known at the top.
         </p>
         <div className="mt-4">
-          <Bar split={a.overall} />
+          <SplitBar split={a.overall} basis={basis} />
           <Legend split={a.overall} />
         </div>
       </Card>
@@ -182,7 +186,7 @@ export function Results() {
           The most useful shape on this page. Knowledge should thin out as
           words get rarer — where it drops off is where studying pays.
         </p>
-        <Groups groups={a.bands} showUntested />
+        <Groups groups={a.bands} basis={basis} showUntested />
       </Card>
 
       <Card>
@@ -192,7 +196,7 @@ export function Results() {
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
           Tagged for all {(5897).toLocaleString()} words.
         </p>
-        <Groups groups={a.byPos} />
+        <Groups groups={a.byPos} basis={basis} />
       </Card>
 
       <Card>
@@ -282,9 +286,11 @@ export function Results() {
 
 function Groups({
   groups,
+  basis,
   showUntested = false,
 }: {
   groups: Group[];
+  basis: Basis;
   showUntested?: boolean;
 }) {
   return (
@@ -311,7 +317,7 @@ function Groups({
                 )}
               </span>
             </div>
-            <Bar split={g} />
+            <SplitBar split={g} basis={basis} />
           </div>
         );
       })}
@@ -373,18 +379,6 @@ function RecallRow({
           ))}
         </ul>
       )}
-    </div>
-  );
-}
-
-function Bar({ split }: { split: Split }) {
-  const total = split.tested || 1;
-  const seg = (n: number) => `${(n / total) * 100}%`;
-  return (
-    <div className="mt-1.5 flex h-3 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-900">
-      <div className="bg-emerald-500" style={{ width: seg(split.known) }} />
-      <div className="bg-amber-400" style={{ width: seg(split.unsure) }} />
-      <div className="bg-red-500" style={{ width: seg(split.unknown) }} />
     </div>
   );
 }
