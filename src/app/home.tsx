@@ -243,6 +243,15 @@ export function Home() {
 
         {notice && <p className="mt-3 text-sm text-zinc-500">{notice}</p>}
       </section>
+
+      <footer className="text-xs text-zinc-500">
+        Word list, meanings, levels and categories come from 국립국어원, TOPIK
+        and kengdic —{" "}
+        <Link href="/credits" className="underline hover:text-black dark:hover:text-zinc-50">
+          credits and licences
+        </Link>
+        .
+      </footer>
     </main>
   );
 }

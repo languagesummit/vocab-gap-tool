@@ -48,6 +48,21 @@ distractor quality (drawn from ±400 ranks and part-of-speech matched, but the
 only ever walks frequency order, so you can't say "just test me on colours"
 even though the app now knows which words those are.
 
+**Attribution is done, with one gap.** Audited every source the pipeline uses;
+see `NOTICE.md` for the full table and `/credits` for the user-facing version.
+The finding that mattered: **kengdic is copyleft** — dual MPL 2.0 / LGPL 2.0+,
+and roughly 5,700 of the 5,897 glosses derive from it. We take MPL 2.0. It is
+file-scoped, so the app is unaffected, but `data/korean_seed.json` and
+`public/korean.json` stay under MPL and their source form must stay available
+under it — fine while this repo is public, a problem the day it isn't. All
+국립국어원 material is 공공누리 제1유형, verified on the source pages: commercial
+use and modification allowed, attribution required, which `/credits` now gives.
+
+Outstanding: the **TOPIK 2015 vocabulary list** reached us via the combined
+GitHub repo rather than from 한국어능력시험 directly, so its terms were never
+read at source. Treated as attribution-required. Confirm before any public
+launch. None of this has been reviewed by anyone qualified.
+
 **Still open:** the levels page says "your vocabulary holds up through Level N",
 which is a prediction about an exam that also tests grammar, listening and
 writing. Passing TOPIK I is not a matter of knowing 1,200 words. Leaning toward

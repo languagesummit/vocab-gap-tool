@@ -22,6 +22,18 @@ auth + Postgres) · Vercel.
 
 See [PLAN.md](PLAN.md) for the full roadmap and locked design decisions.
 
+## Data sources and licences
+
+None of the language data is ours. Glosses come from
+[kengdic](https://github.com/garfieldnate/kengdic) under **MPL 2.0**, which is
+copyleft — the word-list files carrying those glosses stay under MPL and their
+source form stays available under it. That is file-scoped and does not affect
+the application code. Frequency ranks, difficulty grades, TOPIK levels and
+semantic categories come from 국립국어원 and TOPIK under **공공누리 제1유형**,
+which requires the source to be stated.
+
+Full detail in [NOTICE.md](NOTICE.md); the user-facing version is at `/credits`.
+
 ## Local development
 
 ```bash
