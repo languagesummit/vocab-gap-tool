@@ -301,13 +301,17 @@ export function Session() {
           Cleared through rank {frontier.toLocaleString()}. Saved in this
           browser.
         </p>
+        <ResultsLink />
         <HomeLink />
       </Centered>
     );
   }
 
   return (
-    <main className="flex min-h-screen flex-col bg-white dark:bg-black">
+    // dvh rather than vh: iOS measures 100vh behind the address bar, which
+    // pushed the answers off-screen. select-none stops fast tapping from
+    // dragging a text selection across the glosses.
+    <main className="flex min-h-[100dvh] select-none flex-col bg-white dark:bg-black">
       <div className="h-1 w-full bg-zinc-100 dark:bg-zinc-900">
         <div
           // Restarting the animation per word is what the key is for.
@@ -328,7 +332,7 @@ export function Session() {
             onClick={goBack}
             disabled={position === 0}
             title="Go back one word (backspace)"
-            className="rounded-md border border-zinc-300 px-2.5 py-1 text-xs text-black transition hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+            className="flex h-11 items-center rounded-md border border-zinc-300 px-3 text-xs text-black transition hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
           >
             ← Back
           </button>
@@ -341,9 +345,9 @@ export function Session() {
           <span className="text-red-600">{tally.unknown}</span>
           <button
             onClick={() => setPaused(true)}
-            className="rounded-md border border-zinc-300 px-2.5 py-1 text-xs text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+            className="flex h-11 items-center rounded-md border border-zinc-300 px-3 text-xs text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
           >
-            Pause (esc)
+            Pause
           </button>
         </span>
       </div>
@@ -384,16 +388,21 @@ export function Session() {
           ))}
         </div>
 
+        {/*
+          On a phone there is no space bar, so this is the honesty button the
+          whole result depends on. It gets the same reach as the answers.
+        */}
         <button
           onClick={answerUnknown}
-          className="text-sm text-zinc-500 underline underline-offset-4 hover:text-zinc-800 dark:hover:text-zinc-300"
+          className="flex h-14 w-full max-w-xl items-center justify-center gap-2 rounded-lg border border-dashed border-zinc-300 text-zinc-600 transition hover:border-zinc-500 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-900"
         >
-          I don&apos;t know (space)
+          I don&apos;t know
+          <span className="hidden text-xs text-zinc-400 sm:inline">(space)</span>
         </button>
       </div>
 
       {paused && (
-        <div className="fixed inset-0 flex flex-col items-center justify-center gap-6 bg-white/95 backdrop-blur dark:bg-black/95">
+        <div className="fixed inset-0 flex flex-col items-center justify-center gap-6 bg-white/95 px-6 backdrop-blur dark:bg-black/95">
           <h2 className="text-2xl font-semibold text-black dark:text-zinc-50">
             Paused
           </h2>
@@ -401,24 +410,32 @@ export function Session() {
           <p className="text-sm text-zinc-500">
             Everything so far is saved. You can close the tab safely.
           </p>
-          <div className="flex gap-3">
+          {/* Stacked on a phone — side by side they hit both screen edges
+              and wrapped onto two lines. */}
+          <div className="flex w-full max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row">
             <button
               onClick={() => setPaused(false)}
               autoFocus
-              className="rounded-lg bg-black px-5 py-2.5 font-medium text-white dark:bg-zinc-50 dark:text-black"
+              className="flex h-12 items-center justify-center rounded-lg bg-black px-5 font-medium whitespace-nowrap text-white dark:bg-zinc-50 dark:text-black"
             >
-              Resume (space)
+              Resume
             </button>
             <button
               onClick={goBack}
               disabled={position === 0}
-              className="rounded-lg border border-zinc-300 px-5 py-2.5 font-medium text-black transition disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50"
+              className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium whitespace-nowrap text-black transition disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50"
             >
               ← Back one
             </button>
             <Link
+              href="/results"
+              className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium whitespace-nowrap text-black dark:border-zinc-700 dark:text-zinc-50"
+            >
+              Results
+            </Link>
+            <Link
               href="/"
-              className="rounded-lg border border-zinc-300 px-5 py-2.5 font-medium text-black dark:border-zinc-700 dark:text-zinc-50"
+              className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium whitespace-nowrap text-black dark:border-zinc-700 dark:text-zinc-50"
             >
               Finish
             </Link>
@@ -458,7 +475,7 @@ function Stat({
 
 function Centered({ children }: { children: React.ReactNode }) {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center gap-5 bg-white px-6 text-center dark:bg-black">
+    <main className="flex min-h-[100dvh] flex-col items-center justify-center gap-5 bg-white px-6 text-center dark:bg-black">
       {children}
     </main>
   );
@@ -468,9 +485,20 @@ function HomeLink() {
   return (
     <Link
       href="/"
-      className="rounded-lg bg-black px-5 py-2.5 font-medium text-white dark:bg-zinc-50 dark:text-black"
+      className="flex h-12 items-center rounded-lg bg-black px-5 font-medium text-white dark:bg-zinc-50 dark:text-black"
     >
       Home
+    </Link>
+  );
+}
+
+function ResultsLink() {
+  return (
+    <Link
+      href="/results"
+      className="flex h-12 items-center rounded-lg border border-zinc-300 px-5 font-medium text-black dark:border-zinc-700 dark:text-zinc-50"
+    >
+      See what this says
     </Link>
   );
 }

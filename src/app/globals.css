@@ -26,6 +26,18 @@ body {
 }
 
 /*
+ * Tapping is the whole interaction on a phone, several times a minute. Without
+ * these, iOS reads quick repeat taps as double-tap-to-zoom and flashes a grey
+ * box over every button.
+ */
+button,
+a,
+label {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/*
  * The per-word countdown. Running this in CSS rather than React state keeps
  * the quiz from re-rendering many times a second, which made clicks feel
  * sluggish. Pausing is just animation-play-state, so it resumes mid-sweep.

@@ -38,7 +38,7 @@ export function Home() {
   // what the server produced.
   if (!progress) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white dark:bg-black">
+      <main className="flex min-h-[100dvh] items-center justify-center bg-white dark:bg-black">
         <p className="text-zinc-400">Loading…</p>
       </main>
     );
@@ -61,7 +61,7 @@ export function Home() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-2xl flex-col gap-8 bg-white px-6 py-12 dark:bg-black">
+    <main className="mx-auto flex min-h-[100dvh] max-w-2xl flex-col gap-8 bg-white px-6 py-12 dark:bg-black">
       <header>
         <h1 className="text-3xl font-bold tracking-tight text-black dark:text-zinc-50">
           Vocab Tracker
@@ -95,12 +95,22 @@ export function Home() {
           <Stat label="Unknown" value={counts.unknown} tone="text-red-600" />
         </div>
 
-        <Link
-          href="/test"
-          className="mt-6 flex h-12 items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-200"
-        >
-          {counts.tested === 0 ? "Start testing" : "Continue testing"}
-        </Link>
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+          <Link
+            href="/test"
+            className="flex h-12 flex-1 items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-200"
+          >
+            {counts.tested === 0 ? "Start testing" : "Continue testing"}
+          </Link>
+          {counts.tested > 0 && (
+            <Link
+              href="/results"
+              className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+            >
+              See results
+            </Link>
+          )}
+        </div>
       </section>
 
       <section className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
