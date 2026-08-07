@@ -14,6 +14,11 @@ import {
 // rather than obviously advanced vocabulary.
 const DISTRACTOR_WINDOW = 400;
 
+// When the clock runs out the word stays on screen for a moment before the
+// next one appears, and input is ignored for that moment. Without it, an
+// answer begun just before the buzzer lands on the following word instead.
+const GRACE_MS = 700;
+
 type Tally = { known: number; unsure: number; unknown: number };
 
 export function Session() {
@@ -31,6 +36,9 @@ export function Session() {
 
   const [paused, setPaused] = useState(false);
   const [frontier, setFrontier] = useState(0);
+  // The word whose timer just ran out. Set for GRACE_MS, during which the
+  // next question is held back and answers are ignored.
+  const [expired, setExpired] = useState<Word | null>(null);
 
   const progressRef = useRef<Progress | null>(null);
   // Time left on the current word, carried across pauses.
@@ -153,6 +161,7 @@ export function Session() {
 
     setFrontier(highest);
     setPaused(false);
+    setExpired(null);
     setPosition((p) => p - 1);
   }, [position, queue, words]);
 
@@ -162,8 +171,10 @@ export function Session() {
     remainingRef.current = timerMs;
   }, [position, timerMs]);
 
+  // Holding here means the next word's clock hasn't started yet, so the pause
+  // costs the user nothing.
   useEffect(() => {
-    if (!current || paused || finished) return;
+    if (!current || paused || finished || expired) return;
     startedAt.current = Date.now();
 
     // A single timeout instead of a 50ms interval — the visible countdown is
@@ -171,6 +182,7 @@ export function Session() {
     const id = setTimeout(() => {
       // Out of time means recognised but not recalled fast enough —
       // "unsure", which is distinct from getting it wrong.
+      setExpired(current);
       record("unsure", true);
     }, remainingRef.current);
 
@@ -181,15 +193,26 @@ export function Session() {
         remainingRef.current - (Date.now() - startedAt.current)
       );
     };
-  }, [current, paused, finished, record]);
+  }, [current, paused, finished, expired, record]);
+
+  useEffect(() => {
+    if (!expired) return;
+    const id = setTimeout(() => setExpired(null), GRACE_MS);
+    return () => clearTimeout(id);
+  }, [expired]);
 
   const choose = useCallback(
     (option: string) => {
-      if (!current) return;
+      if (!current || expired) return;
       record(option === current.gloss ? "known" : "unknown", false);
     },
-    [current, record]
+    [current, expired, record]
   );
+
+  const answerUnknown = useCallback(() => {
+    if (expired) return;
+    record("unknown", false);
+  }, [expired, record]);
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -210,18 +233,30 @@ export function Session() {
         goBack();
         return;
       }
-      if (finished || !current) return;
+      // Answers are dropped during the grace beat — that keystroke belonged
+      // to the word that just timed out, not the one coming up. Going back is
+      // still allowed, which is how you reclaim it.
+      if (finished || !current || expired) return;
       const n = Number(e.key);
       if (n >= 1 && n <= options.length) {
         choose(options[n - 1]);
       } else if (e.key === " " || e.key === "0") {
         e.preventDefault();
-        record("unknown", false);
+        answerUnknown();
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current, options, choose, record, goBack, paused, finished]);
+  }, [
+    current,
+    options,
+    choose,
+    answerUnknown,
+    goBack,
+    paused,
+    finished,
+    expired,
+  ]);
 
   if (error) {
     return (
@@ -282,7 +317,7 @@ export function Session() {
             // Duration stays fixed; pausing freezes the sweep where it is and
             // resuming continues from that point.
             animationDuration: `${timerMs}ms`,
-            animationPlayState: paused ? "paused" : "running",
+            animationPlayState: paused || expired ? "paused" : "running",
           }}
         />
       </div>
@@ -297,7 +332,8 @@ export function Session() {
           >
             ← Back
           </button>
-          <span>Rank {current.rank.toLocaleString()}</span>
+          {/* During the beat the header still belongs to the word on screen. */}
+          <span>Rank {(expired ?? current).rank.toLocaleString()}</span>
         </span>
         <span className="flex items-center gap-4">
           <span className="text-emerald-600">{tally.known}</span>
@@ -312,7 +348,23 @@ export function Session() {
         </span>
       </div>
 
-      <div className="flex flex-1 flex-col items-center justify-center gap-10 px-6 pb-16">
+      <div className="relative flex flex-1 flex-col items-center justify-center gap-10 px-6 pb-16">
+        {expired && (
+          // Sits over the answers so a click thrown just after the buzzer is
+          // swallowed here instead of answering the next word.
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-6 bg-white/95 dark:bg-black/95">
+            <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-700 dark:bg-amber-950 dark:text-amber-300">
+              Time&apos;s up — marked unsure
+            </span>
+            <div className="text-7xl font-semibold text-zinc-400 dark:text-zinc-600">
+              {expired.lemma}
+            </div>
+            <span className="text-sm text-zinc-500">
+              Press ← Back to answer it after all
+            </span>
+          </div>
+        )}
+
         <div className="text-7xl font-semibold text-black dark:text-zinc-50">
           {current.lemma}
         </div>
@@ -333,7 +385,7 @@ export function Session() {
         </div>
 
         <button
-          onClick={() => record("unknown", false)}
+          onClick={answerUnknown}
           className="text-sm text-zinc-500 underline underline-offset-4 hover:text-zinc-800 dark:hover:text-zinc-300"
         >
           I don&apos;t know (space)
