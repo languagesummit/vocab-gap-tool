@@ -1,0 +1,130 @@
+/**
+ * Filtering and ordering for the word browser.
+ *
+ * The question this answers is "show me the animals, commonest first, and tell
+ * me which I know" — so frequency order is the default within any slice. A
+ * category is a set of words to learn, and inside it frequency still decides
+ * what pays off soonest: knowing 개 before 고라니 is worth more even though both
+ * are animals.
+ */
+
+import type { Word } from "./words";
+import type { Progress, Status } from "./progress";
+import { recallOf, type Recall } from "./analysis";
+
+export type StatusFilter = Status | "untested";
+
+export const STATUS_FILTERS: Array<{ value: StatusFilter; label: string }> = [
+  { value: "known", label: "Known" },
+  { value: "unsure", label: "Timed out" },
+  { value: "unknown", label: "Didn't know" },
+  { value: "untested", label: "Never asked" },
+];
+
+export type Filters = {
+  category: string | null;
+  sub: string | null;
+  pos: string | null;
+  level: number | null;
+  statuses: Set<StatusFilter>;
+  search: string;
+};
+
+export const emptyFilters = (): Filters => ({
+  category: null,
+  sub: null,
+  pos: null,
+  level: null,
+  statuses: new Set<StatusFilter>(),
+  search: "",
+});
+
+export type BrowseRow = {
+  word: Word;
+  status: StatusFilter;
+  recall: Recall | null;
+};
+
+export function statusOf(progress: Progress, word: Word): StatusFilter {
+  return progress.words[word.key]?.status ?? "untested";
+}
+
+export function filterWords(
+  words: Word[],
+  progress: Progress,
+  filters: Filters
+): BrowseRow[] {
+  const needle = filters.search.trim().toLowerCase();
+
+  const rows: BrowseRow[] = [];
+  for (const word of words) {
+    if (filters.category && word.category !== filters.category) continue;
+    if (filters.sub && word.sub !== filters.sub) continue;
+    if (filters.pos && word.pos !== filters.pos) continue;
+    if (filters.level && word.lv.topik !== filters.level) continue;
+
+    const status = statusOf(progress, word);
+    if (filters.statuses.size > 0 && !filters.statuses.has(status)) continue;
+
+    if (
+      needle &&
+      !word.lemma.toLowerCase().includes(needle) &&
+      !word.gloss.toLowerCase().includes(needle)
+    ) {
+      continue;
+    }
+
+    const record = progress.words[word.key];
+    rows.push({
+      word,
+      status,
+      recall: record ? recallOf(record) : null,
+    });
+  }
+
+  // Commonest first, always. Everything else is a filter, not an ordering.
+  return rows.sort((a, b) => a.word.rank - b.word.rank);
+}
+
+/** Counts per status for the current slice, so the filter bar can show them. */
+export function tally(rows: BrowseRow[]): Record<StatusFilter, number> {
+  const counts: Record<StatusFilter, number> = {
+    known: 0,
+    unsure: 0,
+    unknown: 0,
+    untested: 0,
+  };
+  for (const row of rows) counts[row.status] += 1;
+  return counts;
+}
+
+/** Every distinct value present, for populating the filter dropdowns. */
+export function facets(words: Word[]) {
+  const categories = new Map<string, Set<string>>();
+  const pos = new Set<string>();
+  const levels = new Set<number>();
+
+  for (const word of words) {
+    if (word.category) {
+      if (!categories.has(word.category)) {
+        categories.set(word.category, new Set());
+      }
+      if (word.sub) categories.get(word.category)!.add(word.sub);
+    }
+    if (word.pos) pos.add(word.pos);
+    if (word.lv.topik) levels.add(word.lv.topik);
+  }
+
+  return {
+    categories: [...categories.entries()]
+      .map(([label, subs]) => ({ label, subs: [...subs].sort() }))
+      .sort((a, b) => a.label.localeCompare(b.label)),
+    pos: [...pos].sort(),
+    levels: [...levels].sort((a, b) => a - b),
+  };
+}
+
+/** A short name for the current slice, used for the export filename. */
+export function sliceLabel(filters: Filters): string | null {
+  return filters.sub ?? filters.category ?? filters.pos ?? null;
+}

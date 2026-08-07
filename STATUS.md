@@ -27,6 +27,19 @@ worry below is still worth acting on, but it isn't a reason to remove the view.
 Branch `claude/korean-topik-features-fqcli1`, pushed. Working tree clean, lint
 and build pass. No PR opened.
 
+**`/words` — browse, filter, export.** Any slice of the list (category, subject,
+part of speech, TOPIK level, status, free-text search), always ordered
+commonest-first, with status and recall confidence per word. Frequency stays
+the ordering inside every slice because that's what "learn the most useful
+animals first" means; the filters decide *which* words, not what order.
+
+Anki export sends whatever is currently filtered, as TSV with Anki's own import
+directives in the header, either direction (Korean→English or English→Korean).
+Category, subject, part of speech, level, rank band, status and recall speed all
+travel as tags, so a deck can be re-sliced after import. Verified end-to-end:
+the file Anki receives has correct column counts and matches the on-screen
+selection exactly.
+
 **Next up, and asked for explicitly: improve the testing experience itself.**
 Underspecified so far — worth pinning down what specifically grates before
 rebuilding anything. Candidates visible in the code: the timer default, the
@@ -85,6 +98,27 @@ Current state of the data as committed:
 |---|---|
 | curated (ranks 1–200, hand-checked) | 200 |
 | flagged `needs_review` (auto-joined from kengdic) | 5,697 |
+
+### What the glossing actually has to fix, in priority order
+
+Measured 2026-08-07 against the live word list, so the work can be aimed rather
+than done rank by rank:
+
+| problem | entries | why it matters |
+|---|---|---|
+| senses of one lemma sharing an identical gloss | **520** (220 lemmas) | **actively broken.** 새 sits at ranks 456, 1,035 and 2,827 — "new", "bird", "interval" — and all three read "An interval; A bird; New". Same question, same answer, three times: the test cannot be passed or failed honestly, and the answers it records are noise. |
+| glosses listing 2+ meanings joined with `;` | 968 (16%) | the reader has to pick which meaning is meant, which is a second task on top of recall |
+| glosses over 60 characters | 267 | not readable inside a 5s timer, so they measure reading speed rather than knowledge |
+| glosses carrying raw HTML (`<br>`, `<i>`) | 4 | **fixed** — `cleanGloss` now strips markup |
+
+The 520 collisions are the ones to do first. They are the only category that
+produces *wrong data* rather than merely hard questions, and until they're
+fixed any self-testing over those words records answers that mean nothing.
+Everything else degrades the experience without corrupting the result.
+
+`/words` filtered to `Never asked` plus a category is a reasonable working
+queue for this, since it lists exactly the untested words of a slice in
+frequency order.
 
 So if that machine comes back, **check `git status` and `git stash list` there
 before anything else** — the diff to look for is in `data/korean_curated_glosses.json`

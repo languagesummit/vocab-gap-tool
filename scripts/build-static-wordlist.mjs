@@ -75,6 +75,13 @@ function levelFor(word) {
  */
 function cleanGloss(gloss) {
   const stripped = gloss
+    // Raw dictionary markup that survived the kengdic join. Rendered as text
+    // it shows up literally as "<br>" mid-definition, and it travels into
+    // exported flashcards too.
+    .replace(/<br\s*\/?>/gi, "; ")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
     .replace(/\([^)]*\)/g, " ")
     .replace(/\s{2,}/g, " ")
     .replace(/\s+([,;])/g, "$1")

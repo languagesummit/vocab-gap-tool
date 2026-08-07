@@ -82,6 +82,21 @@ export function adjustedMs(ms: number, chars: number | undefined): number {
   return Math.max(0, ms - reading);
 }
 
+/**
+ * How readily a single answer came back, or null when there's no timing to
+ * judge it by — a word the clock beat, or one answered before response times
+ * were recorded. Callers must show the difference rather than treating a
+ * missing time as a slow one.
+ */
+export function recallOf(record: {
+  status: Status;
+  ms: number | null;
+  chars?: number;
+}): Recall | null {
+  if (record.status !== "known" || record.ms === null) return null;
+  return bandOf(adjustedMs(record.ms, record.chars));
+}
+
 function bandOf(adjusted: number): Recall {
   if (adjusted < AUTOMATIC_UNDER_MS) return "automatic";
   if (adjusted < EFFORTFUL_OVER_MS) return "solid";
