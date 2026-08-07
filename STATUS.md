@@ -1,5 +1,45 @@
 # Status
 
+## Pick up here
+
+Session paused 2026-08-07. Branch `claude/korean-topik-features-fqcli1`, pushed,
+two commits past `main`. No PR opened. Working tree clean, lint and build pass.
+
+**Open decision, and the important one: the levels page makes a readiness claim
+it can't support.** It says "your vocabulary holds up through Level N", and
+that's a prediction about an exam that also tests grammar, listening and
+writing — not something a word count can settle. Passing TOPIK I is not a
+matter of knowing 1,200 words, and a learner who knows 1,200 words may well
+not pass. The counter-consideration is that 1,200 words is genuinely a lot and
+the number shouldn't be made to feel like nothing.
+
+There's a second edge to the same problem: everybody knows 안녕. It counts as
+Korean you know, and it is also nearly worthless as evidence about a test you
+won't meet it on. Coverage of the language and readiness for an exam are
+different questions, and right now one is standing in for the other.
+
+Options when picking this back up:
+
+1. **Cut the verdict, keep the measurement.** Drop `clearedThrough()` and the
+   "holds up through Level N" line; keep per-level coverage, reach, and the
+   never-asked lists. The page becomes "here is what you know, by level" and
+   claims nothing about sitting the exam. Smallest change, and closest to what
+   the data actually supports.
+2. **Keep a verdict but weaken it** to something like "level N vocabulary is
+   not what's holding you back", which is a claim about a floor rather than a
+   prediction.
+3. **Leave as is** and lean on the caveat card already on the page.
+
+Leaning 1. Worth knowing for context: the owner has sat TOPIK II twice and
+never TOPIK I, and reckons the honest advice is to just take a practice test.
+
+**Also open, none started:** Anki/TSV export of a level's never-asked words
+(data is already computed and listed per level); the 12,000-word semantic
+category ingest; the Korean lemmatizer that gates the comprehensible-input
+scorer; extending the word list so levels 5–6 are testable at all.
+
+**Still stranded:** the gloss curation on the other machine — see below.
+
 Running notes on where the project actually stands, kept because work happens
 across several machines and sessions. `PLAN.md` holds the design decisions and
 the roadmap; this file holds the current state and anything half-finished.
@@ -113,6 +153,30 @@ isn't done.
 
 Verified end-to-end against a simulated 1,200-word progress file: level totals
 plus ungraded plus tier-only reconcile to exactly 5,897.
+
+## Where the source data comes from
+
+All published by 국립국어원 and downloadable without an account. Recorded here
+because this session's container is ephemeral — anything not committed is gone
+when it's reclaimed, and hunting these down again is the slow part.
+
+| what | page | file |
+|---|---|---|
+| 6-level vocabulary, 10,635 words 1급–6급 — **committed** as `data/korean_curriculum_raw.tsv` | [report 932](https://www.korean.go.kr/front/reportData/reportDataView.do?mn_id=45&report_seq=932) | `157339df-1904-443a-b1a9-d6d34578ba93.xlsx` ("어휘, 문법 등급 목록") |
+| 12,019 words with semantic categories (대범주/소범주) and 주제·기능 tags — **not committed**, downloaded and inspected only | [report 882](https://www.korean.go.kr/front/reportData/reportDataView.do?mn_id=207&report_seq=882) | `d893a36e-5103-4ba1-85ba-a516131440a8_0.xlsx` |
+| A/B/C graded learner list (조남호 2003), already folded into the seed | [etc_seq 71](https://www.korean.go.kr/front/etcData/etcDataView.do?mn_id=46&etc_seq=71) | — |
+
+Download pattern for the two xlsx files:
+`https://www.korean.go.kr/common/download.do?file_path=reportData&c_file_name=<name>&o_file_name=x.xlsx`
+
+The second one is the interesting unused one: it would take semantic category
+coverage from 200 words to about 12,000, which is what the category gap
+analysis in `PLAN.md` is currently starved of. Its own levels are only 3-tier,
+so it adds nothing to the level work.
+
+Licensing wasn't checked. 국립국어원 material is generally released under the
+Korea Open Government License, which permits reuse with attribution, but
+confirm the terms before this goes anywhere public.
 
 ## Regenerating the word data
 
