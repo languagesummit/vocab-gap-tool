@@ -5,7 +5,13 @@
  * Input columns:  rank, word, part_of_speech, hanja, explanation,
  *                 nikl_level, topik_level
  *
- * Two things the raw data needs fixing for:
+ * Note that the last two headers are the wrong way round in the source file:
+ * the column called `nikl_level` carries the TOPIK tier (초급/중급) and the one
+ * called `topik_level` carries the NIKL grade (A/B/C). See scripts/levels.mjs
+ * for the evidence. They are read positionally here and written out under
+ * names that say what they actually are.
+ *
+ * Three things the raw data needs fixing for:
  *
  * 1. NIKL appends a homograph number to the headword (가구03 = household,
  *    가구04 = furniture). We split that into lemma + the original sense code.
@@ -22,6 +28,7 @@
  */
 
 import { readFileSync, writeFileSync } from "node:fs";
+import { decodeLevels } from "./levels.mjs";
 
 const POS_MAP = {
   명사: "noun",
@@ -65,10 +72,17 @@ const lines = readFileSync(inputPath, "utf8").split(/\r?\n/).slice(1);
 const entries = [];
 for (const line of lines) {
   if (!line.trim()) continue;
-  const [rank, word, pos, hanja, explanation, niklLevel, topikLevel] =
+  // The last two columns are mislabelled in the source header, so they are
+  // decoded by their values rather than trusted by position.
+  const [rank, word, pos, hanja, explanation, sixth, seventh] =
     line.split("\t");
 
   if (!/^\d+$/.test(rank ?? "")) continue; // unranked affixes etc.
+
+  const { niklGrade, topikTier } = decodeLevels({
+    nikl_level: sixth,
+    topik_level: seventh,
+  });
 
   // 가구04 -> lemma 가구, senseCode 04
   const match = word.match(/^(.+?)(\d{2})$/);
@@ -82,8 +96,8 @@ for (const line of lines) {
     partOfSpeech: POS_MAP[pos] ?? pos ?? null,
     hanja: hanja || null,
     collocation: explanation || null,
-    niklLevel: niklLevel || null,
-    topikLevel: topikLevel || null,
+    niklGrade,
+    topikTier,
   });
 }
 
@@ -107,8 +121,10 @@ const words = entries.map((entry, i) => {
       nikl_sense: entry.senseCode,
       hanja: entry.hanja,
       collocation: entry.collocation,
-      nikl_level: entry.niklLevel,
-      topik_level: entry.topikLevel,
+      // NIKL 등급 A/B/C and TOPIK tier 초급/중급 — named for what they hold,
+      // unlike the source columns they came from.
+      nikl_grade: entry.niklGrade,
+      topik_tier: entry.topikTier,
     },
   };
 });

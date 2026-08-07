@@ -160,6 +160,22 @@ export function Results() {
 
       <Card>
         <h2 className="font-semibold text-black dark:text-zinc-50">
+          Against the exam
+        </h2>
+        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+          The same answers placed against the TOPIK vocabulary lists and
+          국립국어원&apos;s difficulty grades, rather than against frequency.
+        </p>
+        <Link
+          href="/levels"
+          className="mt-4 flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+        >
+          See exam levels
+        </Link>
+      </Card>
+
+      <Card>
+        <h2 className="font-semibold text-black dark:text-zinc-50">
           By how common the word is
         </h2>
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">

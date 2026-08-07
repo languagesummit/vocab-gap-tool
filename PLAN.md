@@ -57,11 +57,52 @@ content recommendation to fill gaps).
    coverage), top 200 ranks hand-curated with categories.
 4. ✅ Per-word test UI: translation MCQ, 3s timer, keyboard 1–4 and space,
    frontier progress, resumable sessions.
-5. Curate glosses beyond rank 200 (5,644 rows still flagged `needs_review`).
-6. Pre-generated constrained-definition test mode.
-7. Analytics: category × status heatmap, coverage breakdown.
-8. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
-9. Image-based MCQ for concrete nouns (after sourcing decision).
+5. Curate glosses beyond rank 200 (5,697 rows still flagged `needs_review`).
+6. ✅ Exam-level reporting: tested vocabulary placed against the TOPIK
+   vocabulary lists and 국립국어원's graded learner list. See below.
+7. Pre-generated constrained-definition test mode.
+8. Analytics: category × status heatmap, coverage breakdown.
+9. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
+   Blocked on a Korean lemmatizer: the word list is lemma-based (먹다) but real
+   text is inflected (먹었어요/먹고/먹는), so surface forms have to be reduced
+   before they can be matched. That lemmatizer is the actual build; a YouTube
+   transcript is just one source feeding it, and fetching those is separately
+   unreliable from datacenter IPs, so pasting text has to work regardless.
+10. Image-based MCQ for concrete nouns (after sourcing decision).
+
+## The two proficiency gradings
+
+The source TSV combines two published lists, and **its header labels them the
+wrong way round** — the column called `topik_level` holds the NIKL grade and
+the one called `nikl_level` holds the TOPIK tier. `scripts/levels.mjs` decodes
+them by value rather than by name and is the single place that knows this.
+
+- **NIKL grade** — A/B/C from 국립국어원's 한국어 학습용 어휘 목록 (조남호,
+  2003), graded by panel. Ours: 960/2,081/2,856 against the published
+  982/2,111/2,872; the shortfall is rows the parser drops for having no
+  frequency rank. A=초급, B=중급, C=고급.
+- **TOPIK tier** — 초급/중급 from the 2015 TOPIK list, i.e. TOPIK I (exam
+  levels 1–2) and TOPIK II (levels 3–6). There is no third tier: the 2014
+  reform merged 초급/중급/고급 into two papers. 1,438 words are on neither list.
+
+**TOPIK's six levels cannot be scored from this data** — the exam list stops at
+two tiers. Crossing the tier with the NIKL grade splits TOPIK II into a lower
+(B ≈ levels 3–4 ≈ CEFR B1–B2) and an upper half (C ≈ levels 5–6 ≈ C1–C2), which
+is the closest available to per-level detail. That crossing is an alignment
+between two independent gradings, not an official mapping, and the UI is
+required to label it as approximate wherever it appears.
+
+Exam membership decides the band first and the grade only subdivides, so a
+TOPIK I word NIKL graded advanced still counts as TOPIK I vocabulary.
+
+TOPIK level ↔ CEFR, the correspondence used throughout: 1→A1, 2→A2, 3→B1,
+4→B2, 5→C1, 6→C2.
+
+Worth knowing: **frequency rank and exam level disagree badly.** 안녕 is rank
+5,018 and 냉장고 is 2,987, both beginner vocabulary. Testing densely from rank 1
+therefore walks past a lot of exam vocabulary — at a frontier of 1,200, 59% of
+TOPIK I is still unasked. The levels page reports that gap explicitly rather
+than letting a percentage of a small sample stand in for knowledge.
 
 ## Regenerating the word data
 
@@ -69,5 +110,12 @@ content recommendation to fill gaps).
 npm run data:parse   # raw NIKL TSV  -> data/korean_words.json
 node scripts/join-glosses.mjs data/korean_words.json <kengdic.tsv> data/korean_words_glossed.json
 npm run data:build   # + curated overrides -> data/korean_seed.json
+npm run data:static  # -> public/korean.json (the guest-mode word list)
 npm run db:seed      # -> Supabase (needs SUPABASE_SERVICE_ROLE_KEY in .env.local)
 ```
+
+`data/korean_seed.json` still carries the swapped level key names, because
+rebuilding it needs kengdic and that isn't in the repo. Nothing reads those
+keys directly — `scripts/levels.mjs` accepts either spelling — so the file is
+correct in substance and only its key names are legacy. A future rebuild via
+`data:parse` writes the honest names (`nikl_grade`, `topik_tier`).

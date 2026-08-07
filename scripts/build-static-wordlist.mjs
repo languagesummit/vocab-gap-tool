@@ -9,6 +9,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync, statSync } from "node:fs";
+import { decodeLevels, topikTierCode } from "./levels.mjs";
 
 const seed = JSON.parse(readFileSync("data/korean_seed.json", "utf8"));
 
@@ -47,17 +48,24 @@ function senseHint(w) {
   return w.part_of_speech ?? null;
 }
 
-const words = kept.map((w) => ({
-  // Stable identity for saved progress. Ranks can shift if the source list
-  // is ever rebuilt; lemma+sense does not, so exported files stay valid.
-  key: `${w.lemma}#${w.sense_index}`,
-  rank: w.frequency_rank,
-  lemma: w.lemma,
-  gloss: cleanGloss(w.gloss),
-  pos: w.part_of_speech ?? null,
-  category: w.semantic_category ?? null,
-  hint: senseHint(w),
-}));
+const words = kept.map((w) => {
+  const { niklGrade, topikTier } = decodeLevels(w.notes);
+  return {
+    // Stable identity for saved progress. Ranks can shift if the source list
+    // is ever rebuilt; lemma+sense does not, so exported files stay valid.
+    key: `${w.lemma}#${w.sense_index}`,
+    rank: w.frequency_rank,
+    lemma: w.lemma,
+    gloss: cleanGloss(w.gloss),
+    pos: w.part_of_speech ?? null,
+    category: w.semantic_category ?? null,
+    hint: senseHint(w),
+    // NIKL 등급 A/B/C, and TOPIK I/II — null where the word is on neither the
+    // graded list nor the TOPIK list respectively.
+    nikl: niklGrade,
+    topik: topikTierCode(topikTier),
+  };
+});
 
 mkdirSync("public", { recursive: true });
 writeFileSync("public/korean.json", JSON.stringify(words), "utf8");
@@ -66,6 +74,15 @@ const kb = Math.round(statSync("public/korean.json").size / 1024);
 console.log(`public/korean.json — ${words.length} words, ${kb} KB`);
 console.log(`ranks ${words[0].rank}–${words[words.length - 1].rank}`);
 console.log(`dropped ${seed.length - words.length} entries with no gloss`);
+
+const tally = (key) =>
+  words.reduce((acc, w) => {
+    const k = w[key] ?? "(none)";
+    acc[k] = (acc[k] ?? 0) + 1;
+    return acc;
+  }, {});
+console.log("\nNIKL grade:", tally("nikl"));
+console.log("TOPIK tier:", tally("topik"));
 
 const ambiguous = words.filter((w) => (senseCount.get(w.lemma) ?? 0) > 1);
 console.log(

@@ -103,12 +103,20 @@ export function Home() {
             {counts.tested === 0 ? "Start testing" : "Continue testing"}
           </Link>
           {counts.tested > 0 && (
-            <Link
-              href="/results"
-              className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
-            >
-              See results
-            </Link>
+            <>
+              <Link
+                href="/results"
+                className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+              >
+                See results
+              </Link>
+              <Link
+                href="/levels"
+                className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+              >
+                Exam levels
+              </Link>
+            </>
           )}
         </div>
       </section>

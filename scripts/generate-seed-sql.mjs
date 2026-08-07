@@ -10,6 +10,7 @@
  */
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { decodeLevels, topikTierCode } from "./levels.mjs";
 
 const ROWS_PER_FILE = 1500;
 const seed = JSON.parse(readFileSync("data/korean_seed.json", "utf8"));
@@ -33,7 +34,8 @@ for (let start = 0; start < seed.length; start += ROWS_PER_FILE) {
       const notes = JSON.stringify({
         source_rank: w.notes.source_rank,
         hanja: w.notes.hanja,
-        nikl_level: w.notes.nikl_level,
+        nikl_grade: decodeLevels(w.notes).niklGrade,
+        topik_tier: topikTierCode(decodeLevels(w.notes).topikTier),
         curated: w.notes.curated === true,
         needs_review: w.notes.needs_review === true,
       });
