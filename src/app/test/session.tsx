@@ -83,18 +83,46 @@ export function Session() {
       words.filter((w) => w.lemma === current.lemma).map((w) => w.gloss)
     );
 
-    const pool = words.filter(
+    // Every verb and adjective ends in -다, so the dictionary form announces
+    // the part of speech before the glosses are even read. A noun sitting
+    // opposite a verb can be dismissed on shape alone, which turns the
+    // question into a free point. Distractors match the part of speech.
+    const eligible = words.filter(
       (w) =>
         w.lemma !== current.lemma &&
         !ownMeanings.has(w.gloss) &&
-        Math.abs(w.rank - current.rank) <= DISTRACTOR_WINDOW
+        w.pos === current.pos
     );
+
+    const needed = choices - 1;
+    const distinct = (list: Word[]) => new Set(list.map((w) => w.gloss)).size;
+
+    // Nearby ranks keep the wrong answers plausible rather than obviously
+    // advanced. Rare parts of speech — 11 contractions in the whole list —
+    // can't always field neighbours, so widen until there are enough.
+    let pool: Word[] = [];
+    for (const window of [
+      DISTRACTOR_WINDOW,
+      DISTRACTOR_WINDOW * 4,
+      Infinity,
+    ]) {
+      pool = eligible.filter((w) => Math.abs(w.rank - current.rank) <= window);
+      if (distinct(pool) >= needed) break;
+    }
+
+    // Last resort: a part of speech too small to fill the question at all.
+    // A mismatched distractor beats a missing one.
+    if (distinct(pool) < needed) {
+      pool = words.filter(
+        (w) => w.lemma !== current.lemma && !ownMeanings.has(w.gloss)
+      );
+    }
 
     const picked: string[] = [];
     const seen = new Set<string>([current.gloss]);
     // Deterministic per word so a re-render doesn't reshuffle mid-question.
     let seed = current.rank * 2654435761;
-    while (picked.length < choices - 1 && pool.length > 0) {
+    while (picked.length < needed && pool.length > 0) {
       seed = (seed * 1103515245 + 12345) & 0x7fffffff;
       const candidate = pool[seed % pool.length];
       if (!seen.has(candidate.gloss)) {
@@ -225,7 +253,8 @@ export function Session() {
 
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") {
+      // P is the natural reach for pause; escape still works.
+      if (e.key === "Escape" || e.key === "p" || e.key === "P") {
         setPaused((p) => !p);
         return;
       }
@@ -357,6 +386,7 @@ export function Session() {
             className="flex h-11 items-center rounded-md border border-zinc-300 px-3 text-xs text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
           >
             Pause
+            <span className="hidden text-zinc-400 sm:inline">&nbsp;(P)</span>
           </button>
         </span>
       </div>
@@ -425,7 +455,11 @@ export function Session() {
       </div>
 
       {paused && (
-        <div className="fixed inset-0 flex flex-col items-center justify-center gap-6 bg-white/95 px-6 backdrop-blur dark:bg-black/95">
+        // Translucent rather than solid, so the question stays visible behind
+        // it and pausing reads as a held game rather than a different screen.
+        // The blur is heavy enough that the glosses can't be read through it,
+        // which keeps pause from doubling as unlimited thinking time.
+        <div className="fixed inset-0 flex flex-col items-center justify-center gap-6 bg-white/60 px-6 backdrop-blur-md dark:bg-black/70">
           <h2 className="text-2xl font-semibold text-black dark:text-zinc-50">
             Paused
           </h2>
@@ -435,13 +469,14 @@ export function Session() {
           </p>
           {/* Stacked on a phone — side by side they hit both screen edges
               and wrapped onto two lines. */}
-          <div className="flex w-full max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row">
+          <div className="flex w-full max-w-xs flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:justify-center">
             <button
               onClick={() => setPaused(false)}
               autoFocus
               className="flex h-12 items-center justify-center rounded-lg bg-black px-5 font-medium whitespace-nowrap text-white dark:bg-zinc-50 dark:text-black"
             >
               Resume
+              <span className="hidden opacity-60 sm:inline">&nbsp;(space)</span>
             </button>
             <button
               onClick={goBack}
