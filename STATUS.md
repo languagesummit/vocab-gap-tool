@@ -309,6 +309,53 @@ that set — "is every word in range" is machine-checkable in a way "is this
 natural Korean" is not, and it's the same technique the plan already specifies
 for pre-generated definitions. Still second choice behind real sources.
 
+### Scoring text the user brings, and scanning news
+
+**Pasted text raises no copyright question** — the user already holds their copy
+and the tool answers a question about it rather than redistributing it. Guest
+mode being entirely client-side makes this stronger than "probably fine": the
+text need never reach a server at all, so there is no retention question to
+answer. A URL is a different posture, since CORS means a server route has to do
+the fetching and therefore makes a copy — transient and for analysis, but not
+the same clean position.
+
+**YouTube is blocked from datacenter IPs.** Checked from this container: a plain
+watch-page request returned **HTTP 429 on the first try**. (Routed through a
+proxy here, so suggestive rather than conclusive, but it matches the known
+behaviour and Vercel would sit in the same position.) Paste-first with URL as
+best-effort remains the shape.
+
+Second, less obvious problem: Korean auto-captions are ASR output with no
+punctuation, no sentence boundaries and misrecognitions. That degrades a
+coverage score *invisibly* — the number looks as authoritative as a real one.
+Detect auto-generated versus manual tracks and say which was used.
+
+**Prioritising nouns and verbs** is right in principle — function words dominate
+by token count, but comprehension failures are dominated by content words, and
+with solid grammar the word that unlocks a sentence is nearly always a noun or
+verb. It barely narrows anything though: nouns (3,403) and verbs (1,345) are 81%
+of the list. The sharper version is to rank unknown words by their frequency *in
+the specific text*, using part of speech only as a tie-breaker. Testable against
+Tatoeba once the lemmatiser exists.
+
+**News: attribution is not a licence.** 공공누리 Type 1 asks for attribution
+because the licence grants use in exchange for it; ordinary copyright does not
+work that way, and citing a source grants nothing. So hosting commercial
+articles is out however carefully they are credited.
+
+The design that works instead — and is better anyway — is to **store the
+fingerprint, not the article**: fetch, reduce to a bag of lemmas with counts,
+store that, discard the text. The client scores the fingerprint against local
+progress and the UI shows headline, source, an outbound link, coverage and the
+words you'd need. Nothing is redistributed, since an unordered count vector
+cannot reconstruct the piece; storage is tiny; scoring stays client-side and
+personal. It works for *any* source, including ones that could never be hosted,
+with 공공누리 content as the tier where full text can also be shown. This is what
+makes "scan for new stuff continuously" viable.
+
+Licensing here is reasoned from principles, not verified by anyone qualified —
+worth confirming before this goes public.
+
 **Sequencing.** Hosting text is the easy part; what makes it this tool rather
 than a library is scoring it against the user's lexicon, and that still needs
 the Korean lemmatizer (list is lemma-based 먹다, real text is inflected
