@@ -74,10 +74,19 @@ export function Session() {
     if (!current || !words) return [];
     const choices = progress?.settings.choices ?? 3;
 
+    // Every meaning this lemma carries anywhere in the list. 있다 sits at ranks
+    // 3, 4 and 854; offering "to exist" against "to be in the middle of doing"
+    // asks which sense was meant rather than whether the word is known. Barring
+    // the lemma alone is not enough — an unrelated word can carry the same
+    // gloss text, which would be just as wrong to mark incorrect.
+    const ownMeanings = new Set(
+      words.filter((w) => w.lemma === current.lemma).map((w) => w.gloss)
+    );
+
     const pool = words.filter(
       (w) =>
-        w.key !== current.key &&
-        w.gloss !== current.gloss &&
+        w.lemma !== current.lemma &&
+        !ownMeanings.has(w.gloss) &&
         Math.abs(w.rank - current.rank) <= DISTRACTOR_WINDOW
     );
 
@@ -363,14 +372,28 @@ export function Session() {
             <div className="text-7xl font-semibold text-zinc-400 dark:text-zinc-600">
               {expired.lemma}
             </div>
+            {expired.hint && (
+              <span className="-mt-2 text-sm text-zinc-400 dark:text-zinc-600">
+                {expired.hint}
+              </span>
+            )}
             <span className="text-sm text-zinc-500">
               Press ← Back to answer it after all
             </span>
           </div>
         )}
 
-        <div className="text-7xl font-semibold text-black dark:text-zinc-50">
-          {current.lemma}
+        <div className="flex flex-col items-center gap-3">
+          <div className="text-7xl font-semibold text-black dark:text-zinc-50">
+            {current.lemma}
+          </div>
+          {/* Only set where the lemma repeats, so its presence is itself the
+              signal that this word has more than one sense in the list. */}
+          {current.hint && (
+            <span className="rounded-full bg-zinc-100 px-3 py-1 text-sm text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">
+              {current.hint}
+            </span>
+          )}
         </div>
 
         <div className="grid w-full max-w-xl grid-cols-1 gap-3">

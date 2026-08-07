@@ -5,6 +5,11 @@ export type Word = {
   gloss: string;
   pos: string | null;
   category: string | null;
+  /**
+   * Names which sense is being asked about, for the ~13% of entries whose
+   * lemma appears more than once. Null elsewhere, where it would be clutter.
+   */
+  hint: string | null;
 };
 
 let cache: Word[] | null = null;
