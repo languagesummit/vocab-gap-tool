@@ -24,3 +24,24 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+ * The per-word countdown. Running this in CSS rather than React state keeps
+ * the quiz from re-rendering many times a second, which made clicks feel
+ * sluggish. Pausing is just animation-play-state, so it resumes mid-sweep.
+ */
+@keyframes countdown-sweep {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.countdown-bar {
+  transform-origin: left;
+  animation-name: countdown-sweep;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}

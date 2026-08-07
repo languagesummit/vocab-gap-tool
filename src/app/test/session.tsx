@@ -30,11 +30,12 @@ export function Session() {
   });
 
   const [paused, setPaused] = useState(false);
-  const [remaining, setRemaining] = useState(0);
   const [frontier, setFrontier] = useState(0);
 
   const progressRef = useRef<Progress | null>(null);
-  const shownAt = useRef(0);
+  // Time left on the current word, carried across pauses.
+  const remainingRef = useRef(0);
+  const startedAt = useRef(0);
 
   useEffect(() => {
     const saved = loadProgress();
@@ -98,16 +99,22 @@ export function Session() {
     return all;
   }, [current, words, progress?.settings.choices]);
 
+  const timerMs = progress?.settings.timerMs ?? 5000;
+
   const record = useCallback(
     (status: Status, timedOut: boolean) => {
       const word = queue[position];
       const saved = progressRef.current;
       if (!word || !saved) return;
 
+      // Active time on the word — excludes however long it sat paused.
+      const activeMs =
+        timerMs - remainingRef.current + (Date.now() - startedAt.current);
+
       saved.words[word.key] = {
         status,
         at: Date.now(),
-        ms: timedOut ? null : Date.now() - shownAt.current,
+        ms: timedOut ? null : activeMs,
       };
       saved.frontierRank = Math.max(saved.frontierRank, word.rank);
       // Written after every answer, so quitting the tab never loses work.
@@ -117,32 +124,64 @@ export function Session() {
       setFrontier((f) => Math.max(f, word.rank));
       setPosition((p) => p + 1);
     },
-    [queue, position]
+    [queue, position, timerMs]
   );
 
-  const timerMs = progress?.settings.timerMs ?? 5000;
+  // Steps back to the previous word and un-records it, so a mis-click or a
+  // word answered before it was read can be redone.
+  const goBack = useCallback(() => {
+    const saved = progressRef.current;
+    if (position === 0 || !saved || !words) return;
+
+    const previous = queue[position - 1];
+    const undone = saved.words[previous.key];
+    if (undone) {
+      delete saved.words[previous.key];
+      setTally((t) => ({
+        ...t,
+        [undone.status]: Math.max(0, t[undone.status] - 1),
+      }));
+    }
+
+    // The frontier is the highest rank still answered, which may now be lower.
+    let highest = 0;
+    for (const word of words) {
+      if (saved.words[word.key] && word.rank > highest) highest = word.rank;
+    }
+    saved.frontierRank = highest;
+    saveProgress(saved);
+
+    setFrontier(highest);
+    setPaused(false);
+    setPosition((p) => p - 1);
+  }, [position, queue, words]);
+
+  // Each new word gets a full allowance. Declared before the timer effect so
+  // it runs first when the question changes.
+  useEffect(() => {
+    remainingRef.current = timerMs;
+  }, [position, timerMs]);
 
   useEffect(() => {
     if (!current || paused || finished) return;
-    const started = Date.now();
-    shownAt.current = started;
-    // Resets the countdown bar as each question appears.
-    /* eslint-disable-next-line react-hooks/set-state-in-effect */
-    setRemaining(timerMs);
+    startedAt.current = Date.now();
 
-    const tick = setInterval(() => {
-      const left = timerMs - (Date.now() - started);
-      if (left <= 0) {
-        clearInterval(tick);
-        // Out of time means recognised but not recalled fast enough —
-        // "unsure", which is distinct from getting it wrong.
-        record("unsure", true);
-      } else {
-        setRemaining(left);
-      }
-    }, 50);
-    return () => clearInterval(tick);
-  }, [current, paused, finished, timerMs, record]);
+    // A single timeout instead of a 50ms interval — the visible countdown is
+    // a CSS animation, so React doesn't need to re-render while it runs.
+    const id = setTimeout(() => {
+      // Out of time means recognised but not recalled fast enough —
+      // "unsure", which is distinct from getting it wrong.
+      record("unsure", true);
+    }, remainingRef.current);
+
+    return () => {
+      clearTimeout(id);
+      remainingRef.current = Math.max(
+        0,
+        remainingRef.current - (Date.now() - startedAt.current)
+      );
+    };
+  }, [current, paused, finished, record]);
 
   const choose = useCallback(
     (option: string) => {
@@ -158,7 +197,20 @@ export function Session() {
         setPaused((p) => !p);
         return;
       }
-      if (paused || finished || !current) return;
+      // While paused, space resumes rather than answering.
+      if (paused) {
+        if (e.key === " ") {
+          e.preventDefault();
+          setPaused(false);
+        }
+        return;
+      }
+      if (e.key === "Backspace" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        goBack();
+        return;
+      }
+      if (finished || !current) return;
       const n = Number(e.key);
       if (n >= 1 && n <= options.length) {
         choose(options[n - 1]);
@@ -169,7 +221,7 @@ export function Session() {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [current, options, choose, record, paused, finished]);
+  }, [current, options, choose, record, goBack, paused, finished]);
 
   if (error) {
     return (
@@ -219,19 +271,34 @@ export function Session() {
     );
   }
 
-  const pct = Math.max(0, (remaining / timerMs) * 100);
-
   return (
     <main className="flex min-h-screen flex-col bg-white dark:bg-black">
       <div className="h-1 w-full bg-zinc-100 dark:bg-zinc-900">
         <div
-          className="h-full bg-black dark:bg-zinc-50"
-          style={{ width: paused ? "100%" : `${pct}%` }}
+          // Restarting the animation per word is what the key is for.
+          key={position}
+          className="countdown-bar h-full w-full bg-black dark:bg-zinc-50"
+          style={{
+            // Duration stays fixed; pausing freezes the sweep where it is and
+            // resuming continues from that point.
+            animationDuration: `${timerMs}ms`,
+            animationPlayState: paused ? "paused" : "running",
+          }}
         />
       </div>
 
       <div className="flex items-center justify-between px-6 py-3 text-sm text-zinc-500">
-        <span>Rank {current.rank.toLocaleString()}</span>
+        <span className="flex items-center gap-3">
+          <button
+            onClick={goBack}
+            disabled={position === 0}
+            title="Go back one word (backspace)"
+            className="rounded-md border border-zinc-300 px-2.5 py-1 text-xs text-black transition hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+          >
+            ← Back
+          </button>
+          <span>Rank {current.rank.toLocaleString()}</span>
+        </span>
         <span className="flex items-center gap-4">
           <span className="text-emerald-600">{tally.known}</span>
           <span className="text-amber-600">{tally.unsure}</span>
@@ -285,9 +352,17 @@ export function Session() {
           <div className="flex gap-3">
             <button
               onClick={() => setPaused(false)}
+              autoFocus
               className="rounded-lg bg-black px-5 py-2.5 font-medium text-white dark:bg-zinc-50 dark:text-black"
             >
-              Resume
+              Resume (space)
+            </button>
+            <button
+              onClick={goBack}
+              disabled={position === 0}
+              className="rounded-lg border border-zinc-300 px-5 py-2.5 font-medium text-black transition disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50"
+            >
+              ← Back one
             </button>
             <Link
               href="/"

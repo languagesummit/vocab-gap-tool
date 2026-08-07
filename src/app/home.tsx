@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
+  CHOICE_OPTIONS,
   countByStatus,
   downloadProgress,
   emptyProgress,
@@ -142,7 +143,7 @@ export function Home() {
             Answer choices
           </span>
           <div className="mt-2 flex gap-2">
-            {[3, 4].map((n) => (
+            {CHOICE_OPTIONS.map((n) => (
               <button
                 key={n}
                 onClick={() =>

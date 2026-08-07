@@ -30,7 +30,10 @@ export type Progress = {
 
 const STORAGE_KEY = "vocab-gap-tool:progress:ko";
 
-export const DEFAULT_SETTINGS = { timerMs: 5000, choices: 3 };
+// Two choices keeps the read fast; being honest with the space bar is what
+// makes the result meaningful, not the number of distractors.
+export const DEFAULT_SETTINGS = { timerMs: 5000, choices: 2 };
+export const CHOICE_OPTIONS = [2, 3, 4];
 export const TIMER_MIN_MS = 1000;
 export const TIMER_MAX_MS = 30000;
 
@@ -78,7 +81,9 @@ function normalize(input: unknown): Progress {
         : base.frontierRank,
     settings: {
       timerMs: clampTimer(raw.settings?.timerMs),
-      choices: raw.settings?.choices === 4 ? 4 : 3,
+      choices: CHOICE_OPTIONS.includes(raw.settings?.choices as number)
+        ? (raw.settings!.choices as number)
+        : DEFAULT_SETTINGS.choices,
     },
     words:
       raw.words && typeof raw.words === "object"
