@@ -45,3 +45,5 @@ data/korean_words.json
 data/korean_words_glossed.json
 # regenerable from data/korean_curriculum_raw.tsv
 data/korean_levels.json
+# regenerable from data/korean_categories_raw.tsv
+data/korean_categories.json

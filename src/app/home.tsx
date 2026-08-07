@@ -111,6 +111,12 @@ export function Home() {
                 See results
               </Link>
               <Link
+                href="/gaps"
+                className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+              >
+                What you&apos;re missing
+              </Link>
+              <Link
                 href="/levels"
                 className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
               >

@@ -15,6 +15,28 @@ const seed = JSON.parse(readFileSync("data/korean_seed.json", "utf8"));
 const curriculum = JSON.parse(
   readFileSync("data/korean_levels.json", "utf8")
 ).levels;
+const categories = JSON.parse(
+  readFileSync("data/korean_categories.json", "utf8")
+).categories;
+
+/**
+ * Resolves a word to its 대범주/소범주 pair, sense-exact where both sources
+ * number the homograph and lemma-wide where every sense agrees. Words whose
+ * senses genuinely disagree are left untagged rather than guessed at: a wrong
+ * category is worse than none, because the whole point is to trust a gap.
+ */
+function categoryFor(word) {
+  const entry = categories[word.lemma];
+  if (!entry) return { major: null, minor: null };
+
+  const code = word.notes?.nikl_sense;
+  if (code) {
+    const exact = entry.senses.find((s) => s.code === code);
+    if (exact) return { major: exact.major, minor: exact.minor };
+  }
+
+  return { major: entry.major, minor: entry.minor };
+}
 
 /**
  * Resolves a word to a curriculum level 1–6.
@@ -85,6 +107,7 @@ const words = kept.map((w) => {
   const { niklGrade, topikTier } = decodeLevels(w.notes);
   const { level, resolution } = levelFor(w);
   resolutions[resolution] = (resolutions[resolution] ?? 0) + 1;
+  const { major, minor } = categoryFor(w);
 
   // Framework level indices, keyed by framework id. Absent keys mean the word
   // isn't graded by that framework — which is information, not a gap to fill.
@@ -101,7 +124,13 @@ const words = kept.map((w) => {
     lemma: w.lemma,
     gloss: cleanGloss(w.gloss),
     pos: w.part_of_speech ?? null,
-    category: w.semantic_category ?? null,
+    // 대범주 / 소범주 from the NIKL tagging. The hand-curated English tags on
+    // the top 200 are deliberately not used as a fallback: they're a different
+    // taxonomy, and two schemes in one column makes "which category am I
+    // weakest in" a meaningless comparison. What they mostly covered was
+    // function words, which have no semantic category to be missing anyway.
+    category: major,
+    sub: minor,
     hint: senseHint(w),
     // TOPIK I/II from the 2015 exam list. Coarser than the curriculum level
     // but independent of it, so it still places words the curriculum skips.
@@ -127,6 +156,10 @@ console.log("\nTOPIK tier (2015 list):", tally((w) => w.tier));
 console.log("NIKL grade:", tally((w) => w.lv.nikl));
 console.log("Curriculum level 1–6:", tally((w) => w.lv.topik));
 console.log("How each level was resolved:", resolutions);
+console.log(
+  `Categorised: ${words.filter((w) => w.category).length} of ${words.length}` +
+    ` (${words.filter((w) => w.sub).length} with a subcategory)`
+);
 
 const ambiguous = words.filter((w) => (senseCount.get(w.lemma) ?? 0) > 1);
 console.log(

@@ -9,6 +9,8 @@
     "lint": "eslint",
     "data:parse": "node scripts/parse-korean-list.mjs data/korean_nikl_raw.tsv data/korean_words.json",
     "data:build": "node scripts/build-seed-data.mjs",
+    "data:levels": "node scripts/parse-curriculum-levels.mjs",
+    "data:categories": "node scripts/parse-categories.mjs",
     "data:static": "node scripts/build-static-wordlist.mjs",
     "db:seed": "node --env-file=.env.local scripts/seed-supabase.mjs"
   },

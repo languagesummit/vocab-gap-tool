@@ -4,7 +4,10 @@ export type Word = {
   lemma: string;
   gloss: string;
   pos: string | null;
+  /** 대범주 — one of 14 major semantic categories. Null for function words. */
   category: string | null;
+  /** 소범주 — the finer category within it, e.g. 색깔, 동물류, 과일. */
+  sub: string | null;
   /**
    * Names which sense is being asked about, for the ~13% of entries whose
    * lemma appears more than once. Null elsewhere, where it would be clutter.

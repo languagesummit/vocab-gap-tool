@@ -1,44 +1,54 @@
 # Status
 
+## What this project is for
+
+Settled 2026-08-07, and it reframes the roadmap:
+
+**This is not exam prep.** The point is to build an accurate map of your actual
+lexicon, and then to find material you can genuinely read. Finding TOPIK study
+material was never the hard part; knowing which words you really have is.
+
+**The frequency list is a measuring stick, not a curriculum.** "How does my
+Korean compare against a frequency list" is an interesting question and a good
+way to run an exhaustive census. It is not a claim that you should learn words
+in that order, and real reading doesn't work that way.
+
+**The interesting gaps are semantic, not positional.** Vocabulary picked up
+through conversation comes out lumpy — strong on daily life, blank on colours,
+animals, and other basic concrete pockets. Those holes aren't at any frequency
+rank, so only a meaning-based tagging can find them. This is the core feature,
+not a nice-to-have.
+
+**TOPIK stays in.** It's data, and it can always come out later. The readiness
+worry below is still worth acting on, but it isn't a reason to remove the view.
+
 ## Pick up here
 
-Session paused 2026-08-07. Branch `claude/korean-topik-features-fqcli1`, pushed,
-two commits past `main`. No PR opened. Working tree clean, lint and build pass.
+Branch `claude/korean-topik-features-fqcli1`, pushed. Working tree clean, lint
+and build pass. No PR opened.
 
-**Open decision, and the important one: the levels page makes a readiness claim
-it can't support.** It says "your vocabulary holds up through Level N", and
-that's a prediction about an exam that also tests grammar, listening and
-writing — not something a word count can settle. Passing TOPIK I is not a
-matter of knowing 1,200 words, and a learner who knows 1,200 words may well
-not pass. The counter-consideration is that 1,200 words is genuinely a lot and
-the number shouldn't be made to feel like nothing.
+**Next up, and asked for explicitly: improve the testing experience itself.**
+Underspecified so far — worth pinning down what specifically grates before
+rebuilding anything. Candidates visible in the code: the timer default, the
+distractor quality (drawn from ±400 ranks and part-of-speech matched, but the
+5,697 uncurated glosses make some pairs ambiguous), and the fact that testing
+only ever walks frequency order, so you can't say "just test me on colours"
+even though the app now knows which words those are.
 
-There's a second edge to the same problem: everybody knows 안녕. It counts as
-Korean you know, and it is also nearly worthless as evidence about a test you
-won't meet it on. Coverage of the language and readiness for an exam are
-different questions, and right now one is standing in for the other.
+**Still open:** the levels page says "your vocabulary holds up through Level N",
+which is a prediction about an exam that also tests grammar, listening and
+writing. Passing TOPIK I is not a matter of knowing 1,200 words. Leaning toward
+cutting the verdict and keeping the measurement — the per-level coverage, reach
+and never-asked lists are all defensible; only the verdict line isn't. Context:
+the owner has sat TOPIK II twice, never TOPIK I, and reckons the honest advice
+is to take a practice test.
 
-Options when picking this back up:
+**Not started:** Anki/TSV export (the gaps and levels pages already compute the
+exact word lists); the Korean lemmatizer gating comprehensible input; extending
+the word list so TOPIK levels 5–6 are testable at all.
 
-1. **Cut the verdict, keep the measurement.** Drop `clearedThrough()` and the
-   "holds up through Level N" line; keep per-level coverage, reach, and the
-   never-asked lists. The page becomes "here is what you know, by level" and
-   claims nothing about sitting the exam. Smallest change, and closest to what
-   the data actually supports.
-2. **Keep a verdict but weaken it** to something like "level N vocabulary is
-   not what's holding you back", which is a claim about a floor rather than a
-   prediction.
-3. **Leave as is** and lean on the caveat card already on the page.
-
-Leaning 1. Worth knowing for context: the owner has sat TOPIK II twice and
-never TOPIK I, and reckons the honest advice is to just take a practice test.
-
-**Also open, none started:** Anki/TSV export of a level's never-asked words
-(data is already computed and listed per level); the 12,000-word semantic
-category ingest; the Korean lemmatizer that gates the comprehensible-input
-scorer; extending the word list so levels 5–6 are testable at all.
-
-**Still stranded:** the gloss curation on the other machine — see below.
+**Still stranded:** the gloss curation on the other machine — see below. That
+also caps the gaps feature, since 2,746 words carry no meaning tag.
 
 Running notes on where the project actually stands, kept because work happens
 across several machines and sessions. `PLAN.md` holds the design decisions and
@@ -153,6 +163,31 @@ isn't done.
 
 Verified end-to-end against a simulated 1,200-word progress file: level totals
 plus ungraded plus tier-only reconcile to exactly 5,897.
+
+**`/gaps` — where the holes are, by meaning.** Semantic tagging ingested from
+한국어 교육 어휘 내용 개발 (국립국어원 2015): 14 major categories over 139
+subcategories, taking category coverage from **200 words to 3,151**. Includes
+색깔 (30), 동물류 (32), 과일 (13), 채소 (18), 신체 부위 (72) — the concrete
+pockets conversational learners tend to miss.
+
+The hand-curated English tags on the top 200 are deliberately *not* used as a
+fallback. Two taxonomies in one column would make "which category am I weakest
+in" a meaningless comparison, and what they mostly covered was function words,
+which have no semantic pocket to be missing from.
+
+Two design points that took a correction to get right:
+
+- **Missed and unasked are kept apart.** Asked-and-failed is a gap in you;
+  never-asked is a gap in the testing and says nothing yet.
+- **Confidence follows the absolute number asked, not the fraction.** The first
+  cut ranked on what share of a category had been seen, which buried the real
+  finding — none of 6 animal words known — beneath noise like one of 3. Ranking
+  now needs 5 words asked (`MIN_ASKED`); the share-of-category test survives
+  separately as `isWellSampled`, for whether you can generalise from it.
+
+A cross-cutting "thinnest pockets" list ranks subcategories across all majors,
+so a small hole inside a big category is findable — 색깔 sits among twenty-odd
+siblings inside 개념 and would otherwise need you to already suspect it.
 
 ## Where the source data comes from
 

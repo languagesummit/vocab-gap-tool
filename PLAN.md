@@ -60,8 +60,12 @@ content recommendation to fill gaps).
 5. Curate glosses beyond rank 200 (5,697 rows still flagged `needs_review`).
 6. ✅ Exam-level reporting: tested vocabulary placed against the TOPIK
    vocabulary lists and 국립국어원's graded learner list. See below.
-7. Pre-generated constrained-definition test mode.
-8. Analytics: category × status heatmap, coverage breakdown.
+7. ✅ Semantic gap analysis (`/gaps`). Category tagging ingested from 한국어
+   교육 어휘 내용 개발 (국립국어원 2015) — 14 major categories over 139
+   subcategories, 3,151 of 5,897 words tagged, up from 200. This is the core
+   feature: conversational vocabulary is lumpy, and holes in colours or animals
+   sit at no particular frequency rank.
+8. Pre-generated constrained-definition test mode.
 9. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
    Blocked on a Korean lemmatizer: the word list is lemma-based (먹다) but real
    text is inflected (먹었어요/먹고/먹는), so surface forms have to be reduced
@@ -149,12 +153,17 @@ whitespace collapsed so every row is a single line.
 ## Regenerating the word data
 
 ```
-npm run data:parse   # raw NIKL TSV  -> data/korean_words.json
+npm run data:parse       # raw NIKL TSV  -> data/korean_words.json
 node scripts/join-glosses.mjs data/korean_words.json <kengdic.tsv> data/korean_words_glossed.json
-npm run data:build   # + curated overrides -> data/korean_seed.json
-npm run data:static  # -> public/korean.json (the guest-mode word list)
-npm run db:seed      # -> Supabase (needs SUPABASE_SERVICE_ROLE_KEY in .env.local)
+npm run data:build       # + curated overrides -> data/korean_seed.json
+npm run data:levels      # curriculum TSV -> data/korean_levels.json
+npm run data:categories  # category TSV   -> data/korean_categories.json
+npm run data:static      # joins all three -> public/korean.json (guest mode)
+npm run db:seed          # -> Supabase (needs SUPABASE_SERVICE_ROLE_KEY in .env.local)
 ```
+
+`data:static` needs the two join files, so run `data:levels` and
+`data:categories` before it on a fresh clone.
 
 `data/korean_seed.json` still carries the swapped level key names, because
 rebuilding it needs kengdic and that isn't in the repo. Nothing reads those

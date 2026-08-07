@@ -195,19 +195,22 @@ export function Results() {
         <Groups groups={a.byPos} />
       </Card>
 
-      {a.byCategory.length > 0 && (
-        <Card>
-          <h2 className="font-semibold text-black dark:text-zinc-50">
-            By meaning
-          </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            Only {a.categorised.toLocaleString()} of the{" "}
-            {(5897).toLocaleString()} words carry a meaning tag so far, so this
-            covers the early ranks only.
-          </p>
-          <Groups groups={a.byCategory} />
-        </Card>
-      )}
+      <Card>
+        <h2 className="font-semibold text-black dark:text-zinc-50">
+          By meaning
+        </h2>
+        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+          Where the holes are by subject rather than by rank — colours, animals,
+          the body, food. Vocabulary picked up by talking comes out lumpy, and
+          frequency order can&apos;t see that shape.
+        </p>
+        <Link
+          href="/gaps"
+          className="mt-4 flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+        >
+          See what you&apos;re missing
+        </Link>
+      </Card>
 
       {a.medianKnownMs !== null && (
         <Card>
