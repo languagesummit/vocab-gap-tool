@@ -66,13 +66,21 @@ content recommendation to fill gaps).
    feature: conversational vocabulary is lumpy, and holes in colours or animals
    sit at no particular frequency rank.
 8. Pre-generated constrained-definition test mode.
-9. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
+9. Comprehensible-input scorer (paste text or URL → % known, 95–98% sweet spot).
    Blocked on a Korean lemmatizer: the word list is lemma-based (먹다) but real
    text is inflected (먹었어요/먹고/먹는), so surface forms have to be reduced
    before they can be matched. That lemmatizer is the actual build; a YouTube
    transcript is just one source feeding it, and fetching those is separately
    unreliable from datacenter IPs, so pasting text has to work regardless.
-10. Image-based MCQ for concrete nouns (after sourcing decision).
+10. Hosted reading library, each text pre-scored against your lexicon. Licensing
+    is researched and settled — see STATUS.md. Short version: 공유마당 offers 200
+    public-domain short stories with no conditions, but they predate the 1933
+    orthography reform and read as colonial-era literary Korean; 공공누리 제1유형
+    content (korea.kr) is contemporary, standard-register and reusable with
+    attribution, which fits a learner far better. Deliberately sequenced *after*
+    the scorer: hosting text is easy, and a library that can't tell you whether
+    you can read a piece is just a library.
+11. Image-based MCQ for concrete nouns (after sourcing decision).
 
 ## The two proficiency gradings
 

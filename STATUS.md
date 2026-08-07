@@ -209,6 +209,48 @@ well and doing badly. Defaults to the asked basis; the raw counts stay on
 screen either way so nothing has to be inferred from the bar alone. Measured on
 a simulated profile the same bar reads 86% against asked and 29% against all.
 
+## Sourcing readable Korean text (researched, nothing built)
+
+For the "find things you can actually read" half. Licensing checked 2026-08-07.
+
+**Public domain literature — available, poor fit.** Korea's term is life + 70,
+but the 2013 extension is *not* retroactive, so the line is clean: authors who
+died on or before **1962-12-31** are public domain; 1963 onward isn't free until
+2034+. That window is the colonial-era canon — 김소월 (d. 1934), 이상 (d. 1937),
+김유정 (d. 1937), 현진건 (d. 1943), 윤동주 (d. 1945), 이광수 / 채만식 / 정지용
+(d. 1950).
+
+[공유마당](https://gongu.copyright.or.kr/) (한국저작권위원회) already publishes
+**200 expired literary short stories** free with no conditions, and has an API
+with instant key issuance — so the collection work is done.
+
+The catch is real though. The 1933 한글맞춤법통일안 is the orthographic dividing
+line: earlier texts use 연철 (sound-based) spelling — 자피다 for 잡히다 — plus
+different spacing. The PD window sits right at that boundary. Two problems
+follow: a modernised edition is a *new editorial work with its own copyright*,
+so "the original is PD" doesn't make a clean modern text free; and 1930s
+literary register is close to the opposite of useful input for a learner whose
+strength is daily conversation.
+
+**News — mostly closed, with one open door.** Commercial outlets (연합뉴스, the
+dailies) are fully copyrighted; no path. But **공공누리 제1유형** (Korea Open
+Government License Type 1) permits commercial use *and* modification with
+attribution only, and [korea.kr / 정책브리핑](https://www.korea.kr/) publishes
+news-style articles under it. Contemporary, standard-register, current-topic
+Korean that is legally reusable — a better fit than the PD fiction.
+
+Licence obligations differ and shouldn't be mixed carelessly: 공유마당 expired
+works carry none; KOGL Type 1 requires attribution; 위키문헌 (Wikisource) is
+CC BY-SA, which is share-alike and stickier.
+
+**Sequencing.** Hosting text is the easy part; what makes it this tool rather
+than a library is scoring it against the user's lexicon, and that still needs
+the Korean lemmatizer (list is lemma-based 먹다, real text is inflected
+먹었어요). So the cheaper first move has no licensing surface at all — paste
+text or a URL and score it. A hosted library becomes a convenience layer once
+scoring is proven, with 공공누리 content as the first shelf rather than the PD
+fiction.
+
 ## Where the source data comes from
 
 All published by 국립국어원 and downloadable without an account. Recorded here
