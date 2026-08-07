@@ -189,6 +189,17 @@ A cross-cutting "thinnest pockets" list ranks subcategories across all majors,
 so a small hole inside a big category is findable — 색깔 sits among twenty-odd
 siblings inside 개념 and would otherwise need you to already suspect it.
 
+**Meaning and part of speech are kept as two separate cuts**, both with the same
+rigour, because they answer different questions and neither substitutes for the
+other. They're also nested opposite ways round, which is what makes the pair
+worth having: part of speech under meaning asks "which subjects am I thin on";
+meaning under part of speech asks "am I weak on adjectives, and about what".
+
+Part of speech is the more complete of the two — it covers all 5,897 words
+where the semantic tagging reaches 3,151, verbs being thinly tagged at source
+(399 of 1,345). It was previously the weaker view, a plain percentage bar on
+the results page with no missed/unasked split at all.
+
 ## Where the source data comes from
 
 All published by 국립국어원 and downloadable without an account. Recorded here

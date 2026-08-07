@@ -38,6 +38,55 @@ export type MajorCategory = CategoryNode & {
 
 export type Pocket = CategoryNode & { major: string };
 
+/**
+ * A way of cutting the vocabulary up. Meaning and part of speech answer
+ * genuinely different questions and neither substitutes for the other, so they
+ * stay separate cuts rather than being folded into one score.
+ *
+ * The nesting is what makes the pair earn its keep: part of speech nested
+ * under meaning asks "which pockets am I thin on"; meaning nested under part of
+ * speech asks "am I weak on adjectives, and about what". Same words, different
+ * question.
+ *
+ * Part of speech also covers all 5,897 words where the semantic tagging reaches
+ * 3,151 — verbs especially are mostly untagged — so it is the more complete of
+ * the two even though it is the blunter.
+ */
+export type Dimension = {
+  id: string;
+  label: string;
+  blurb: string;
+  major: (word: Word) => string | null;
+  sub: (word: Word) => string | null;
+  /** Explains what falls outside this cut, and why that's expected. */
+  untaggedNote: string;
+};
+
+/** Subgroup label for words the nested cut doesn't reach. Never ranked. */
+export const UNTAGGED = "(no meaning tag)";
+
+export const DIMENSIONS: Dimension[] = [
+  {
+    id: "meaning",
+    label: "By meaning",
+    blurb:
+      "Colours, animals, the body, food. Holes here sit at no particular frequency rank, which is why rank-ordered testing can't find them.",
+    major: (w) => w.category,
+    sub: (w) => w.sub,
+    untaggedNote:
+      "carry no meaning tag. Most are grammar and function words — 것, 하다, -은 — which belong to no pocket of meaning you could have a hole in. Verbs are also thinly tagged at source.",
+  },
+  {
+    id: "pos",
+    label: "By part of speech",
+    blurb:
+      "Whether the shape of a word predicts whether you know it — nouns against verbs against adjectives, and what each is about.",
+    major: (w) => w.pos,
+    sub: (w) => w.category,
+    untaggedNote: "carry no part-of-speech tag.",
+  },
+];
+
 export type GapAnalysis = {
   majors: MajorCategory[];
   /**
@@ -80,25 +129,30 @@ function add(node: CategoryNode, progress: Progress, word: Word) {
   if (record.status !== "known") node.missed.push(word);
 }
 
-export function analyseGaps(progress: Progress, words: Word[]): GapAnalysis {
+export function analyseGaps(
+  progress: Progress,
+  words: Word[],
+  dimension: Dimension
+): GapAnalysis {
   const majors = new Map<string, MajorCategory>();
   let untagged = 0;
   let tagged = 0;
 
   for (const word of words) {
-    if (!word.category) {
+    const majorLabel = dimension.major(word);
+    if (!majorLabel) {
       untagged += 1;
       continue;
     }
     tagged += 1;
 
-    if (!majors.has(word.category)) {
-      majors.set(word.category, { ...empty(word.category), subs: [] });
+    if (!majors.has(majorLabel)) {
+      majors.set(majorLabel, { ...empty(majorLabel), subs: [] });
     }
-    const major = majors.get(word.category)!;
+    const major = majors.get(majorLabel)!;
     add(major, progress, word);
 
-    const subLabel = word.sub ?? "—";
+    const subLabel = dimension.sub(word) ?? UNTAGGED;
     let sub = major.subs.find((s) => s.label === subLabel);
     if (!sub) {
       sub = empty(subLabel);
@@ -118,10 +172,12 @@ export function analyseGaps(progress: Progress, words: Word[]): GapAnalysis {
     major.subs.sort(compareWeakness);
   }
 
+  // Words the nested cut doesn't reach are grouped so the totals still add up,
+  // but never ranked: "untagged" is not a subject you can be weak at.
   const pockets: Pocket[] = [];
   for (const major of majors.values()) {
     for (const sub of major.subs) {
-      if (sub.label !== "—") pockets.push({ ...sub, major: major.label });
+      if (sub.label !== UNTAGGED) pockets.push({ ...sub, major: major.label });
     }
   }
 

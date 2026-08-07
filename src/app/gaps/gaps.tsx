@@ -10,8 +10,10 @@ import {
   isWellSampled,
   reach,
   strength,
+  DIMENSIONS,
   MIN_ASKED,
   type CategoryNode,
+  type Dimension,
   type MajorCategory,
 } from "@/lib/local/gaps";
 
@@ -19,6 +21,7 @@ export function Gaps() {
   const [words, setWords] = useState<Word[] | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [dimension, setDimension] = useState<Dimension>(DIMENSIONS[0]);
 
   useEffect(() => {
     // localStorage is client-only, so state has to be filled in after mount.
@@ -45,7 +48,7 @@ export function Gaps() {
     );
   }
 
-  const g = analyseGaps(progress, words);
+  const g = analyseGaps(progress, words, dimension);
   const anyTested = g.majors.some((m) => m.tested > 0);
 
   return (
@@ -58,18 +61,29 @@ export function Gaps() {
           What you&apos;re missing
         </h1>
         <p className="mt-1 text-zinc-600 dark:text-zinc-400">
-          Korean · by meaning rather than by frequency
+          Korean · the shape of your vocabulary, not its depth
         </p>
       </header>
 
+      <div className="flex gap-2">
+        {DIMENSIONS.map((d) => (
+          <button
+            key={d.id}
+            onClick={() => setDimension(d)}
+            className={`h-11 flex-1 rounded-lg border px-4 text-sm font-medium transition ${
+              d.id === dimension.id
+                ? "border-black bg-black text-white dark:border-zinc-50 dark:bg-zinc-50 dark:text-black"
+                : "border-zinc-300 text-black hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+            }`}
+          >
+            {d.label}
+          </button>
+        ))}
+      </div>
+
       <Card>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          Vocabulary picked up through conversation comes out lumpy — strong
-          where you&apos;ve had to talk, thin in whole pockets you&apos;ve never
-          needed. Frequency rank can&apos;t see that shape, because a hole in
-          colours or animals isn&apos;t at any particular rank. This groups the{" "}
-          {g.tagged.toLocaleString()} words carrying a meaning tag into the
-          categories they belong to, weakest first.
+          {dimension.blurb}
         </p>
         <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
           Two different things are shown apart on purpose:{" "}
@@ -80,7 +94,8 @@ export function Gaps() {
           <strong className="font-medium text-black dark:text-zinc-50">
             unasked
           </strong>{" "}
-          means never put to you, which says nothing about you yet.
+          means never put to you, which says nothing about you yet. Covering{" "}
+          {g.tagged.toLocaleString()} words.
         </p>
       </Card>
 
@@ -105,8 +120,8 @@ export function Gaps() {
             The thinnest pockets
           </h2>
           <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            Weakest subjects across every category, so a small hole inside a big
-            category is still findable. Ranked on what you were actually asked.
+            Weakest pockets across every group, so a small hole inside a big one
+            is still findable. Ranked on what you were actually asked.
           </p>
           <ul className="mt-4 flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
             {g.weakest.map((p) => (
@@ -164,7 +179,7 @@ export function Gaps() {
       )}
 
       <h2 className="-mb-2 mt-2 font-semibold text-black dark:text-zinc-50">
-        Every category
+        {dimension.label}, weakest first
       </h2>
       <div className="flex flex-col gap-3">
         {g.majors.map((m) => (
@@ -174,10 +189,8 @@ export function Gaps() {
 
       {g.untagged > 0 && (
         <p className="text-xs text-zinc-500">
-          {g.untagged.toLocaleString()} words carry no meaning tag and
-          aren&apos;t shown. Most are grammar and function words — 것, 하다, -은
-          — which don&apos;t belong to a pocket of meaning you could have a hole
-          in. Tags come from 한국어 교육 어휘 내용 개발 (국립국어원, 2015).
+          {g.untagged.toLocaleString()} words {dimension.untaggedNote} Meaning
+          tags come from 한국어 교육 어휘 내용 개발 (국립국어원, 2015).
         </p>
       )}
     </Shell>
