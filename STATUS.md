@@ -52,15 +52,26 @@ Done this round:
   can't read defeats its own purpose.
 - Trimmed the wordiest copy on `/gaps`.
 
-Still open from that feedback:
+Round two:
 
-- **The 139 subcategories are still Korean-only** (색깔, 옷 종류, 용모). Only the
-  14 majors are glossed. Translating the rest is mechanical but wants care —
-  a wrong gloss on a gap report is worse than none.
-- **Frequency order is still the only ordering within a goal.** Testing by
-  subject ("just ask me colours") is not wired up even though `/gaps` knows
-  which words those are.
-- **LingQ comparison** — see below.
+- **All 139 subcategories now carry English**, not just the 14 majors, and the
+  gloss sits as subtext *underneath* the Korean rather than trailing after it.
+  This tool is for people learning Korean; a gap report saying you are weak at
+  용모 helps nobody who is still learning what 용모 means.
+- **Test any slice.** `/words` filtered to a category, subject, word type, TOPIK
+  level or search now offers "Test me on these N words" — untested ones only,
+  with a time estimate. Pull up 동물류, see all 32, test the 26 you've never been
+  asked. Same mechanism as the from-a-text loop.
+- **TOPIK 3** added to the goal list.
+
+Still open:
+
+- **`/read` has no sample text**, so it opens on an empty box.
+- **Commercial framing.** If this ever competes with LingQ, the difference to
+  lead with is that LingQ counts word *forms* — Korean inflection inflates its
+  numbers badly, which is why it felt useless — while this is lemma-based and
+  measures by testing rather than by self-declaration. It can also name words
+  you have never encountered, which LingQ structurally cannot.
 
 Branch `claude/korean-topik-features-fqcli1`, pushed. Working tree clean, lint
 and build pass. No PR opened.

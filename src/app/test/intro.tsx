@@ -36,6 +36,7 @@ export function Intro({
     { kind: "count", n: 300 },
     { kind: "topik", level: 1 },
     { kind: "topik", level: 2 },
+    { kind: "topik", level: 3 },
     { kind: "topik", level: 4 },
     { kind: "all" },
   ];

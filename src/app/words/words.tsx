@@ -5,6 +5,8 @@ import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, type Progress } from "@/lib/local/progress";
 import { pct } from "@/lib/local/analysis";
+import { estimateMinutes, saveGoal } from "@/lib/local/goals";
+import { useRouter } from "next/navigation";
 import {
   emptyFilters,
   facets,
@@ -26,6 +28,7 @@ import {
 const SHOWN = 400;
 
 export function Words() {
+  const router = useRouter();
   const [words, setWords] = useState<Word[] | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +49,8 @@ export function Words() {
     () => (words && progress ? filterWords(words, progress, filters) : []),
     [words, progress, filters]
   );
+  /** Words in the current slice that haven't been answered yet. */
+  const untestedRows = rowsUntested(rows);
 
   if (error) {
     return (
@@ -192,6 +197,36 @@ export function Words() {
         </p>
       </section>
 
+      {untestedRows.length > 0 && (
+        <section className="flex flex-col gap-3 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
+          <h2 className="font-semibold text-black dark:text-zinc-50">
+            Test this slice
+          </h2>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            {untestedRows.length.toLocaleString()} of these{" "}
+            {rows.length.toLocaleString()} words have never been put to you.
+            Testing just them takes about {estimateMinutes(untestedRows.length)}{" "}
+            {estimateMinutes(untestedRows.length) === 1 ? "minute" : "minutes"},
+            and fills in this corner of the map without touching the rest.
+          </p>
+          <button
+            onClick={() => {
+              saveGoal({
+                kind: "words",
+                keys: untestedRows.map((r) => r.word.key),
+                label: sliceLabel(filters)
+                  ? `${sliceLabel(filters)} — ${untestedRows.length} words`
+                  : `${untestedRows.length} selected words`,
+              });
+              router.push("/test");
+            }}
+            className="flex h-12 items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black"
+          >
+            Test me on these {untestedRows.length.toLocaleString()} words
+          </button>
+        </section>
+      )}
+
       <section className="flex flex-col gap-3 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
         <h2 className="font-semibold text-black dark:text-zinc-50">
           Send to Anki
@@ -249,6 +284,11 @@ export function Words() {
       </div>
     </Shell>
   );
+}
+
+/** Untested rows only — retesting what you've answered is a different action. */
+function rowsUntested(rows: BrowseRow[]): BrowseRow[] {
+  return rows.filter((r) => r.status === "untested");
 }
 
 const STATUS_STYLE: Record<StatusFilter, string> = {

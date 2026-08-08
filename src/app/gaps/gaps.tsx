@@ -132,11 +132,16 @@ export function Gaps() {
                 key={`${p.major}/${p.label}`}
                 className="flex items-baseline justify-between gap-4 py-2"
               >
-                <span>
-                  <span className="text-black dark:text-zinc-50">
+                <span className="min-w-0">
+                  <span className="block text-black dark:text-zinc-50">
                     {p.label}
+                    {englishFor(p.label) && (
+                      <span className="ml-2 text-xs font-normal text-zinc-500">
+                        {englishFor(p.label)}
+                      </span>
+                    )}
                   </span>
-                  <span className="ml-2 text-xs text-zinc-400">
+                  <span className="text-xs text-zinc-400">
                     {englishFor(p.major) ?? p.major}
                   </span>
                 </span>
@@ -167,11 +172,16 @@ export function Gaps() {
                 key={`${p.major}/${p.label}`}
                 className="flex items-baseline justify-between gap-4 py-2"
               >
-                <span>
-                  <span className="text-black dark:text-zinc-50">
+                <span className="min-w-0">
+                  <span className="block text-black dark:text-zinc-50">
                     {p.label}
+                    {englishFor(p.label) && (
+                      <span className="ml-2 text-xs font-normal text-zinc-500">
+                        {englishFor(p.label)}
+                      </span>
+                    )}
                   </span>
-                  <span className="ml-2 text-xs text-zinc-400">
+                  <span className="text-xs text-zinc-400">
                     {englishFor(p.major) ?? p.major}
                   </span>
                 </span>
@@ -218,7 +228,7 @@ function MajorRow({ major, basis }: { major: MajorCategory; basis: Basis }) {
           <span className="text-lg font-medium text-black dark:text-zinc-50">
             {major.label}
             {english && (
-              <span className="ml-2 text-sm font-normal text-zinc-500">
+              <span className="mt-0.5 block text-xs font-normal text-zinc-500">
                 {english}
               </span>
             )}
@@ -281,7 +291,7 @@ function SubRow({ sub, basis }: { sub: CategoryNode; basis: Basis }) {
         <span className="text-black dark:text-zinc-50">
           {sub.label}
           {englishFor(sub.label) && (
-            <span className="ml-2 text-xs text-zinc-500">
+            <span className="mt-0.5 block text-xs text-zinc-500">
               {englishFor(sub.label)}
             </span>
           )}
