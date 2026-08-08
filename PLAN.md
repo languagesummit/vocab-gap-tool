@@ -131,6 +131,44 @@ distinctive multi-syllable endings and optimistic for short ones like 만 and �
 that occur inside ordinary words. Expect roughly half the list to be testable
 this way, and the rest to need another source.
 
+## Frequency order versus level order
+
+Measured 2026-08-08 against the 69,464 running words of the Tatoeba Korean
+corpus, because the question is empirical rather than a matter of taste.
+
+| set | words | text covered |
+|---|---|---|
+| TOPIK 1 | 795 | 51.9% |
+| commonest 795 | 795 | 61.0% |
+| TOPIK 1–2 | 1,850 | 65.6% |
+| commonest 1,850 | 1,850 | 70.7% |
+| TOPIK 1–4 | 4,624 | 76.2% |
+| commonest 4,624 | 4,624 | 79.5% |
+
+Level order costs about 9 points of coverage at TOPIK 1, narrowing to 3 by
+TOPIK 4. Real, but not disqualifying.
+
+**The disagreement is systematic.** TOPIK 1 carries 462 words frequency would
+not reach for thousands of ranks — 편의점, 미용실, 갈비탕, 여덟, 아흔, 이십 —
+everyday nouns and numbers, rare on a page and unavoidable in a day. It omits
+462 common ones — 수 (r6), 않다 (r11), 등 (r18), 때문 (r31), 대하다 (r24) —
+almost all grammar and abstract function words. The two orderings split along
+the grammar-versus-concrete-noun axis.
+
+**So neither is simply better, and the metric itself is biased.** Coverage of a
+written corpus is the wrong yardstick for words like 편의점 and 여덟: Tatoeba is
+crowd-sourced written sentences, so it understates everyday vocabulary and
+overstates function words. Treat the 9 points as an upper bound on the real cost.
+
+**Recommend by stage rather than defaulting for everyone.** A beginner should
+take TOPIK 1: at 795 words the coverage difference matters less than finishing
+something, and the words frequency skips are the ones they need first. Someone
+further along should stay on frequency, where their remaining gaps actually are.
+Both orderings cannot run at once — a level cannot be called complete until all
+of its words are tested, and frequency order reaches the rarest of TOPIK 1
+(이십, rank 5,892) only at the very end — so the picker explains what each buys
+instead of pretending the choice is free.
+
 ## Open questions
 
 - **Does recognition testing overstate coverage?** The 95/98% comprehension

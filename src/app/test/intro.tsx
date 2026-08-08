@@ -137,6 +137,12 @@ export function Intro({
           You can stop any time and pick up where you left off — and change this
           later. Smaller scopes still give a real answer over their own range.
         </p>
+        <p className="mt-2 text-sm text-zinc-500">
+          New to Korean? Take <strong className="font-medium">TOPIK 1</strong> —
+          it finishes, and it front-loads the everyday words. Further along?{" "}
+          <strong className="font-medium">Commonest first</strong> finds your
+          gaps faster, since it covers more reading per word tested.
+        </p>
 
         <div className="mt-4 flex flex-col gap-2">
           {options.map((goal) => {
@@ -205,16 +211,29 @@ function describe(goal: Goal): string {
   }
 }
 
+/**
+ * What each goal actually buys, measured rather than asserted.
+ *
+ * The two orderings genuinely disagree. Frequency order covers more text per
+ * word — its first 795 words account for 61% of running Korean against TOPIK
+ * 1's 52% — because that is what frequency ordering is for. But TOPIK 1 carries
+ * 462 words frequency would not reach for thousands of ranks, and they are
+ * numbers, shops and everyday places: rare on a page, unavoidable in a day.
+ *
+ * So neither is simply better. A beginner needs 편의점 and 여덟 sooner than they
+ * need 때문 and 대하다, and gets a finishable target as well; someone already
+ * past that gets more from the frequency order, where their gaps actually are.
+ */
 function why(goal: Goal): string {
   switch (goal.kind) {
     case "count":
-      return "A quick sample — enough to see what this tool does";
+      return "A quick sample of the commonest words — the fastest read on where you stand";
     case "topik":
       return goal.level === 1
-        ? "Beginner vocabulary, and everything below it"
+        ? "A finishable target. Covers everyday things — numbers, shops, food — that frequency order won't reach for thousands of words"
         : `Everything the curriculum expects by level ${goal.level}`;
     case "all":
-      return "The full census. The only way to get complete gap analysis";
+      return "The full census, commonest first. Covers the most reading per word tested, and the only route to complete gap analysis";
     case "words":
       return "The words from the text you scored";
   }
