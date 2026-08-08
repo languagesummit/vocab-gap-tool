@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, type Progress } from "@/lib/local/progress";
+import { saveGoal } from "@/lib/local/goals";
+import { useRouter } from "next/navigation";
 import { buildIndex } from "@/lib/korean/lemmatize";
 import {
   scoreText,
@@ -13,6 +15,7 @@ import {
 } from "@/lib/local/score";
 
 export function Read() {
+  const router = useRouter();
   const [words, setWords] = useState<Word[] | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -71,7 +74,7 @@ export function Read() {
         <p className="text-sm text-zinc-400">Loading the word list…</p>
       )}
 
-      {score && <Result score={score} />}
+      {score && <Result score={score} router={router} />}
 
       <p className="text-xs text-zinc-500">
         Nothing you paste is sent anywhere — the word list is already in your
@@ -82,7 +85,13 @@ export function Read() {
   );
 }
 
-function Result({ score }: { score: TextScore }) {
+function Result({
+  score,
+  router,
+}: {
+  score: TextScore;
+  router: { push: (href: string) => void };
+}) {
   const verdict = verdictFor(score);
   const [showUnresolved, setShowUnresolved] = useState(false);
 
@@ -144,6 +153,19 @@ function Result({ score }: { score: TextScore }) {
             most often here first — a word used five times is worth more than
             five used once.
           </p>
+          <button
+            onClick={() => {
+              saveGoal({
+                kind: "words",
+                keys: score.toLearn.map((t) => t.word.key),
+                label: `${score.toLearn.length} words from a text`,
+              });
+              router.push("/test");
+            }}
+            className="mt-4 flex h-12 w-full items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black"
+          >
+            Test me on these {score.toLearn.length.toLocaleString()} words
+          </button>
           <ul className="mt-4 flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
             {score.toLearn.slice(0, 60).map(({ word, count }) => (
               <li

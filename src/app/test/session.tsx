@@ -9,6 +9,15 @@ import {
   type Progress,
   type Status,
 } from "@/lib/local/progress";
+import {
+  clearGoal,
+  goalLabel,
+  loadGoal,
+  queueFor,
+  saveGoal,
+  type Goal,
+} from "@/lib/local/goals";
+import { Intro } from "./intro";
 
 // Distractors are drawn from nearby ranks so the wrong answers are plausible
 // rather than obviously advanced vocabulary.
@@ -34,6 +43,7 @@ export function Session() {
     unknown: 0,
   });
 
+  const [goal, setGoal] = useState<Goal | null>(null);
   const [paused, setPaused] = useState(false);
   const [frontier, setFrontier] = useState(0);
   // The word whose timer just ran out. Set for GRACE_MS, during which the
@@ -54,15 +64,16 @@ export function Session() {
     setProgress(saved);
     setFrontier(saved.frontierRank);
 
+    const chosen = loadGoal();
+    setGoal(chosen);
+
     loadWords()
       .then((all) => {
         setWords(all);
-        // Everything not yet answered, in frequency order. No batching —
-        // the session runs until it's paused or finished.
-        const untested = all
-          .filter((w) => !saved.words[w.key])
-          .sort((a, b) => a.rank - b.rank);
-        setQueue(untested);
+        // Only what the chosen goal covers, in frequency order and skipping
+        // anything already answered. No batching — the session runs until it
+        // is paused or the goal is finished.
+        if (chosen) setQueue(queueFor(chosen, all, saved));
       })
       .catch((e: Error) => setError(e.message));
   }, []);
@@ -314,16 +325,37 @@ export function Session() {
     );
   }
 
+  if (!goal) {
+    return (
+      <Intro
+        words={words}
+        progress={progress}
+        onStart={(chosen) => {
+          saveGoal(chosen);
+          setGoal(chosen);
+          setQueue(queueFor(chosen, words, progress));
+          setPosition(0);
+        }}
+      />
+    );
+  }
+
   if (queue.length === 0) {
     return (
       <Centered>
         <h2 className="text-2xl font-semibold text-black dark:text-zinc-50">
-          Every word tested
+          Nothing left in this goal
         </h2>
         <p className="text-zinc-500">
-          All 5,897 words have a status. Reset from the home screen to run
-          through them again.
+          Every word in &ldquo;{goalLabel(goal)}&rdquo; has been answered.
+          Choose a wider goal to keep going.
         </p>
+        <button
+          onClick={() => setGoal(null)}
+          className="flex h-12 items-center justify-center rounded-lg bg-black px-6 font-medium text-white dark:bg-zinc-50 dark:text-black"
+        >
+          Choose another goal
+        </button>
         <HomeLink />
       </Centered>
     );
@@ -370,10 +402,10 @@ export function Session() {
           <button
             onClick={goBack}
             disabled={position === 0}
-            title="Go back one word (backspace)"
+            title="Undo the last answer and ask that word again (backspace)"
             className="flex h-11 items-center rounded-md border border-zinc-300 px-3 text-xs text-black transition hover:bg-zinc-50 disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
           >
-            ← Back
+            ← Undo last
           </button>
           {/* During the beat the header still belongs to the word on screen. */}
           <span>Rank {(expired ?? current).rank.toLocaleString()}</span>
@@ -409,7 +441,7 @@ export function Session() {
               </span>
             )}
             <span className="text-sm text-zinc-500">
-              Press ← Back to answer it after all
+              Press ← Undo last to answer it after all
             </span>
           </div>
         )}
@@ -484,7 +516,17 @@ export function Session() {
               disabled={position === 0}
               className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium whitespace-nowrap text-black transition disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50"
             >
-              ← Back one
+              ← Undo last answer
+            </button>
+            <button
+              onClick={() => {
+                clearGoal();
+                setGoal(null);
+                setPaused(false);
+              }}
+              className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium whitespace-nowrap text-black transition dark:border-zinc-700 dark:text-zinc-50"
+            >
+              Change goal
             </button>
             <Link
               href="/results"

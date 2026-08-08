@@ -65,25 +65,59 @@ export type Dimension = {
 /** Subgroup label for words the nested cut doesn't reach. Never ranked. */
 export const UNTAGGED = "(no meaning tag)";
 
+/**
+ * English for the 14 major categories. The source labels them in Korean, which
+ * is precisely backwards for a tool whose users are learning the language —
+ * 인간 as a heading tells a beginner nothing, and being unable to read your own
+ * gap report defeats the point. Shown alongside the Korean rather than instead
+ * of it, since the Korean is what the source says and worth learning.
+ */
+export const CATEGORY_EN: Record<string, string> = {
+  "인간": "people & the body",
+  "개념": "abstract concepts",
+  "사회생활": "social life",
+  "삶": "life & health",
+  "식생활": "food & eating",
+  "교육": "education",
+  "주생활": "home & housing",
+  "경제생활": "money & work",
+  "자연": "nature & weather",
+  "정치와 행정": "politics & government",
+  "동식물": "animals & plants",
+  "의생활": "clothing",
+  "문화": "arts & culture",
+  "종교": "religion",
+};
+
+/**
+ * English for a label, wherever it appears. Deliberately not scoped to one
+ * dimension: the Korean categories show up as *sub*groups under the
+ * part-of-speech cut too, and leaving those unglossed reproduces exactly the
+ * problem this solves. Parts of speech are already English and simply miss.
+ */
+export function englishFor(label: string): string | null {
+  return CATEGORY_EN[label] ?? null;
+}
+
 export const DIMENSIONS: Dimension[] = [
   {
-    id: "meaning",
-    label: "By meaning",
-    blurb:
-      "Colours, animals, the body, food. Holes here sit at no particular frequency rank, which is why rank-ordered testing can't find them.",
-    major: (w) => w.category,
-    sub: (w) => w.sub,
-    untaggedNote:
-      "carry no meaning tag. Most are grammar and function words — 것, 하다, -은 — which belong to no pocket of meaning you could have a hole in. Verbs are also thinly tagged at source.",
-  },
-  {
     id: "pos",
-    label: "By part of speech",
+    label: "By word type",
     blurb:
       "Whether the shape of a word predicts whether you know it — nouns against verbs against adjectives, and what each is about.",
     major: (w) => w.pos,
     sub: (w) => w.category,
     untaggedNote: "carry no part-of-speech tag.",
+  },
+  {
+    id: "meaning",
+    label: "By subject",
+    blurb:
+      "Colours, animals, the body, food. Holes here sit at no particular frequency rank, which is why rank-ordered testing can't find them.",
+    major: (w) => w.category,
+    sub: (w) => w.sub,
+    untaggedNote:
+      "carry no subject tag. Most are grammar and function words — 것, 하다, -은 — which belong to no subject you could have a hole in. Verbs are also thinly tagged at source.",
   },
 ];
 

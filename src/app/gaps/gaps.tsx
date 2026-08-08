@@ -12,6 +12,7 @@ import {
   strength,
   DIMENSIONS,
   MIN_ASKED,
+  englishFor,
   type CategoryNode,
   type Dimension,
   type MajorCategory,
@@ -88,17 +89,16 @@ export function Gaps() {
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
           {dimension.blurb}
         </p>
-        <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
-          Two different things are shown apart on purpose:{" "}
+        <p className="mt-2 text-sm text-zinc-500">
           <strong className="font-medium text-black dark:text-zinc-50">
-            missed
+            Missed
           </strong>{" "}
-          means asked and not known, which is a real gap;{" "}
+          = asked and got wrong.{" "}
           <strong className="font-medium text-black dark:text-zinc-50">
-            unasked
+            Unasked
           </strong>{" "}
-          means never put to you, which says nothing about you yet. Covering{" "}
-          {g.tagged.toLocaleString()} words.
+          = never tested, so it proves nothing yet. {g.tagged.toLocaleString()}{" "}
+          words covered.
         </p>
       </Card>
 
@@ -122,9 +122,9 @@ export function Gaps() {
           <h2 className="font-semibold text-black dark:text-zinc-50">
             The thinnest pockets
           </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            Weakest pockets across every group, so a small hole inside a big one
-            is still findable. Ranked on what you were actually asked.
+          <p className="mt-1 text-sm text-zinc-500">
+            Your weakest subjects, so a small hole inside a big group is still
+            findable.
           </p>
           <ul className="mt-4 flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
             {g.weakest.map((p) => (
@@ -136,7 +136,9 @@ export function Gaps() {
                   <span className="text-black dark:text-zinc-50">
                     {p.label}
                   </span>
-                  <span className="ml-2 text-xs text-zinc-400">{p.major}</span>
+                  <span className="ml-2 text-xs text-zinc-400">
+                    {englishFor(p.major) ?? p.major}
+                  </span>
                 </span>
                 <span className="shrink-0 text-sm text-zinc-500">
                   <span className="font-medium text-red-600 dark:text-red-400">
@@ -155,10 +157,9 @@ export function Gaps() {
           <h2 className="font-semibold text-black dark:text-zinc-50">
             Barely explored
           </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            Fewer than {MIN_ASKED} words of each has been put to you, so these
-            aren&apos;t weaknesses — they&apos;re unknowns. Biggest first, since
-            that&apos;s where testing would tell you most.
+          <p className="mt-1 text-sm text-zinc-500">
+            Under {MIN_ASKED} words tested in each, so these aren&apos;t
+            weaknesses yet — just untested. Biggest first.
           </p>
           <ul className="mt-4 flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
             {g.unexplored.map((p) => (
@@ -170,7 +171,9 @@ export function Gaps() {
                   <span className="text-black dark:text-zinc-50">
                     {p.label}
                   </span>
-                  <span className="ml-2 text-xs text-zinc-400">{p.major}</span>
+                  <span className="ml-2 text-xs text-zinc-400">
+                    {englishFor(p.major) ?? p.major}
+                  </span>
                 </span>
                 <span className="shrink-0 text-sm text-zinc-500">
                   {p.unasked.length} of {p.total} unasked
@@ -203,6 +206,7 @@ export function Gaps() {
 function MajorRow({ major, basis }: { major: MajorCategory; basis: Basis }) {
   const [open, setOpen] = useState(false);
   const s = strength(major);
+  const english = englishFor(major.label);
 
   return (
     <section className="rounded-xl border border-zinc-200 dark:border-zinc-800">
@@ -213,6 +217,11 @@ function MajorRow({ major, basis }: { major: MajorCategory; basis: Basis }) {
         <div className="flex items-baseline justify-between gap-3">
           <span className="text-lg font-medium text-black dark:text-zinc-50">
             {major.label}
+            {english && (
+              <span className="ml-2 text-sm font-normal text-zinc-500">
+                {english}
+              </span>
+            )}
           </span>
           <span className="shrink-0 text-sm text-zinc-500">
             {s === null ? (
@@ -269,7 +278,14 @@ function SubRow({ sub, basis }: { sub: CategoryNode; basis: Basis }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <span className="text-black dark:text-zinc-50">{sub.label}</span>
+        <span className="text-black dark:text-zinc-50">
+          {sub.label}
+          {englishFor(sub.label) && (
+            <span className="ml-2 text-xs text-zinc-500">
+              {englishFor(sub.label)}
+            </span>
+          )}
+        </span>
         <span className="shrink-0 text-sm text-zinc-500">
           {s === null ? "none asked" : `${s}% known`}
           <span className="text-zinc-400">

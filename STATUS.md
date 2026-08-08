@@ -24,6 +24,44 @@ worry below is still worth acting on, but it isn't a reason to remove the view.
 
 ## Pick up here
 
+### From the first real self-test (2026-08-08)
+
+Done this round:
+
+- **Intro screen before any testing.** The honesty rule is the headline and is
+  stated first: if you would be guessing at all, press "I don't know", because a
+  lucky guess recorded as known corrupts every number afterwards including the
+  study list. Plus: go fast, commonest words first, not knowing a common word is
+  fine, expect words you *thought* you knew, and how undo works.
+- **Scoped goals.** Testing no longer means all 5,897 words or nothing. Choose
+  300 words (~15 min), TOPIK 1 (795), TOPIK 2 (1,850), TOPIK 4, or everything,
+  each showing what's left and a rough time. Changeable from the pause screen.
+- **Test from a text.** `/read` now offers "Test me on these N words", which
+  sets the goal to exactly the unknown words of that article and drops you into
+  a session. This is the loop that makes the tool useful before the census is
+  finished.
+- **"← Back" is now "← Undo last"**, with a tooltip saying it takes back the
+  last answer and re-asks the word.
+- **Naming**: "Exam levels" → "TOPIK coverage", "What you're missing" → "My weak
+  spots", "Browse & export" → "Word list & Anki", "Can I read this?" → "Score a
+  text". On `/gaps`, "By meaning" → "By subject" and "By part of speech" → "By
+  word type", **with word type now the default** — "I'm getting auxiliaries
+  wrong" is the more immediately useful cut, and it verifies as the weakest.
+- **English beside every Korean category**, wherever it appears: 동식물 "animals
+  & plants", 개념 "abstract concepts", 인간 "people & the body". A gap report you
+  can't read defeats its own purpose.
+- Trimmed the wordiest copy on `/gaps`.
+
+Still open from that feedback:
+
+- **The 139 subcategories are still Korean-only** (색깔, 옷 종류, 용모). Only the
+  14 majors are glossed. Translating the rest is mechanical but wants care —
+  a wrong gloss on a gap report is worse than none.
+- **Frequency order is still the only ordering within a goal.** Testing by
+  subject ("just ask me colours") is not wired up even though `/gaps` knows
+  which words those are.
+- **LingQ comparison** — see below.
+
 Branch `claude/korean-topik-features-fqcli1`, pushed. Working tree clean, lint
 and build pass. No PR opened.
 
