@@ -1,205 +1,1880 @@
 {
   "_comment": "Hand-curated glosses, categories and concreteness for the most frequent Korean words. These override the noisy automatic kengdic join. Keyed by dense frequency_rank from korean_words.json. Where a lemma appears at several ranks it is a distinct sense or part of speech (일 work vs 일 day-counter; 쓰다 write vs 쓰다 use), which is the point of the sense-level model.",
   "glosses": {
-    "1": { "gloss": "thing (nominalizer)", "semantic_category": "grammar", "concreteness": "function" },
-    "2": { "gloss": "to do", "semantic_category": "action", "concreteness": "abstract" },
-    "3": { "gloss": "(auxiliary) to be in the middle of doing", "semantic_category": "grammar", "concreteness": "function" },
-    "4": { "gloss": "to exist, to have", "semantic_category": "state", "concreteness": "abstract" },
-    "5": { "gloss": "to become", "semantic_category": "state", "concreteness": "abstract" },
-    "6": { "gloss": "possibility (as in -을 수 있다)", "semantic_category": "grammar", "concreteness": "function" },
-    "7": { "gloss": "(auxiliary) to do", "semantic_category": "grammar", "concreteness": "function" },
-    "8": { "gloss": "I, me", "semantic_category": "people", "concreteness": "function" },
-    "9": { "gloss": "that (before a noun)", "semantic_category": "grammar", "concreteness": "function" },
-    "10": { "gloss": "to not exist, to not have", "semantic_category": "state", "concreteness": "abstract" },
-    "11": { "gloss": "(auxiliary) to not do", "semantic_category": "grammar", "concreteness": "function" },
-    "12": { "gloss": "person", "semantic_category": "people", "concreteness": "concrete" },
-    "13": { "gloss": "we, us, our", "semantic_category": "people", "concreteness": "function" },
-    "14": { "gloss": "this (before a noun)", "semantic_category": "grammar", "concreteness": "function" },
-    "15": { "gloss": "he, that person", "semantic_category": "people", "concreteness": "function" },
-    "16": { "gloss": "to not be", "semantic_category": "state", "concreteness": "abstract" },
-    "17": { "gloss": "to see, to look at", "semantic_category": "perception", "concreteness": "abstract" },
-    "18": { "gloss": "et cetera, and so on", "semantic_category": "grammar", "concreteness": "function" },
-    "19": { "gloss": "time, moment, when", "semantic_category": "time", "concreteness": "abstract" },
-    "20": { "gloss": "thing (colloquial form of 것)", "semantic_category": "grammar", "concreteness": "function" },
-    "21": { "gloss": "(auxiliary) to try doing", "semantic_category": "grammar", "concreteness": "function" },
-    "22": { "gloss": "to be the same, to seem like", "semantic_category": "quality", "concreteness": "abstract" },
-    "23": { "gloss": "(auxiliary) to do for someone", "semantic_category": "grammar", "concreteness": "function" },
-    "24": { "gloss": "to face, to deal with, to be about", "semantic_category": "action", "concreteness": "abstract" },
-    "25": { "gloss": "to go", "semantic_category": "motion", "concreteness": "abstract" },
-    "26": { "gloss": "year (counter)", "semantic_category": "time", "concreteness": "function" },
-    "27": { "gloss": "one, a single", "semantic_category": "quantity", "concreteness": "function" },
-    "28": { "gloss": "words, speech, language", "semantic_category": "communication", "concreteness": "abstract" },
-    "29": { "gloss": "work, task, matter", "semantic_category": "work", "concreteness": "abstract" },
-    "30": { "gloss": "this one", "semantic_category": "grammar", "concreteness": "function" },
-    "31": { "gloss": "because of, reason", "semantic_category": "grammar", "concreteness": "function" },
-    "32": { "gloss": "to speak, to say", "semantic_category": "communication", "concreteness": "abstract" },
-    "33": { "gloss": "to do for the sake of", "semantic_category": "action", "concreteness": "abstract" },
-    "34": { "gloss": "however, but", "semantic_category": "grammar", "concreteness": "function" },
-    "35": { "gloss": "to come", "semantic_category": "motion", "concreteness": "abstract" },
-    "36": { "gloss": "to know", "semantic_category": "cognition", "concreteness": "abstract" },
-    "37": { "gloss": "Mr./Ms. (attached to a name)", "semantic_category": "people", "concreteness": "function" },
-    "38": { "gloss": "to be so, to be that way", "semantic_category": "state", "concreteness": "abstract" },
-    "39": { "gloss": "to be big, to be large", "semantic_category": "quality", "concreteness": "abstract" },
-    "40": { "gloss": "again, also", "semantic_category": "grammar", "concreteness": "function" },
-    "41": { "gloss": "day (counter for dates)", "semantic_category": "time", "concreteness": "function" },
-    "42": { "gloss": "society", "semantic_category": "society", "concreteness": "abstract" },
-    "43": { "gloss": "to be many, to be much", "semantic_category": "quantity", "concreteness": "abstract" },
-    "44": { "gloss": "not (placed before a verb)", "semantic_category": "grammar", "concreteness": "function" },
-    "45": { "gloss": "to be good", "semantic_category": "quality", "concreteness": "abstract" },
-    "46": { "gloss": "more", "semantic_category": "quantity", "concreteness": "function" },
-    "47": { "gloss": "to receive, to get", "semantic_category": "action", "concreteness": "abstract" },
-    "48": { "gloss": "that thing", "semantic_category": "grammar", "concreteness": "function" },
-    "49": { "gloss": "house, home", "semantic_category": "place", "concreteness": "concrete" },
-    "50": { "gloss": "to come out", "semantic_category": "motion", "concreteness": "abstract" },
-    "51": { "gloss": "to follow", "semantic_category": "motion", "concreteness": "abstract" },
-    "52": { "gloss": "and, and then", "semantic_category": "grammar", "concreteness": "function" },
-    "53": { "gloss": "problem, question", "semantic_category": "cognition", "concreteness": "abstract" },
-    "54": { "gloss": "such, that kind of", "semantic_category": "grammar", "concreteness": "function" },
-    "55": { "gloss": "to live", "semantic_category": "state", "concreteness": "abstract" },
-    "56": { "gloss": "I, me (humble)", "semantic_category": "people", "concreteness": "function" },
-    "57": { "gloss": "(auxiliary) to be unable to", "semantic_category": "grammar", "concreteness": "function" },
-    "58": { "gloss": "to think", "semantic_category": "cognition", "concreteness": "abstract" },
-    "59": { "gloss": "to not know", "semantic_category": "cognition", "concreteness": "abstract" },
-    "60": { "gloss": "inside, interior", "semantic_category": "place", "concreteness": "abstract" },
-    "61": { "gloss": "to make", "semantic_category": "action", "concreteness": "abstract" },
-    "62": { "gloss": "place, point, case", "semantic_category": "grammar", "concreteness": "function" },
-    "63": { "gloss": "two", "semantic_category": "quantity", "concreteness": "function" },
-    "64": { "gloss": "front, in front of", "semantic_category": "place", "concreteness": "abstract" },
-    "65": { "gloss": "case, instance, situation", "semantic_category": "abstract", "concreteness": "abstract" },
-    "66": { "gloss": "among, during, in the middle of", "semantic_category": "grammar", "concreteness": "function" },
-    "67": { "gloss": "what kind of, some", "semantic_category": "grammar", "concreteness": "function" },
-    "68": { "gloss": "well, skillfully", "semantic_category": "quality", "concreteness": "function" },
-    "69": { "gloss": "she", "semantic_category": "people", "concreteness": "function" },
-    "70": { "gloss": "to eat", "semantic_category": "food", "concreteness": "abstract" },
-    "71": { "gloss": "(auxiliary) to have been doing up to now", "semantic_category": "grammar", "concreteness": "function" },
-    "72": { "gloss": "oneself, self", "semantic_category": "people", "concreteness": "abstract" },
-    "73": { "gloss": "culture", "semantic_category": "society", "concreteness": "abstract" },
-    "74": { "gloss": "won (Korean currency)", "semantic_category": "money", "concreteness": "function" },
-    "75": { "gloss": "thought, idea", "semantic_category": "cognition", "concreteness": "abstract" },
-    "76": { "gloss": "to be how, to be in what state", "semantic_category": "quality", "concreteness": "abstract" },
-    "77": { "gloss": "person (counter)", "semantic_category": "people", "concreteness": "function" },
-    "78": { "gloss": "to pass through, to be connected", "semantic_category": "motion", "concreteness": "abstract" },
-    "79": { "gloss": "to do so, to say so", "semantic_category": "action", "concreteness": "abstract" },
-    "80": { "gloss": "sound, noise", "semantic_category": "perception", "concreteness": "abstract" },
-    "81": { "gloss": "again", "semantic_category": "time", "concreteness": "function" },
-    "82": { "gloss": "other, different", "semantic_category": "grammar", "concreteness": "function" },
-    "83": { "gloss": "this kind of", "semantic_category": "grammar", "concreteness": "function" },
-    "84": { "gloss": "woman", "semantic_category": "people", "concreteness": "concrete" },
-    "85": { "gloss": "item, piece (counter)", "semantic_category": "quantity", "concreteness": "function" },
-    "86": { "gloss": "degree, extent, about", "semantic_category": "quantity", "concreteness": "abstract" },
-    "87": { "gloss": "back, behind, after", "semantic_category": "place", "concreteness": "abstract" },
-    "88": { "gloss": "to listen, to hear", "semantic_category": "perception", "concreteness": "abstract" },
-    "89": { "gloss": "all, entirely", "semantic_category": "quantity", "concreteness": "function" },
-    "90": { "gloss": "a little, please", "semantic_category": "quantity", "concreteness": "function" },
-    "91": { "gloss": "to hold, to lift, to carry", "semantic_category": "action", "concreteness": "abstract" },
-    "92": { "gloss": "(auxiliary) to want to", "semantic_category": "grammar", "concreteness": "function" },
-    "93": { "gloss": "to be seen, to appear", "semantic_category": "perception", "concreteness": "abstract" },
-    "94": { "gloss": "to have, to possess", "semantic_category": "state", "concreteness": "abstract" },
-    "95": { "gloss": "together, with", "semantic_category": "social", "concreteness": "function" },
-    "96": { "gloss": "child", "semantic_category": "people", "concreteness": "concrete" },
-    "97": { "gloss": "to pass by, to elapse", "semantic_category": "time", "concreteness": "abstract" },
-    "98": { "gloss": "a lot, much", "semantic_category": "quantity", "concreteness": "function" },
-    "99": { "gloss": "time, hour", "semantic_category": "time", "concreteness": "abstract" },
-    "100": { "gloss": "you (casual)", "semantic_category": "people", "concreteness": "function" },
-    "101": { "gloss": "to give", "semantic_category": "action", "concreteness": "abstract" },
-    "102": { "gloss": "human being", "semantic_category": "people", "concreteness": "abstract" },
-    "103": { "gloss": "fact, truth", "semantic_category": "abstract", "concreteness": "abstract" },
-    "104": { "gloss": "to occur, to break out, to grow", "semantic_category": "state", "concreteness": "abstract" },
-    "105": { "gloss": "to be like this", "semantic_category": "state", "concreteness": "abstract" },
-    "106": { "gloss": "mother", "semantic_category": "family", "concreteness": "concrete" },
-    "107": { "gloss": "eye", "semantic_category": "body", "concreteness": "concrete" },
-    "108": { "gloss": "what (colloquial)", "semantic_category": "grammar", "concreteness": "function" },
-    "109": { "gloss": "point, dot, aspect", "semantic_category": "abstract", "concreteness": "abstract" },
-    "110": { "gloss": "to be due to, according to", "semantic_category": "grammar", "concreteness": "abstract" },
-    "111": { "gloss": "era, period, age", "semantic_category": "time", "concreteness": "abstract" },
-    "112": { "gloss": "next, the following", "semantic_category": "time", "concreteness": "abstract" },
-    "113": { "gloss": "to be like this (formal)", "semantic_category": "state", "concreteness": "abstract" },
-    "114": { "gloss": "who", "semantic_category": "grammar", "concreteness": "function" },
-    "115": { "gloss": "before, previous", "semantic_category": "time", "concreteness": "abstract" },
-    "116": { "gloss": "place, spot", "semantic_category": "place", "concreteness": "abstract" },
-    "117": { "gloss": "several, various", "semantic_category": "quantity", "concreteness": "function" },
-    "118": { "gloss": "inside, within (a space)", "semantic_category": "place", "concreteness": "abstract" },
-    "119": { "gloss": "one (native Korean number)", "semantic_category": "quantity", "concreteness": "function" },
-    "120": { "gloss": "world", "semantic_category": "place", "concreteness": "abstract" },
-    "121": { "gloss": "(auxiliary) to do completely, with finality", "semantic_category": "grammar", "concreteness": "function" },
-    "122": { "gloss": "top, above, upper part", "semantic_category": "place", "concreteness": "abstract" },
-    "123": { "gloss": "exercise, movement", "semantic_category": "activity", "concreteness": "abstract" },
-    "124": { "gloss": "percent", "semantic_category": "quantity", "concreteness": "function" },
-    "125": { "gloss": "school", "semantic_category": "education", "concreteness": "concrete" },
-    "126": { "gloss": "oneself, one's own", "semantic_category": "people", "concreteness": "function" },
-    "127": { "gloss": "most, the very", "semantic_category": "quantity", "concreteness": "function" },
-    "128": { "gloss": "president (of a country)", "semantic_category": "society", "concreteness": "concrete" },
-    "129": { "gloss": "kind, sort (counter)", "semantic_category": "quantity", "concreteness": "function" },
-    "130": { "gloss": "to enter, to go inside", "semantic_category": "motion", "concreteness": "abstract" },
-    "131": { "gloss": "to begin, to start", "semantic_category": "action", "concreteness": "abstract" },
-    "132": { "gloss": "right away, exactly, directly", "semantic_category": "time", "concreteness": "function" },
-    "133": { "gloss": "which, a certain", "semantic_category": "grammar", "concreteness": "function" },
-    "134": { "gloss": "so, therefore", "semantic_category": "grammar", "concreteness": "function" },
-    "135": { "gloss": "what", "semantic_category": "grammar", "concreteness": "function" },
-    "136": { "gloss": "government", "semantic_category": "society", "concreteness": "abstract" },
-    "137": { "gloss": "every, all", "semantic_category": "quantity", "concreteness": "function" },
-    "138": { "gloss": "number, time(s) (counter)", "semantic_category": "quantity", "concreteness": "function" },
-    "139": { "gloss": "that thing (colloquial)", "semantic_category": "grammar", "concreteness": "function" },
-    "140": { "gloss": "money", "semantic_category": "money", "concreteness": "concrete" },
-    "141": { "gloss": "nation, state, country", "semantic_category": "society", "concreteness": "abstract" },
-    "142": { "gloss": "but, by the way", "semantic_category": "grammar", "concreteness": "function" },
-    "143": { "gloss": "day", "semantic_category": "time", "concreteness": "abstract" },
-    "144": { "gloss": "here", "semantic_category": "place", "concreteness": "function" },
-    "145": { "gloss": "all, everyone", "semantic_category": "quantity", "concreteness": "function" },
-    "146": { "gloss": "woman, female", "semantic_category": "people", "concreteness": "abstract" },
-    "147": { "gloss": "friend", "semantic_category": "people", "concreteness": "concrete" },
-    "148": { "gloss": "heart, mind, feelings", "semantic_category": "emotion", "concreteness": "abstract" },
-    "149": { "gloss": "after, later", "semantic_category": "time", "concreteness": "abstract" },
-    "150": { "gloss": "(auxiliary) to keep on doing (going forward)", "semantic_category": "grammar", "concreteness": "function" },
-    "151": { "gloss": "(auxiliary) to do in advance and leave it", "semantic_category": "grammar", "concreteness": "function" },
-    "152": { "gloss": "relationship, connection", "semantic_category": "social", "concreteness": "abstract" },
-    "153": { "gloss": "father", "semantic_category": "family", "concreteness": "concrete" },
-    "154": { "gloss": "man", "semantic_category": "people", "concreteness": "concrete" },
-    "155": { "gloss": "where", "semantic_category": "place", "concreteness": "function" },
-    "156": { "gloss": "body", "semantic_category": "body", "concreteness": "concrete" },
-    "157": { "gloss": "face", "semantic_category": "body", "concreteness": "concrete" },
-    "158": { "gloss": "to enter, to go in", "semantic_category": "motion", "concreteness": "abstract" },
-    "159": { "gloss": "why", "semantic_category": "grammar", "concreteness": "function" },
-    "160": { "gloss": "to appear, to show up", "semantic_category": "state", "concreteness": "abstract" },
-    "161": { "gloss": "(auxiliary) to stop doing, not to do", "semantic_category": "grammar", "concreteness": "function" },
-    "162": { "gloss": "region, area", "semantic_category": "place", "concreteness": "abstract" },
-    "163": { "gloss": "to be different", "semantic_category": "quality", "concreteness": "abstract" },
-    "164": { "gloss": "appearance, figure, form", "semantic_category": "perception", "concreteness": "abstract" },
-    "165": { "gloss": "water", "semantic_category": "nature", "concreteness": "concrete" },
-    "166": { "gloss": "to meet", "semantic_category": "social", "concreteness": "abstract" },
-    "167": { "gloss": "to put out, to pay, to produce", "semantic_category": "action", "concreteness": "abstract" },
-    "168": { "gloss": "to show, to let someone see", "semantic_category": "perception", "concreteness": "abstract" },
-    "169": { "gloss": "to write", "semantic_category": "communication", "concreteness": "abstract" },
-    "170": { "gloss": "this thing", "semantic_category": "grammar", "concreteness": "function" },
-    "171": { "gloss": "without", "semantic_category": "grammar", "concreteness": "function" },
-    "172": { "gloss": "this time", "semantic_category": "time", "concreteness": "abstract" },
-    "173": { "gloss": "road, way, path", "semantic_category": "place", "concreteness": "concrete" },
-    "174": { "gloss": "life, daily living", "semantic_category": "activity", "concreteness": "abstract" },
-    "175": { "gloss": "to use", "semantic_category": "action", "concreteness": "abstract" },
-    "176": { "gloss": "now, the present", "semantic_category": "time", "concreteness": "abstract" },
-    "177": { "gloss": "only, merely", "semantic_category": "grammar", "concreteness": "function" },
-    "178": { "gloss": "between, interval, relationship", "semantic_category": "place", "concreteness": "abstract" },
-    "179": { "gloss": "method, way", "semantic_category": "abstract", "concreteness": "abstract" },
-    "180": { "gloss": "to be new", "semantic_category": "quality", "concreteness": "abstract" },
-    "181": { "gloss": "our country, Korea", "semantic_category": "place", "concreteness": "abstract" },
-    "182": { "gloss": "(auxiliary) to manage to do, to succeed in doing", "semantic_category": "grammar", "concreteness": "function" },
-    "183": { "gloss": "to sit", "semantic_category": "motion", "concreteness": "abstract" },
-    "184": { "gloss": "the first time, the beginning", "semantic_category": "time", "concreteness": "abstract" },
-    "185": { "gloss": "hand", "semantic_category": "body", "concreteness": "concrete" },
-    "186": { "gloss": "how many, a few", "semantic_category": "quantity", "concreteness": "function" },
-    "187": { "gloss": "that time, back then", "semantic_category": "time", "concreteness": "abstract" },
-    "188": { "gloss": "process, course", "semantic_category": "abstract", "concreteness": "abstract" },
-    "189": { "gloss": "life (one's life as a whole)", "semantic_category": "abstract", "concreteness": "abstract" },
-    "190": { "gloss": "to have, to hold", "semantic_category": "state", "concreteness": "abstract" },
-    "191": { "gloss": "to look for, to find", "semantic_category": "action", "concreteness": "abstract" },
-    "192": { "gloss": "especially, particularly", "semantic_category": "grammar", "concreteness": "function" },
-    "193": { "gloss": "o'clock, hour", "semantic_category": "time", "concreteness": "function" },
-    "194": { "gloss": "more than, above", "semantic_category": "quantity", "concreteness": "abstract" },
-    "195": { "gloss": "now", "semantic_category": "time", "concreteness": "function" },
-    "196": { "gloss": "to go out", "semantic_category": "motion", "concreteness": "abstract" },
-    "197": { "gloss": "story, talk, conversation", "semantic_category": "communication", "concreteness": "abstract" },
-    "198": { "gloss": "education", "semantic_category": "education", "concreteness": "abstract" },
-    "199": { "gloss": "to buy", "semantic_category": "money", "concreteness": "abstract" },
-    "200": { "gloss": "economy", "semantic_category": "society", "concreteness": "abstract" }
+    "1": {
+      "gloss": "thing (nominalizer)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "2": {
+      "gloss": "to do, to perform",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "3": {
+      "gloss": "(auxiliary) to be in the middle of doing",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "4": {
+      "gloss": "to exist, to have",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "5": {
+      "gloss": "to become",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "6": {
+      "gloss": "possibility (as in -을 수 있다)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "7": {
+      "gloss": "turns a noun into a verb",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "8": {
+      "gloss": "I, me",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "9": {
+      "gloss": "that (before a noun)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "10": {
+      "gloss": "to not exist, to not have",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "11": {
+      "gloss": "(auxiliary) to not do",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "12": {
+      "gloss": "person",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "13": {
+      "gloss": "we, us, our",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "14": {
+      "gloss": "this (before a noun)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "15": {
+      "gloss": "he, that person",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "16": {
+      "gloss": "to not be",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "17": {
+      "gloss": "to see, to look at",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "18": {
+      "gloss": "et cetera, and so on",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "19": {
+      "gloss": "time, moment, when",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "20": {
+      "gloss": "thing (colloquial form of 것)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "21": {
+      "gloss": "(auxiliary) to try doing",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "22": {
+      "gloss": "to be the same, to seem like",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "23": {
+      "gloss": "(auxiliary) to do for someone",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "24": {
+      "gloss": "to face, to deal with, to be about",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "25": {
+      "gloss": "to go",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "26": {
+      "gloss": "year (counter)",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "27": {
+      "gloss": "one, a single",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "28": {
+      "gloss": "words, speech, language",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "29": {
+      "gloss": "work, task, matter",
+      "semantic_category": "work",
+      "concreteness": "abstract"
+    },
+    "30": {
+      "gloss": "this one",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "31": {
+      "gloss": "because of, reason",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "32": {
+      "gloss": "to speak, to say",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "33": {
+      "gloss": "to do for the sake of",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "34": {
+      "gloss": "however, but",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "35": {
+      "gloss": "to come",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "36": {
+      "gloss": "to know",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "37": {
+      "gloss": "Mr./Ms. (attached to a name)",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "38": {
+      "gloss": "to be so, to be that way",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "39": {
+      "gloss": "to be big, to be large",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "40": {
+      "gloss": "again, also",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "41": {
+      "gloss": "day (counter for dates)",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "42": {
+      "gloss": "society",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "43": {
+      "gloss": "to be many, to be much",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "44": {
+      "gloss": "not (placed before a verb)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "45": {
+      "gloss": "to be good",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "46": {
+      "gloss": "more",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "47": {
+      "gloss": "to receive, to get",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "48": {
+      "gloss": "that thing",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "49": {
+      "gloss": "house, home",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "50": {
+      "gloss": "to come out",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "51": {
+      "gloss": "to follow",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "52": {
+      "gloss": "and, and then",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "53": {
+      "gloss": "problem, question",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "54": {
+      "gloss": "such, that kind of",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "55": {
+      "gloss": "to live",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "56": {
+      "gloss": "I, me (humble)",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "57": {
+      "gloss": "(auxiliary) to be unable to",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "58": {
+      "gloss": "to think",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "59": {
+      "gloss": "to not know",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "60": {
+      "gloss": "inside, interior",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "61": {
+      "gloss": "to make",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "62": {
+      "gloss": "place, point, case",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "63": {
+      "gloss": "two",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "64": {
+      "gloss": "front, in front of",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "65": {
+      "gloss": "case, instance, situation",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "66": {
+      "gloss": "among, during, in the middle of",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "67": {
+      "gloss": "what kind of, some",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "68": {
+      "gloss": "well, skillfully",
+      "semantic_category": "quality",
+      "concreteness": "function"
+    },
+    "69": {
+      "gloss": "she",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "70": {
+      "gloss": "to eat",
+      "semantic_category": "food",
+      "concreteness": "abstract"
+    },
+    "71": {
+      "gloss": "(auxiliary) to have been doing up to now",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "72": {
+      "gloss": "oneself, self",
+      "semantic_category": "people",
+      "concreteness": "abstract"
+    },
+    "73": {
+      "gloss": "culture",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "74": {
+      "gloss": "won (Korean currency)",
+      "semantic_category": "money",
+      "concreteness": "function"
+    },
+    "75": {
+      "gloss": "thought, idea",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "76": {
+      "gloss": "to be how, to be in what state",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "77": {
+      "gloss": "person (counter)",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "78": {
+      "gloss": "to pass through, to be connected",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "79": {
+      "gloss": "to do so, to say so",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "80": {
+      "gloss": "sound, noise",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "81": {
+      "gloss": "again",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "82": {
+      "gloss": "other, different",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "83": {
+      "gloss": "this kind of",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "84": {
+      "gloss": "woman",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "85": {
+      "gloss": "item, piece (counter)",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "86": {
+      "gloss": "degree, extent, about",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "87": {
+      "gloss": "back, behind, after",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "88": {
+      "gloss": "to listen, to hear",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "89": {
+      "gloss": "all, entirely",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "90": {
+      "gloss": "a little, please",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "91": {
+      "gloss": "to hold, to lift, to carry",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "92": {
+      "gloss": "(auxiliary) to want to",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "93": {
+      "gloss": "to be seen, to appear",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "94": {
+      "gloss": "to have, to possess",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "95": {
+      "gloss": "together, with",
+      "semantic_category": "social",
+      "concreteness": "function"
+    },
+    "96": {
+      "gloss": "child",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "97": {
+      "gloss": "to pass by, to elapse",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "98": {
+      "gloss": "a lot, much",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "99": {
+      "gloss": "time, hour",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "100": {
+      "gloss": "you (casual)",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "101": {
+      "gloss": "to give",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "102": {
+      "gloss": "human being",
+      "semantic_category": "people",
+      "concreteness": "abstract"
+    },
+    "103": {
+      "gloss": "fact, truth",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "104": {
+      "gloss": "to occur, to break out, to grow",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "105": {
+      "gloss": "to be like this",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "106": {
+      "gloss": "mother",
+      "semantic_category": "family",
+      "concreteness": "concrete"
+    },
+    "107": {
+      "gloss": "eye",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "108": {
+      "gloss": "what (colloquial)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "109": {
+      "gloss": "point, dot, aspect",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "110": {
+      "gloss": "to be due to, according to",
+      "semantic_category": "grammar",
+      "concreteness": "abstract"
+    },
+    "111": {
+      "gloss": "era, period, age",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "112": {
+      "gloss": "next, the following",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "113": {
+      "gloss": "to be like this (formal)",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "114": {
+      "gloss": "who",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "115": {
+      "gloss": "before, previous",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "116": {
+      "gloss": "place, spot",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "117": {
+      "gloss": "several, various",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "118": {
+      "gloss": "inside, within (a space)",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "119": {
+      "gloss": "one",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "120": {
+      "gloss": "world",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "121": {
+      "gloss": "(auxiliary) to do completely, with finality",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "122": {
+      "gloss": "top, above, upper part",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "123": {
+      "gloss": "exercise, movement",
+      "semantic_category": "activity",
+      "concreteness": "abstract"
+    },
+    "124": {
+      "gloss": "percent",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "125": {
+      "gloss": "school",
+      "semantic_category": "education",
+      "concreteness": "concrete"
+    },
+    "126": {
+      "gloss": "oneself, one's own",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "127": {
+      "gloss": "most, the very",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "128": {
+      "gloss": "president (of a country)",
+      "semantic_category": "society",
+      "concreteness": "concrete"
+    },
+    "129": {
+      "gloss": "kind, sort (counter)",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "130": {
+      "gloss": "to enter, to go inside",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "131": {
+      "gloss": "to begin, to start",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "132": {
+      "gloss": "right away, exactly, directly",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "133": {
+      "gloss": "which, a certain",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "134": {
+      "gloss": "so, therefore",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "135": {
+      "gloss": "what",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "136": {
+      "gloss": "government",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "137": {
+      "gloss": "every, all",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "138": {
+      "gloss": "number, time(s) (counter)",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "139": {
+      "gloss": "that thing (colloquial)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "140": {
+      "gloss": "money",
+      "semantic_category": "money",
+      "concreteness": "concrete"
+    },
+    "141": {
+      "gloss": "nation, state, country",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "142": {
+      "gloss": "but, by the way",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "143": {
+      "gloss": "day",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "144": {
+      "gloss": "here",
+      "semantic_category": "place",
+      "concreteness": "function"
+    },
+    "145": {
+      "gloss": "all, everyone",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "146": {
+      "gloss": "woman, female",
+      "semantic_category": "people",
+      "concreteness": "abstract"
+    },
+    "147": {
+      "gloss": "friend",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "148": {
+      "gloss": "heart, mind, feelings",
+      "semantic_category": "emotion",
+      "concreteness": "abstract"
+    },
+    "149": {
+      "gloss": "after, later",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "150": {
+      "gloss": "(auxiliary) to keep on doing (going forward)",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "151": {
+      "gloss": "(auxiliary) to do in advance and leave it",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "152": {
+      "gloss": "relationship, connection",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "153": {
+      "gloss": "father",
+      "semantic_category": "family",
+      "concreteness": "concrete"
+    },
+    "154": {
+      "gloss": "man",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "155": {
+      "gloss": "where",
+      "semantic_category": "place",
+      "concreteness": "function"
+    },
+    "156": {
+      "gloss": "body",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "157": {
+      "gloss": "face",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "158": {
+      "gloss": "to enter, to go in",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "159": {
+      "gloss": "why",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "160": {
+      "gloss": "to appear, to show up",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "161": {
+      "gloss": "(auxiliary) to stop doing, not to do",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "162": {
+      "gloss": "region, area",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "163": {
+      "gloss": "to be different",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "164": {
+      "gloss": "appearance, figure, form",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "165": {
+      "gloss": "water",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "166": {
+      "gloss": "to meet",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "167": {
+      "gloss": "to put out, to pay, to produce",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "168": {
+      "gloss": "to show, to let someone see",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "169": {
+      "gloss": "to write",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "170": {
+      "gloss": "this thing",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "171": {
+      "gloss": "without",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "172": {
+      "gloss": "this time",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "173": {
+      "gloss": "road, way, path",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "174": {
+      "gloss": "life, daily living",
+      "semantic_category": "activity",
+      "concreteness": "abstract"
+    },
+    "175": {
+      "gloss": "to use",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "176": {
+      "gloss": "now, the present",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "177": {
+      "gloss": "only, merely",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "178": {
+      "gloss": "between, interval, relationship",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "179": {
+      "gloss": "method, way",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "180": {
+      "gloss": "to be new",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "181": {
+      "gloss": "our country, Korea",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "182": {
+      "gloss": "(auxiliary) to manage to do, to succeed in doing",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "183": {
+      "gloss": "to sit",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "184": {
+      "gloss": "the first time, the beginning",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "185": {
+      "gloss": "hand",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "186": {
+      "gloss": "how many, a few",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "187": {
+      "gloss": "that time, back then",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "188": {
+      "gloss": "process, course",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "189": {
+      "gloss": "life (one's life as a whole)",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "190": {
+      "gloss": "to have, to hold",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "191": {
+      "gloss": "to look for, to find",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "192": {
+      "gloss": "especially, particularly",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "193": {
+      "gloss": "o'clock, hour",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "194": {
+      "gloss": "more than, above",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "195": {
+      "gloss": "now",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "196": {
+      "gloss": "to go out",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "197": {
+      "gloss": "story, talk, conversation",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "198": {
+      "gloss": "education",
+      "semantic_category": "education",
+      "concreteness": "abstract"
+    },
+    "199": {
+      "gloss": "to buy",
+      "semantic_category": "money",
+      "concreteness": "abstract"
+    },
+    "200": {
+      "gloss": "economy",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "202": {
+      "gloss": "to catch, to grab",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "207": {
+      "gloss": "cannot",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "210": {
+      "gloss": "now, from now on",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "213": {
+      "gloss": "of course, naturally",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "219": {
+      "gloss": "to put in, to insert",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "227": {
+      "gloss": "to call, to summon",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "228": {
+      "gloss": "meaning, significance",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "229": {
+      "gloss": "seat, place",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "231": {
+      "gloss": "to die",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "233": {
+      "gloss": "side, direction",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "241": {
+      "gloss": "name",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "242": {
+      "gloss": "one, a single one",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "256": {
+      "gloss": "to come in, to enter",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "259": {
+      "gloss": "to be small",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "260": {
+      "gloss": "to ride, to get on",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "265": {
+      "gloss": "to send",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "266": {
+      "gloss": "to put, to place",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "267": {
+      "gloss": "namely, that is to say",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "276": {
+      "gloss": "night",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "279": {
+      "gloss": "still in that state",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "289": {
+      "gloss": "to ask",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "299": {
+      "gloss": "to fall, to drop",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "302": {
+      "gloss": "minute",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "310": {
+      "gloss": "today, this day",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "311": {
+      "gloss": "each other, mutually",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "315": {
+      "gloss": "child, kid",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "317": {
+      "gloss": "to get through, to finish doing",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "320": {
+      "gloss": "to reach, to arrive at",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "324": {
+      "gloss": "to laugh, to smile",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "326": {
+      "gloss": "to do in advance and leave it",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "327": {
+      "gloss": "to leave, to depart",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "330": {
+      "gloss": "yes, that's right",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "335": {
+      "gloss": "between, the interval",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "343": {
+      "gloss": "the way to do something",
+      "semantic_category": "abstract",
+      "concreteness": "function"
+    },
+    "347": {
+      "gloss": "to seem like, to appear",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "349": {
+      "gloss": "really, truly",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "356": {
+      "gloss": "yes",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "358": {
+      "gloss": "another person, others",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "361": {
+      "gloss": "the time when, the occasion",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "362": {
+      "gloss": "a site, a plot of ground",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "364": {
+      "gloss": "to hit, to strike",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "367": {
+      "gloss": "now, the present",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "369": {
+      "gloss": "alcohol, liquor",
+      "semantic_category": "food",
+      "concreteness": "concrete"
+    },
+    "375": {
+      "gloss": "to be correct",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "377": {
+      "gloss": "to be hung, to be caught",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "384": {
+      "gloss": "to look into, to find out",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "393": {
+      "gloss": "surely, without fail",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "399": {
+      "gloss": "head, as in turning or bowing it",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "406": {
+      "gloss": "currently, at present",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "407": {
+      "gloss": "three",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "410": {
+      "gloss": "car, vehicle",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "419": {
+      "gloss": "to be so, to be like that",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "425": {
+      "gloss": "to give birth to",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "426": {
+      "gloss": "what, the thing which",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "428": {
+      "gloss": "to be opened",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "433": {
+      "gloss": "poem, poetry",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "443": {
+      "gloss": "an example",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "447": {
+      "gloss": "then, in that case",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "450": {
+      "gloss": "that one over there",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "452": {
+      "gloss": "boat, ship",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "454": {
+      "gloss": "shape, form",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "456": {
+      "gloss": "new",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "459": {
+      "gloss": "door, gate",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "465": {
+      "gloss": "suddenly, all at once",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "468": {
+      "gloss": "wind",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "471": {
+      "gloss": "to be young",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "474": {
+      "gloss": "direction",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "484": {
+      "gloss": "to be bad at, to do poorly",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "488": {
+      "gloss": "an honoured person",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "494": {
+      "gloss": "to turn, to spin",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "495": {
+      "gloss": "fire",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "502": {
+      "gloss": "having done, and then",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "503": {
+      "gloss": "to understand",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "512": {
+      "gloss": "expression, wording",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "514": {
+      "gloss": "generation, era",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "521": {
+      "gloss": "previous, before",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "530": {
+      "gloss": "today",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "532": {
+      "gloss": "to walk",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "543": {
+      "gloss": "to untie, to loosen",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "546": {
+      "gloss": "directly, in person",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "558": {
+      "gloss": "to stop, to quit",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "563": {
+      "gloss": "years old",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "572": {
+      "gloss": "to be few, to be little",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "573": {
+      "gloss": "rain",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "584": {
+      "gloss": "law",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "586": {
+      "gloss": "yes, certainly",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "589": {
+      "gloss": "to put in, to fill",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "594": {
+      "gloss": "by oneself",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "600": {
+      "gloss": "month",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "602": {
+      "gloss": "really, truly",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "607": {
+      "gloss": "to start up, to set up",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "611": {
+      "gloss": "the police",
+      "semantic_category": "society",
+      "concreteness": "concrete"
+    },
+    "612": {
+      "gloss": "to take charge of",
+      "semantic_category": "work",
+      "concreteness": "abstract"
+    },
+    "614": {
+      "gloss": "meanwhile, on the other hand",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "622": {
+      "gloss": "surface, side",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "631": {
+      "gloss": "an adult, a grown-up",
+      "semantic_category": "people",
+      "concreteness": "concrete"
+    },
+    "635": {
+      "gloss": "to sell",
+      "semantic_category": "money",
+      "concreteness": "concrete"
+    },
+    "637": {
+      "gloss": "the army, the military",
+      "semantic_category": "society",
+      "concreteness": "concrete"
+    },
+    "641": {
+      "gloss": "a little bit",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "644": {
+      "gloss": "somewhat, a little",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "654": {
+      "gloss": "to make into, to take as",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "655": {
+      "gloss": "about, approximately",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "662": {
+      "gloss": "to be born",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "666": {
+      "gloss": "since, ever since",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "680": {
+      "gloss": "older brother",
+      "semantic_category": "family",
+      "concreteness": "concrete"
+    },
+    "682": {
+      "gloss": "to throw away",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "693": {
+      "gloss": "to hang up",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "694": {
+      "gloss": "to fall into, to sink",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "698": {
+      "gloss": "for a moment",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "710": {
+      "gloss": "to stick, to adhere",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "714": {
+      "gloss": "a little",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "723": {
+      "gloss": "leg",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "724": {
+      "gloss": "any, no matter which",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "725": {
+      "gloss": "to do what about it",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "727": {
+      "gloss": "each, respectively",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "731": {
+      "gloss": "the sun",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "739": {
+      "gloss": "dollar",
+      "semantic_category": "money",
+      "concreteness": "concrete"
+    },
+    "741": {
+      "gloss": "no",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "744": {
+      "gloss": "times, occurrences",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "747": {
+      "gloss": "to put into effect, to carry out",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "754": {
+      "gloss": "the end of",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "763": {
+      "gloss": "to take out",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "765": {
+      "gloss": "neighbourhood, village",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "772": {
+      "gloss": "to greet, to receive",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "783": {
+      "gloss": "after a full period of",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "789": {
+      "gloss": "not",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "793": {
+      "gloss": "hey",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "796": {
+      "gloss": "still, as before",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "802": {
+      "gloss": "to do for someone, humbly",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "806": {
+      "gloss": "half",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "809": {
+      "gloss": "to span, to stretch across",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "810": {
+      "gloss": "to go through, to experience",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "821": {
+      "gloss": "belly, stomach",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "822": {
+      "gloss": "apartment",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "824": {
+      "gloss": "composition, makeup",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "825": {
+      "gloss": "a spoonful",
+      "semantic_category": "quantity",
+      "concreteness": "concrete"
+    },
+    "831": {
+      "gloss": "asking someone to do it for you",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "832": {
+      "gloss": "more, than",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "835": {
+      "gloss": "to be heard",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "836": {
+      "gloss": "to run",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "840": {
+      "gloss": "a person, one who",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "850": {
+      "gloss": "to raise, to bring up",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "851": {
+      "gloss": "a cup, a glass",
+      "semantic_category": "quantity",
+      "concreteness": "concrete"
+    },
+    "854": {
+      "gloss": "to stay, to remain",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "856": {
+      "gloss": "when, at what time",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "857": {
+      "gloss": "besides, other than",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "871": {
+      "gloss": "number, count",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "872": {
+      "gloss": "anyone, anybody",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "881": {
+      "gloss": "times, -fold",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "887": {
+      "gloss": "sheet, for flat things",
+      "semantic_category": "quantity",
+      "concreteness": "concrete"
+    },
+    "888": {
+      "gloss": "to turn, to spin",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "894": {
+      "gloss": "class, group",
+      "semantic_category": "education",
+      "concreteness": "concrete"
+    },
+    "898": {
+      "gloss": "side, direction",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "901": {
+      "gloss": "a piece of writing",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "906": {
+      "gloss": "one side, one party",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "907": {
+      "gloss": "to be late",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "910": {
+      "gloss": "joint, working together",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "914": {
+      "gloss": "arm",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "919": {
+      "gloss": "order, the nth time",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "925": {
+      "gloss": "years of age",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "932": {
+      "gloss": "to point out",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "943": {
+      "gloss": "to appear, to come on stage",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "944": {
+      "gloss": "ball",
+      "semantic_category": "activity",
+      "concreteness": "concrete"
+    },
+    "945": {
+      "gloss": "as if, like",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "948": {
+      "gloss": "to rest",
+      "semantic_category": "activity",
+      "concreteness": "abstract"
+    },
+    "949": {
+      "gloss": "to inform, to let know",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "950": {
+      "gloss": "to be full, to be filled",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "951": {
+      "gloss": "department, section",
+      "semantic_category": "work",
+      "concreteness": "concrete"
+    },
+    "953": {
+      "gloss": "to pull out, to remove",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "959": {
+      "gloss": "basis, foundation",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "962": {
+      "gloss": "when",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "971": {
+      "gloss": "the back",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "991": {
+      "gloss": "to rise, to come to mind",
+      "semantic_category": "motion",
+      "concreteness": "abstract"
+    },
+    "992": {
+      "gloss": "to reach, to have an effect on",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "998": {
+      "gloss": "a limit",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    }
   }
 }
