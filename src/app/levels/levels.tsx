@@ -7,6 +7,8 @@ import { loadProgress, type Progress } from "@/lib/local/progress";
 import { knownRange } from "@/lib/local/analysis";
 import { BasisToggle, SplitBar, type Basis } from "@/components/split-bar";
 import { frameworksFor } from "@/lib/frameworks";
+import { badgesFor } from "@/lib/local/badges";
+import { BadgeShelf } from "@/components/badges";
 import {
   analyseFramework,
   clearedThrough,
@@ -91,6 +93,11 @@ export function Levels() {
   return (
     <Shell>
       <Header />
+      {frameworks
+        .filter((f) => f.kind === "exam")
+        .map((f) => (
+          <BadgeShelf key={f.id} badges={badgesFor(progress, words, f)} />
+        ))}
       <BasisToggle basis={basis} onChange={setBasis} />
       {analyses.map((a) => (
         <FrameworkSection key={a.framework.id} analysis={a} basis={basis} />

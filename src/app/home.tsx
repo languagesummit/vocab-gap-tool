@@ -4,6 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { allStaleKeys, staleAnswers } from "@/lib/local/revisions";
+import { badgesFor, nextUp, takeNewlyEarned, type Badge } from "@/lib/local/badges";
+import { BadgeCelebration } from "@/components/badges";
+import { frameworksFor } from "@/lib/frameworks";
 import {
   CHOICE_OPTIONS,
   countByStatus,
@@ -24,6 +27,7 @@ export function Home() {
   const [progress, setProgress] = useState<Progress | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [words, setWords] = useState<Word[] | null>(null);
+  const [fresh, setFresh] = useState<Badge[]>([]);
   const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -31,7 +35,18 @@ export function Home() {
     /* eslint-disable-next-line react-hooks/set-state-in-effect */
     setProgress(loadProgress());
     loadWords()
-      .then(setWords)
+      .then((all) => {
+        setWords(all);
+        // Claimed here rather than on the levels page so a badge is announced
+        // wherever you land next, and only the first time.
+        const saved = loadProgress();
+        const exam = frameworksFor(saved.language).filter(
+          (f) => f.kind === "exam"
+        );
+        setFresh(
+          exam.flatMap((f) => takeNewlyEarned(badgesFor(saved, all, f)))
+        );
+      })
       .catch(() => setWords([]));
   }, []);
 
@@ -52,6 +67,13 @@ export function Home() {
 
   const counts = countByStatus(progress);
   const staleKeys = words ? allStaleKeys(staleAnswers(progress, words)) : [];
+  const examBadges = words
+    ? frameworksFor(progress.language)
+        .filter((f) => f.kind === "exam")
+        .flatMap((f) => badgesFor(progress, words, f))
+    : [];
+  const earned = examBadges.filter((b) => b.earned);
+  const next = nextUp(examBadges);
   const pctTested = Math.round((counts.tested / TOTAL_WORDS) * 100);
 
   async function onImportFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -77,6 +99,34 @@ export function Home() {
           Korean · tested by frequency, one word at a time
         </p>
       </header>
+
+      <BadgeCelebration badges={fresh} />
+
+      {(earned.length > 0 || next) && (
+        <Link
+          href="/levels"
+          className="flex items-baseline justify-between gap-3 rounded-xl border border-zinc-200 p-4 text-sm dark:border-zinc-800"
+        >
+          <span className="text-zinc-600 dark:text-zinc-400">
+            {earned.length > 0 ? (
+              <>
+                <span aria-hidden>🏅</span>{" "}
+                <strong className="font-semibold text-black dark:text-zinc-50">
+                  {earned.map((b) => b.label).join(", ")}
+                </strong>{" "}
+                cleared
+              </>
+            ) : (
+              "No levels cleared yet"
+            )}
+          </span>
+          {next && (
+            <span className="shrink-0 text-xs text-zinc-500">
+              {next.label}: {next.toGo.toLocaleString()} to go
+            </span>
+          )}
+        </Link>
+      )}
 
       {staleKeys.length > 0 && (
         <Link

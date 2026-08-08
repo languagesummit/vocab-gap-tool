@@ -180,6 +180,21 @@ learner cannot catch. Options: hand-write them, find a second source that
 already has them, or test grammar by cloze instead of by translation — which
 sidesteps meanings entirely and is already on the roadmap as phase 12.
 
+Round eight — level badges:
+
+- **A badge is earned at 95% of a level's words known outright**, measured
+  against the whole level rather than the part that happens to have been asked.
+  A badge earned on a 5% sample would be worse than no badge, because it would
+  feel like evidence.
+- **Celebrated once**, on the next visit after earning, then kept on a permanent
+  shelf on `/levels` where unearned levels stay visible with their distance —
+  "TOPIK 3: 518 to go" is more use than a blank space.
+- **Wording deliberately stops short of predicting a result.** The badge says
+  the vocabulary is there, and the shelf says outright that TOPIK also tests
+  listening and writing and that grammar isn't measured here yet. 95% vocabulary
+  is a strong, true, checkable claim; "you'll pass" is not one this tool can
+  make, and it is the same overreach already removed from the levels verdict.
+
 Still open:
 
 - **Multi-language UI.** Everything explanatory is English-only, which is fine
