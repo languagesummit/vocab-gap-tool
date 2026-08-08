@@ -18,6 +18,27 @@ const seed = JSON.parse(readFileSync("data/korean_seed.json", "utf8"));
  * to find the actual meaning. Falls back to the original if stripping would
  * leave nothing behind.
  */
+/**
+ * Words that keep their capital: nationalities, months, weekdays, faiths,
+ * titles, places. "Miss" is deliberately absent — in this list it is 놓치다,
+ * the verb, not the title.
+ */
+const PROPER_NOUN =
+  /^(Korea|Korean|Seoul|Japan|Japanese|China|Chinese|America|American|England|English|Britain|British|France|French|Germany|German|Russia|Russian|Europe|European|Asia|Asian|Buddha|Buddhis[mt]|Christian|Christianity|Christmas|Confucian\w*|Taoism|God|Mr|Mrs|Ms|Hangul|Hanja|Seollal|Chuseok|Western|Eastern|Northern|Southern|January|February|March|April|May|June|July|August|September|October|November|December|Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b/;
+
+/**
+ * The kengdic join capitalises entries as though each were a headword, so the
+ * answer list reads "To be beautiful" next to "to do". Lowercase the opening
+ * letter unless the word earns its capital, or the gloss opens on the pronoun
+ * "I", which does.
+ */
+function normaliseCase(gloss) {
+  if (PROPER_NOUN.test(gloss)) return gloss;
+  if (/^I\b/.test(gloss)) return gloss;
+  if (/^[A-Z]{2,}/.test(gloss)) return gloss; // acronyms
+  return gloss.charAt(0).toLowerCase() + gloss.slice(1);
+}
+
 function cleanGloss(gloss) {
   const stripped = gloss
     .replace(/\([^)]*\)/g, " ")
@@ -25,7 +46,8 @@ function cleanGloss(gloss) {
     .replace(/\s+([,;])/g, "$1")
     .replace(/^[\s,;]+|[\s,;]+$/g, "")
     .trim();
-  return stripped.length > 0 ? stripped : gloss.trim();
+  const text = stripped.length > 0 ? stripped : gloss.trim();
+  return normaliseCase(text);
 }
 
 const kept = seed.filter((w) => w.gloss && w.gloss.trim().length > 0);
