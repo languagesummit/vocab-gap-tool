@@ -28,6 +28,21 @@ import { pct } from "./analysis";
  */
 export const SWEET_SPOT = { low: 95, high: 98 };
 
+/**
+ * What knowing the entire list would cover, measured over 69,464 running words
+ * of the Tatoeba Korean corpus: 81.9% of tokens resolve to a word on it, rising
+ * to roughly 86% once names and places — which a reader handles without
+ * knowing them as vocabulary — are set aside.
+ *
+ * That is below the 95% at which reading becomes comfortable, and it is the
+ * single most important thing this tool can tell someone honestly. A learner
+ * who works through all 5,897 words and still cannot read a chapter book has
+ * not failed; the list is a map of the common core, not a syllabus that ends in
+ * fluency. Reaching 95% takes a larger vocabulary than any list this size
+ * contains, or a text-by-text approach that targets what a specific book needs.
+ */
+export const LIST_CEILING = 86;
+
 export type Unknown = {
   word: Word;
   /** How often it appears here — the reason to learn this one before others. */

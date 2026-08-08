@@ -169,6 +169,50 @@ of its words are tested, and frequency order reaches the rarest of TOPIK 1
 (이십, rank 5,892) only at the very end — so the picker explains what each buys
 instead of pretending the choice is free.
 
+## Frequency or corpus — and the ceiling that outranks the question
+
+Measured 2026-08-08 over 69,464 running words of Tatoeba Korean.
+
+| knowing the commonest | covers |
+|---|---|
+| 100 | 36.7% |
+| 1,000 | 63.4% |
+| 2,000 | 71.5% |
+| 5,897 (all of it) | **81.9%** |
+
+Setting aside names and places, which a reader handles without knowing them as
+vocabulary, the realistic ceiling is about **86%**. Comfortable reading needs
+95%.
+
+**So the whole list cannot get anyone to comfortable reading, and the ordering
+debate is second-order to that.** Frequency versus level versus subject changes
+how fast you climb this curve, not where it stops. The last 3,900 words buy ten
+percentage points.
+
+This is also the answer to "why can't I read children's books after all this
+work". Two things stack:
+
+1. **The list is too small.** 5,897 lemmas is the common core, not a reading
+   vocabulary. The research figure for unassisted reading is far higher.
+2. **Frequency is always frequency *in some corpus*, and this one is adult
+   written Korean** — news, academic prose, novels. Children's books carry
+   onomatopoeia, animal and plant names and simple narrative verbs that a
+   general corpus underweights, so the words blocking an elementary chapter book
+   may sit past rank 4,000 or be absent entirely. Climbing the list may never
+   reach them.
+
+**What follows for the product.** The frequency census is the map; scoring a
+specific text is the engine. One book needs a few hundred words rather than
+thousands, and they are the ones that actually stand between the reader and it —
+which is the corpus approach applied to a target of one, and it beats any global
+ordering for a specific goal. `/read` now states the measured ceiling rather
+than letting the list imply sufficiency.
+
+**Unmeasured, and the most valuable thing to acquire next:** a Korean
+children's-literature corpus. Everything above about children's books is
+reasoning from the composition of the NIKL corpus, not from measurement, and it
+should be checked before being relied on.
+
 ## Open questions
 
 - **Does recognition testing overstate coverage?** The 95/98% comprehension

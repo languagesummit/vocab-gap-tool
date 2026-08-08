@@ -11,6 +11,7 @@ import { buildIndex } from "@/lib/korean/lemmatize";
 import {
   scoreText,
   verdictFor,
+  LIST_CEILING,
   SWEET_SPOT,
   type TextScore,
 } from "@/lib/local/score";
@@ -120,6 +121,29 @@ function Result({
           The comfortable band for learning is {SWEET_SPOT.low}–
           {SWEET_SPOT.high}% — enough known to carry you, enough new to be worth
           the effort.
+        </p>
+      </section>
+
+      <section className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
+        <h2 className="font-semibold text-black dark:text-zinc-50">
+          Why the word list alone won&apos;t get you there
+        </h2>
+        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+          Knowing every one of the 5,897 words on this list would cover about{" "}
+          <strong className="font-medium text-black dark:text-zinc-50">
+            {LIST_CEILING}%
+          </strong>{" "}
+          of running Korean — measured, not estimated. Comfortable reading needs{" "}
+          {SWEET_SPOT.low}%. So finishing the list is a real achievement and
+          still leaves a gap, and a learner who works through all of it and
+          can&apos;t yet read a chapter book hasn&apos;t failed at anything.
+        </p>
+        <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400">
+          Closing that gap word by word from a general list is slow: the last
+          3,900 words on it buy only ten percentage points. Going after a
+          specific text is far faster — one book needs a few hundred words, and
+          they are the ones that actually stand between you and it. That is what
+          this page is for.
         </p>
       </section>
 
