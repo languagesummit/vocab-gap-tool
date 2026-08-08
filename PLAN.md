@@ -66,12 +66,13 @@ content recommendation to fill gaps).
    feature: conversational vocabulary is lumpy, and holes in colours or animals
    sit at no particular frequency rank.
 8. Pre-generated constrained-definition test mode.
-9. Comprehensible-input scorer (paste text or URL → % known, 95–98% sweet spot).
-   Blocked on a Korean lemmatizer: the word list is lemma-based (먹다) but real
-   text is inflected (먹었어요/먹고/먹는), so surface forms have to be reduced
-   before they can be matched. That lemmatizer is the actual build; a YouTube
-   transcript is just one source feeding it, and fetching those is separately
-   unreliable from datacenter IPs, so pasting text has to work regardless.
+9. ✅ Comprehensible-input scorer (`/read`). Rule-based Korean lemmatiser in
+   `src/lib/korean/`, no model and no network: 81.9% of Tatoeba tokens resolve,
+   35/35 conjugation spot checks pass. Paste text → % known, words to learn
+   ranked by frequency *within that text*, unresolved tokens shown so the
+   denominator is visible. URL and YouTube fetching are still not built, and
+   YouTube returns 429 from datacenter IPs, so pasting remains the path that
+   always works.
 10. Hosted reading library, each text pre-scored against your lexicon. Licensing
     is researched and settled — see STATUS.md. Short version: 공유마당 offers 200
     public-domain short stories with no conditions, but they predate the 1933

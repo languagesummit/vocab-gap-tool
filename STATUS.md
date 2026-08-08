@@ -40,6 +40,37 @@ travel as tags, so a deck can be re-sliced after import. Verified end-to-end:
 the file Anki receives has correct column counts and matches the on-screen
 selection exactly.
 
+**The lemmatiser and `/read` — "can I read this?"** Paste Korean, get the share
+you already know, the words you'd need ranked by how often they appear in *that*
+text, and an explicit list of what couldn't be recognised.
+
+Rule-based and deterministic — no model, no network, nothing leaves the browser.
+It works by generate-and-match rather than analysis: every lemma's surface stems
+are generated once into an index (16,058 forms from 5,897 words) and tokens are
+matched against that. Handles ㄷ/ㅂ/ㅅ/르/ㄹ/ㅎ irregulars, 아/어 fusion, past
+tense, honorifics, particle stacking, plural 들, contractions (난, 그걸, 제가)
+and linking consonants (갑니다, 할까요).
+
+Measured, not assumed: **35/35 spot checks**, and **81.9% of 69,464 tokens**
+across the 15,868-sentence Tatoeba corpus resolve to a lemma. The bulk of the
+remainder is proper nouns — 톰, 메리, 프랑스어, 보스턴 — which a 5,897-word
+frequency list correctly does not contain.
+
+Three bugs worth remembering, all caught by measuring rather than reading:
+
+- `fuse()` prepended the stem head to a result that already contained it, so
+  every multi-syllable vowel-final verb generated nonsense (기다리 → 기다기다려).
+  Invisible on one-syllable stems, which is why the spot checks passed at first.
+- A blunt string replace stripped `"니다"` out of the linking table as well as
+  the endings list, silently breaking every -ㅂ니다 form.
+- Ambiguous tokens were resolved by whichever path matched first, turning
+  갈 거예요 ("will go") into 갈다 ("to plough"). Both readings are now computed
+  and the more frequent wins.
+
+Scores are reported over tokens that *resolved*, with unresolved ones shown
+separately, so the denominator is visible. Untested words count against the
+score deliberately — assuming in the user's favour would inflate every number.
+
 **Next up, and asked for explicitly: improve the testing experience itself.**
 Underspecified so far — worth pinning down what specifically grates before
 rebuilding anything. Candidates visible in the code: the timer default, the
