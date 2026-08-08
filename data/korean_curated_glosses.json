@@ -1582,7 +1582,7 @@
       "concreteness": "concrete"
     },
     "739": {
-      "gloss": "dollar",
+      "gloss": "dollar, US currency",
       "semantic_category": "money",
       "concreteness": "concrete"
     },
@@ -1875,6 +1875,506 @@
       "gloss": "a limit",
       "semantic_category": "abstract",
       "concreteness": "abstract"
+    },
+    "1001": {
+      "gloss": "to hold back, to endure",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "1007": {
+      "gloss": "to be excessive",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "1011": {
+      "gloss": "to regard as, to consider",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "1012": {
+      "gloss": "the one, that person",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "1015": {
+      "gloss": "to put out, to set out",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1016": {
+      "gloss": "to detach, to peel off",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1029": {
+      "gloss": "a goal in sport",
+      "semantic_category": "activity",
+      "concreteness": "concrete"
+    },
+    "1033": {
+      "gloss": "to earn money",
+      "semantic_category": "money",
+      "concreteness": "abstract"
+    },
+    "1034": {
+      "gloss": "to save a life",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "1035": {
+      "gloss": "a bird",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "1057": {
+      "gloss": "to win, to beat",
+      "semantic_category": "activity",
+      "concreteness": "abstract"
+    },
+    "1058": {
+      "gloss": "to look up, to search for",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "1059": {
+      "gloss": "to take, to adopt",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "1067": {
+      "gloss": "height, stature",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "1068": {
+      "gloss": "to seek, to look for",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "1075": {
+      "gloss": "to be straight, to be proper",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1081": {
+      "gloss": "a god, a deity",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "1097": {
+      "gloss": "recklessly, carelessly",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1100": {
+      "gloss": "to be present, honorific",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "1102": {
+      "gloss": "to cut",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1112": {
+      "gloss": "shape, appearance",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1117": {
+      "gloss": "the beginning of",
+      "semantic_category": "time",
+      "concreteness": "function"
+    },
+    "1131": {
+      "gloss": "just, merely",
+      "semantic_category": "quality",
+      "concreteness": "function"
+    },
+    "1132": {
+      "gloss": "degree",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "1138": {
+      "gloss": "a greeting",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "1139": {
+      "gloss": "a line, a cord",
+      "semantic_category": "abstract",
+      "concreteness": "concrete"
+    },
+    "1142": {
+      "gloss": "counter for vehicles and machines",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "1152": {
+      "gloss": "a rule, a principle",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "1153": {
+      "gloss": "to fall out, to come out",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "1161": {
+      "gloss": "and so, therefore",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "1165": {
+      "gloss": "place, rank",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "1168": {
+      "gloss": "logic, reasoning",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "1171": {
+      "gloss": "to make bloom",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1175": {
+      "gloss": "personnel affairs",
+      "semantic_category": "work",
+      "concreteness": "abstract"
+    },
+    "1184": {
+      "gloss": "a street",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "1185": {
+      "gloss": "a task, an assignment",
+      "semantic_category": "education",
+      "concreteness": "abstract"
+    },
+    "1190": {
+      "gloss": "a point of view",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "1196": {
+      "gloss": "tomorrow",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "1197": {
+      "gloss": "to tremble, to shiver",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "1198": {
+      "gloss": "every day",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "1201": {
+      "gloss": "now then, come on",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "1213": {
+      "gloss": "the rest, the remainder",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "1221": {
+      "gloss": "earlier, in advance",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "1226": {
+      "gloss": "four",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "1228": {
+      "gloss": "illness, disease",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "1230": {
+      "gloss": "to shed, to spill",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1240": {
+      "gloss": "older brother, respectful",
+      "semantic_category": "family",
+      "concreteness": "concrete"
+    },
+    "1244": {
+      "gloss": "to be bright",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1250": {
+      "gloss": "a young animal",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "1261": {
+      "gloss": "oneself",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "1266": {
+      "gloss": "a star",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "1272": {
+      "gloss": "sometimes, at times",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "1273": {
+      "gloss": "perhaps, possibly",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "1278": {
+      "gloss": "to be used",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "1279": {
+      "gloss": "to be fixed, to be constant",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1280": {
+      "gloss": "to mince, to pack down",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1281": {
+      "gloss": "to come to light, to be revealed",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "1282": {
+      "gloss": "a little while ago",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "1290": {
+      "gloss": "a fault, a mistake",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "1291": {
+      "gloss": "to pay, to settle",
+      "semantic_category": "money",
+      "concreteness": "abstract"
+    },
+    "1297": {
+      "gloss": "nature, disposition",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "1302": {
+      "gloss": "to be called",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "1305": {
+      "gloss": "to set out, to prepare",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1308": {
+      "gloss": "to rise, to float up",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "1311": {
+      "gloss": "the ordinary, the average",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1317": {
+      "gloss": "to be distinctive, unique",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1324": {
+      "gloss": "a frame, a mould",
+      "semantic_category": "abstract",
+      "concreteness": "concrete"
+    },
+    "1346": {
+      "gloss": "amount, quantity",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "1347": {
+      "gloss": "a procedure, formalities",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "1348": {
+      "gloss": "really, genuinely",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1349": {
+      "gloss": "to be doing, honorific",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "1360": {
+      "gloss": "rice cake",
+      "semantic_category": "food",
+      "concreteness": "concrete"
+    },
+    "1364": {
+      "gloss": "at least",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "1366": {
+      "gloss": "pyeong, about 3.3 square metres",
+      "semantic_category": "quantity",
+      "concreteness": "concrete"
+    },
+    "1367": {
+      "gloss": "a right, an entitlement",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "1386": {
+      "gloss": "an opinion, a view",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "1389": {
+      "gloss": "moreover, what is more",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "1395": {
+      "gloss": "a locality, a district",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "1402": {
+      "gloss": "hmm",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "1410": {
+      "gloss": "to pack, to gather up",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1411": {
+      "gloss": "to choose, to pick",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "1412": {
+      "gloss": "to spread on, to apply",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1413": {
+      "gloss": "to break out, to unfold",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "1427": {
+      "gloss": "an inspection, a check",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "1429": {
+      "gloss": "to let in, to bring in",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1433": {
+      "gloss": "to load, to carry",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1446": {
+      "gloss": "what",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "1456": {
+      "gloss": "issue of a publication",
+      "semantic_category": "communication",
+      "concreteness": "concrete"
+    },
+    "1458": {
+      "gloss": "to be struck, to be beaten",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "1462": {
+      "gloss": "to be caught",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "1463": {
+      "gloss": "a year",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "1464": {
+      "gloss": "a regulation, a provision",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "1468": {
+      "gloss": "family members, household",
+      "semantic_category": "family",
+      "concreteness": "concrete"
+    },
+    "1471": {
+      "gloss": "to ring, to sound",
+      "semantic_category": "perception",
+      "concreteness": "concrete"
+    },
+    "1477": {
+      "gloss": "to be desirable",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "1480": {
+      "gloss": "a dog",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "1482": {
+      "gloss": "arranging, preparing",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "1485": {
+      "gloss": "Miss, for a young woman",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "1486": {
+      "gloss": "a dot, a point",
+      "semantic_category": "quantity",
+      "concreteness": "concrete"
+    },
+    "1488": {
+      "gloss": "to gather in, to collect",
+      "semantic_category": "action",
+      "concreteness": "concrete"
     }
   }
 }
