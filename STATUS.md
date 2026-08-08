@@ -71,11 +71,25 @@ Scores are reported over tokens that *resolved*, with unresolved ones shown
 separately, so the denominator is visible. Untested words count against the
 score deliberately — assuming in the user's favour would inflate every number.
 
+**Not built, asked for: sample articles on `/read`.** The page opens on an empty
+textarea, which shows a new user nothing. The fix is a few 공공누리 제1유형
+articles shipped as committed data with a "try one of these" picker — that tier
+permits redistribution with attribution, unlike commercial news.
+
+Started and stopped to merge instead, with one finding worth keeping:
+`https://www.korea.kr/rss/policy.xml` returns **404** — that feed path is wrong
+or retired, so the right endpoint still has to be found. Committed samples are
+the better first move anyway: no fetch to fail, no server route, works offline,
+and the licence obligation is discharged once at commit time rather than per
+request. Live fetching is the follow-on, and needs a server route since CORS
+blocks the browser from reading another origin.
+
 **Next up, and asked for explicitly: improve the testing experience itself.**
 Underspecified so far — worth pinning down what specifically grates before
 rebuilding anything. Candidates visible in the code: the timer default, the
-distractor quality (drawn from ±400 ranks and part-of-speech matched, but the
-5,697 uncurated glosses make some pairs ambiguous), and the fact that testing
+distractor quality (drawn from ±400 ranks and part-of-speech matched — worth
+re-checking now the glosses are curated, since the old ambiguity may be gone),
+and the fact that testing
 only ever walks frequency order, so you can't say "just test me on colours"
 even though the app now knows which words those are.
 
@@ -102,25 +116,29 @@ and never-asked lists are all defensible; only the verdict line isn't. Context:
 the owner has sat TOPIK II twice, never TOPIK I, and reckons the honest advice
 is to take a practice test.
 
-**Not started:** Anki/TSV export (the gaps and levels pages already compute the
-exact word lists); the Korean lemmatizer gating comprehensible input; extending
-the word list so TOPIK levels 5–6 are testable at all.
+**Not started:** extending the word list so TOPIK levels 5–6 are testable at all
+(they hold 304 and 124 words); sample articles on `/read`; cloze mode, which is
+also the cheapest test of whether recognition overstates coverage.
 
-**Still stranded:** the gloss curation on the other machine — see below. That
-also caps the gaps feature, since 2,746 words carry no meaning tag.
+**Capping the gaps feature:** 2,746 words still carry no meaning tag. That is a
+limit of the NIKL category source, not of the glossing — the source tags 6,898
+of its own 12,019 entries and nothing joins to the rest.
 
 Running notes on where the project actually stands, kept because work happens
 across several machines and sessions. `PLAN.md` holds the design decisions and
 the roadmap; this file holds the current state and anything half-finished.
 
-Last updated: 2026-08-07, from a phone session.
+Last updated: 2026-08-08.
 
 ## Where the code is
 
-`main` is at `98239af` — "Split known words by how readily they came back",
-committed 2026-08-07 13:03. That is also the only branch on the remote.
+Merged 2026-08-08: this branch and `main` are reconciled, carrying both the
+glossing pass and the levels / gaps / lemmatiser work. The overlap was three
+files — `PLAN.md` and `scripts/build-static-wordlist.mjs` merged by hand and by
+git respectively, and `public/korean.json` regenerated from the merged pipeline
+rather than resolved line by line, being generated output.
 
-Everything through build phase 4 in `PLAN.md` is done and pushed:
+Historic note, from before that merge:
 
 - Next.js app, Supabase auth (magic link; Google behind a flag), Vercel deploy.
 - Korean word list ingested — 5,897 sense-level entries from the NIKL/TOPIK
@@ -131,7 +149,27 @@ Everything through build phase 4 in `PLAN.md` is done and pushed:
 - Results page: known/unsure/unknown split, frequency bands, part of speech,
   and known words split by recall speed.
 
-## Known gap: the glossing pass is unaccounted for
+## Glossing: done, and it landed on main
+
+Resolved 2026-08-08. The other machine's work was redone rather than recovered,
+and `main` now carries 1,024 hand-curated entries with all 5,897 passing
+`scripts/audit-glosses.mjs`. Every defect this branch measured is gone:
+
+| | before | after |
+|---|---|---|
+| senses of one lemma sharing a gloss | 520 entries / 220 lemmas | **0** |
+| glosses over 60 characters | 267 | **0** |
+| glosses carrying raw HTML | 4 | **0** |
+
+새 now reads "new" / "a bird" / "an interval, the gap between" at its three
+ranks instead of the same mashed string three times, so those words are
+honestly testable for the first time.
+
+Worth carrying forward from `GLOSSING.md`: a clean audit means no
+rule-detectable fault, **not** verified accuracy — nobody who reads Korean has
+checked them yet.
+
+## Historical: how the glossing pass went missing
 
 A session on another machine was working on **phase 5 — curating glosses beyond
 rank 200**. None of that work is on the remote: GitHub has only `main`, and

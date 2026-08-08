@@ -57,31 +57,61 @@ content recommendation to fill gaps).
    coverage), top 200 ranks hand-curated with categories.
 4. ✅ Per-word test UI: translation MCQ, 3s timer, keyboard 1–4 and space,
    frontier progress, resumable sessions.
-5. Curate glosses beyond rank 200 (5,697 rows still flagged `needs_review`).
-6. ✅ Exam-level reporting: tested vocabulary placed against the TOPIK
-   vocabulary lists and 국립국어원's graded learner list. See below.
-7. ✅ Semantic gap analysis (`/gaps`). Category tagging ingested from 한국어
-   교육 어휘 내용 개발 (국립국어원 2015) — 14 major categories over 139
-   subcategories, 3,151 of 5,897 words tagged, up from 200. This is the core
-   feature: conversational vocabulary is lumpy, and holes in colours or animals
-   sit at no particular frequency rank.
-8. Pre-generated constrained-definition test mode.
-9. ✅ Comprehensible-input scorer (`/read`). Rule-based Korean lemmatiser in
-   `src/lib/korean/`, no model and no network: 81.9% of Tatoeba tokens resolve,
-   35/35 conjugation spot checks pass. Paste text → % known, words to learn
-   ranked by frequency *within that text*, unresolved tokens shown so the
-   denominator is visible. URL and YouTube fetching are still not built, and
-   YouTube returns 429 from datacenter IPs, so pasting remains the path that
-   always works.
-10. Hosted reading library, each text pre-scored against your lexicon. Licensing
-    is researched and settled — see STATUS.md. Short version: 공유마당 offers 200
-    public-domain short stories with no conditions, but they predate the 1933
-    orthography reform and read as colonial-era literary Korean; 공공누리 제1유형
-    content (korea.kr) is contemporary, standard-register and reusable with
-    attribution, which fits a learner far better. Deliberately sequenced *after*
-    the scorer: hosting text is easy, and a library that can't tell you whether
-    you can read a piece is just a library.
-11. Image-based MCQ for concrete nouns (after sourcing decision).
+5. ✅ Curate glosses beyond rank 200. All 5,897 entries pass
+   `scripts/audit-glosses.mjs`; 1,024 are hand-curated, up from 200. Note
+   that a clean audit means no rule-detectable fault, not verified accuracy —
+   nobody who reads Korean has checked these yet. See
+   [GLOSSING.md](GLOSSING.md).
+6. ✅ Results page: known-count as a range, breakdown by frequency band and
+   part of speech, missed/timed-out word lists, recall speed.
+7. ✅ Exam-level reporting (`/levels`): tested vocabulary against TOPIK levels
+   1–6 and 국립국어원's graded learner list. See below.
+8. ✅ Semantic gap analysis (`/gaps`), by meaning and by part of speech —
+   the category × status breakdown, with categories ingested from 한국어 교육
+   어휘 내용 개발 (국립국어원 2015) rather than only the hand-curated ones.
+9. ✅ Coverage engine — rule-based Korean lemmatiser (`src/lib/korean/`), no
+   model and no network. 81.9% of Tatoeba tokens resolve, 35/35 conjugation
+   spot checks pass. The shared spine both content features need.
+10. ✅ Comprehensible-input scorer (`/read`): paste text → % known, words to
+    learn ranked by frequency *within that text*, unresolved tokens shown so
+    the denominator stays visible. **Carries the validity caveat below** — the
+    number is only as sound as what 2-choice recognition proves.
+11. ✅ Browse, filter and export (`/words`): any slice of the list, commonest
+    first, exported to Anki as TSV.
+12. Cloze mode — pick which of two Korean words fits a sentence. Tests usage
+    rather than recognition, and is the only way to test words that resist a
+    one-line gloss (어쩌다). Needs one example sentence per entry, generated at
+    build time. Route to it from the recall bands: automatic → done, effortful
+    or timed-out → confirm by cloze. Also the most direct answer to the
+    recognition-overstates-coverage question below.
+13. Reading library, each text pre-scored against your lexicon. Licensing is
+    researched and settled — see STATUS.md. 공유마당 offers 200 public-domain
+    short stories with no conditions, but they predate the 1933 orthography
+    reform and read as colonial-era literary Korean; 공공누리 제1유형 content
+    (korea.kr) is contemporary and reusable with attribution, which fits a
+    learner far better. Then YouTube discovery by transcript coverage — the
+    official API only returns captions for videos you own, and plain fetches
+    return 429 from datacenter IPs, so transcript access needs a decision.
+14. Image-based MCQ for concrete nouns (after sourcing decision).
+
+## Open questions
+
+- **Does recognition testing overstate coverage?** The 95/98% comprehension
+  thresholds may have been validated against a deeper level of word knowledge
+  than 2-choice recognition. If so, the scorer in phase 10 reads optimistic
+  and needs recalibrating before anything is built on it. Now that the scorer
+  exists this is live rather than theoretical, and cloze mode (phase 12) is
+  the cheapest way to find out: compare recognition-known against cloze-known
+  on the same words.
+- **Do the coverage thresholds transfer to Korean?** They come mostly from
+  English research, where "word family" is a cleaner unit than in an
+  agglutinative language.
+- **L1 vs L2 study at intermediate level.** Working hypothesis: difficulty
+  reading authentic Korean at TOPIK 4 is a coverage threshold effect, not a
+  learning-style one — below the threshold, monolingual input isn't
+  comprehensible enough to learn from. If true, this tool measures exactly
+  the thing that answers the question, and the results page should report
+  distance to the next threshold rather than a bare word count.
 
 ## The two proficiency gradings
 
@@ -158,7 +188,6 @@ npm run data:static                        # joins levels into public/korean.jso
 `data/korean_curriculum_raw.tsv` was extracted from the published xlsx
 (국립국어원 report 932, "어휘, 문법 등급 목록"), one row per graded word with
 whitespace collapsed so every row is a single line.
-
 ## Regenerating the word data
 
 ```
