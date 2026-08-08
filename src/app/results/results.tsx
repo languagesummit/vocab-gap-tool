@@ -5,6 +5,8 @@ import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, saveProgress, type Progress } from "@/lib/local/progress";
 import { BasisToggle, SplitBar, type Basis } from "@/components/split-bar";
+import { PATTERNS } from "@/lib/local/patterns";
+import { saveGoal } from "@/lib/local/goals";
 import {
   analyse,
   knownRange,
@@ -67,6 +69,34 @@ export function Results() {
   const timedOutPct = pct(a.overall.unsure, a.overall.tested);
   const knownTimed =
     a.recall.automatic.length + a.recall.solid.length + a.recall.effortful.length;
+
+  /**
+   * Grammar patterns answered before the test showed them as patterns. Those
+   * answers judged a bare 수 or auxiliary 있다, which is a different question
+   * from the one the words are now asked as, so they are worth redoing.
+   */
+  const answeredPatterns = Object.keys(PATTERNS).filter(
+    (key) => progress?.words[key]
+  );
+
+  /** Re-asks the grammar patterns, now that they're shown in context. */
+  function retestPatterns() {
+    if (!words) return;
+    const next = loadProgress();
+    for (const key of answeredPatterns) delete next.words[key];
+    let highest = 0;
+    for (const word of words) {
+      if (next.words[word.key] && word.rank > highest) highest = word.rank;
+    }
+    next.frontierRank = highest;
+    saveProgress(next);
+    setProgress({ ...next });
+    saveGoal({
+      kind: "words",
+      keys: answeredPatterns,
+      label: `${answeredPatterns.length} grammar patterns`,
+    });
+  }
 
   /** Clears the timed-out words so they return to the front of the queue. */
   function retestUnsure() {
@@ -159,6 +189,36 @@ export function Results() {
               Change the timer
             </Link>
           </div>
+        </Card>
+      )}
+
+      {answeredPatterns.length > 0 && (
+        <Card>
+          <h2 className="font-semibold text-black dark:text-zinc-50">
+            Grammar patterns are now asked in context
+          </h2>
+          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            Words like 수 and auxiliary 있다 don&apos;t exist on their own — you
+            know them as{" "}
+            <span className="font-medium text-black dark:text-zinc-50">
+              -(으)ㄹ 수 있다
+            </span>{" "}
+            and{" "}
+            <span className="font-medium text-black dark:text-zinc-50">
+              -고 있다
+            </span>
+            . Asked bare, they test whether you know grammar terminology rather
+            than whether you can use the language, so the test now shows the
+            pattern. {answeredPatterns.length} of them were answered under the
+            old prompt.
+          </p>
+          <Link
+            href="/test"
+            onClick={retestPatterns}
+            className="mt-4 flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+          >
+            Re-ask those {answeredPatterns.length} in context
+          </Link>
         </Card>
       )}
 

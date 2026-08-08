@@ -18,6 +18,7 @@ import {
   type Goal,
 } from "@/lib/local/goals";
 import { Intro } from "./intro";
+import { patternFor, patternMeaning } from "@/lib/local/patterns";
 
 // Distractors are drawn from nearby ranks so the wrong answers are plausible
 // rather than obviously advanced vocabulary.
@@ -129,8 +130,9 @@ export function Session() {
       );
     }
 
+    const answer = patternMeaning(current.key, current.gloss);
     const picked: string[] = [];
-    const seen = new Set<string>([current.gloss]);
+    const seen = new Set<string>([answer, current.gloss]);
     // Deterministic per word so a re-render doesn't reshuffle mid-question.
     let seed = current.rank * 2654435761;
     while (picked.length < needed && pool.length > 0) {
@@ -144,7 +146,7 @@ export function Session() {
       }
     }
 
-    const all = [current.gloss, ...picked];
+    const all = [answer, ...picked];
     // Shuffle deterministically too, so the answer isn't always first.
     let s = current.rank * 40503;
     for (let i = all.length - 1; i > 0; i--) {
@@ -253,7 +255,12 @@ export function Session() {
   const choose = useCallback(
     (option: string) => {
       if (!current || expired) return;
-      record(option === current.gloss ? "known" : "unknown", false);
+      record(
+        option === patternMeaning(current.key, current.gloss)
+          ? "known"
+          : "unknown",
+        false
+      );
     },
     [current, expired, record]
   );
@@ -432,8 +439,8 @@ export function Session() {
             <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-700 dark:bg-amber-950 dark:text-amber-300">
               Time&apos;s up — marked unsure
             </span>
-            <div className="text-7xl font-semibold text-zinc-400 dark:text-zinc-600">
-              {expired.lemma}
+            <div className="text-center text-5xl font-semibold text-zinc-400 dark:text-zinc-600">
+              {patternFor(expired.key)?.form ?? expired.lemma}
             </div>
             {expired.hint && (
               <span className="-mt-2 text-sm text-zinc-400 dark:text-zinc-600">
@@ -447,12 +454,27 @@ export function Session() {
         )}
 
         <div className="flex flex-col items-center gap-3">
-          <div className="text-7xl font-semibold text-black dark:text-zinc-50">
-            {current.lemma}
-          </div>
+          {patternFor(current.key) ? (
+            // A bound word shown bare asks the wrong question: 수 alone means
+            // nothing, while -(으)ㄹ 수 있다 is something a learner uses daily.
+            // The pattern leads and the lemma sits under it, so what is being
+            // asked about stays clear.
+            <>
+              <div className="text-center text-5xl font-semibold text-black dark:text-zinc-50">
+                {patternFor(current.key)?.form}
+              </div>
+              <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs text-zinc-500 dark:bg-zinc-900">
+                grammar pattern · {current.lemma}
+              </span>
+            </>
+          ) : (
+            <div className="text-7xl font-semibold text-black dark:text-zinc-50">
+              {current.lemma}
+            </div>
+          )}
           {/* Only set where the lemma repeats, so its presence is itself the
               signal that this word has more than one sense in the list. */}
-          {current.hint && (
+          {current.hint && !patternFor(current.key) && (
             <span className="rounded-full bg-zinc-100 px-3 py-1 text-sm text-zinc-600 dark:bg-zinc-900 dark:text-zinc-400">
               {current.hint}
             </span>

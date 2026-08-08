@@ -79,9 +79,36 @@ Round three — Anki deck building:
   unknown words of a scored text, via a button on `/read`.
 - The basket lives in localStorage, so it survives navigating away and back.
 
+Round four — grammar patterns asked as patterns:
+
+Found by real self-testing, and it was a validity bug rather than a data one.
+수 was marked unknown by someone who uses -(으)ㄹ 수 있다 daily; auxiliary 있다
+by someone fluent in -고 있다. Both answers were honest. Neither word exists as
+a standalone item in a learner's head — 수 alone means nothing usable, and its
+gloss "possibility" is a dictionary abstraction over a construction. The old
+prompt made it worse by showing the hint "auxiliary", which is the part of
+speech, not a clue.
+
+So asking "do you know 수" tested whether someone had studied Korean grammar
+*terminology*, not whether they could use the language.
+
+51 bound entries now show the construction instead: `-(으)ㄹ 수 있다 / 없다`,
+`-고 있다`, `-아/어 보다`, `-지 않다`. Counters get a numeral — `한 개`, `두 명` —
+because that is how anyone meets them. The answer moved with the question: the
+correct option for `-(으)ㄹ 수 있다` is now "can / cannot", not "possibility",
+since asking about the pattern and answering about the bare noun would be
+incoherent. Verified across all 51 that both the form and its answer render.
+
+`/results` offers to re-ask any of these that were answered under the old
+prompt, because those answers judged a different question.
+
+Ordinary words are untouched — for them the bare lemma *is* the question.
+
 Still open:
 
 - **`/read` has no sample text**, so it opens on an empty box.
+- **The pattern list stops at rank ~700.** 163 bound entries exist in total;
+  the 51 curated are the frequent ones. The rest still show bare.
 - **A built-in flashcard reviewer** is the eventual goal; Anki export is the
   stopgap.
 - **Commercial framing.** If this ever competes with LingQ, the difference to

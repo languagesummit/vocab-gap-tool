@@ -20,6 +20,7 @@ import {
   type StatusFilter,
 } from "@/lib/local/browse";
 import type { Recall } from "@/lib/local/analysis";
+import { patternFor } from "@/lib/local/patterns";
 import {
   addPart,
   deckSize,
@@ -420,8 +421,14 @@ function Row({ row }: { row: BrowseRow }) {
         title={row.status}
       />
       <span className="text-lg text-black dark:text-zinc-50">{word.lemma}</span>
-      {word.hint && (
-        <span className="shrink-0 text-xs text-zinc-400">{word.hint}</span>
+      {patternFor(word.key) ? (
+        <span className="shrink-0 text-xs text-zinc-500">
+          {patternFor(word.key)?.form}
+        </span>
+      ) : (
+        word.hint && (
+          <span className="shrink-0 text-xs text-zinc-400">{word.hint}</span>
+        )
       )}
       <span className="min-w-0 flex-1 truncate text-sm text-zinc-500">
         {word.gloss}
