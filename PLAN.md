@@ -78,7 +78,7 @@ content recommendation to fill gaps).
     number is only as sound as what 2-choice recognition proves.
 11. ✅ Browse, filter and export (`/words`): any slice of the list, commonest
     first, exported to Anki as TSV.
-12. Cloze mode — pick which of two Korean words fits a sentence. Tests usage
+12. Grammar as a second track (see "Grammar counts separately" below). Cloze mode — pick which of two Korean words fits a sentence. Tests usage
     rather than recognition, and is the only way to test words that resist a
     one-line gloss (어쩌다). Needs one example sentence per entry, generated at
     build time. Route to it from the recall bands: automatic → done, effortful
@@ -93,6 +93,43 @@ content recommendation to fill gaps).
     official API only returns captions for videos you own, and plain fetches
     return 429 from datacenter IPs, so transcript access needs a decision.
 14. Image-based MCQ for concrete nouns (after sourcing decision).
+
+## Grammar counts separately, and is never a decision
+
+Settled 2026-08-08. Korean grammar matters more to comprehension than any
+individual word does, so the tool has to measure it — but it must not be folded
+into the vocabulary count.
+
+- **Two figures, never summed.** A level reads "TOPIK 3 — vocabulary 78%,
+  grammar 40%". Both gradings come from the same standard curriculum at the
+  same 1급–6급 grain, so the pairing is native to the data rather than inferred.
+  A single blended number would hide the commonest shape in Korean learning,
+  which is solid vocabulary against weak grammar.
+- **Not a user choice.** 336 grammar items against 5,897 words is about 5% of
+  the work, so a goal simply contains both: "TOPIK 1 — 795 words and 45 grammar
+  points." Adding a decision here buys nothing and costs everyone a fork.
+- **Grammar first within a goal, not last.** It is short, so it finishes early
+  and the signal arrives when it can still change what you study. Keeping it
+  contiguous rather than interleaved also means one switch of test modality
+  instead of hundreds.
+- **No self-rating step.** Asking someone to estimate their level before testing
+  anchors them to a guess and buys nothing the 300-word sample doesn't already
+  give, measured rather than declared.
+
+**Grammar must be tested by cloze, not translation.** The source carries no
+English meanings at all — the column that looked like one holds Korean function
+labels (대조, 의도, 나열), and testing against those would ask whether someone
+knows grammatical terminology, which is the exact mistake already fixed for 수
+and auxiliary 있다. Writing 336 English glosses by hand would be a confident
+guess a learner cannot check.
+
+Cloze avoids inventing anything, because real sentences exist: 203 of the 336
+forms appear in the Tatoeba corpus and 158 have five or more sentences,
+including -잖아 (39), -거든 (19), -을 텐데 (15) and -자마자 (7). The matching
+behind those counts is crude substring search, so it is reliable for
+distinctive multi-syllable endings and optimistic for short ones like 만 and 은
+that occur inside ordinary words. Expect roughly half the list to be testable
+this way, and the rest to need another source.
 
 ## Open questions
 
