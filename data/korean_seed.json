@@ -74393,10 +74393,10 @@
     "frequency_rank": 3801,
     "lemma": "끈",
     "sense_index": 1,
-    "gloss": "leading strings; tape; A string or a cord; band, bind, braid, braiding, a cord, line",
+    "gloss": "a strap, a shoelace",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "abstract",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4496,
       "nikl_sense": "01",
@@ -74404,19 +74404,17 @@
       "collocation": "을 묶다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 3802,
     "lemma": "끊기다",
     "sense_index": 1,
-    "gloss": "To be cut off or severed; to break, come apart, snap off, be disconnected",
+    "gloss": "to be cut off, to be severed",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "state",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4497,
       "nikl_sense": null,
@@ -74424,9 +74422,7 @@
       "collocation": "다리가",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -74613,10 +74609,10 @@
     "frequency_rank": 3812,
     "lemma": "부",
     "sense_index": 2,
-    "gloss": "mammon; A department, a part; assistant,deputy; wealth,riches",
+    "gloss": "wealth, riches",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "money",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4517,
       "nikl_sense": "17",
@@ -74624,9 +74620,7 @@
       "collocation": "를 누리다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -74813,10 +74807,10 @@
     "frequency_rank": 3822,
     "lemma": "약점",
     "sense_index": 1,
-    "gloss": "vulnerable/weak point; A weak point, a vulnerable point",
+    "gloss": "a weak point",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quality",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4534,
       "nikl_sense": "01",
@@ -74824,9 +74818,7 @@
       "collocation": "을 잡다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -75653,10 +75645,10 @@
     "frequency_rank": 3864,
     "lemma": "뛰어가다",
     "sense_index": 1,
-    "gloss": "뛰어가다",
+    "gloss": "to run to a place",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "motion",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4598,
       "nikl_sense": null,
@@ -75664,9 +75656,7 @@
       "collocation": "학교로",
       "nikl_level": "초급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": true
+      "curated": true
     }
   },
   {
@@ -75773,10 +75763,10 @@
     "frequency_rank": 3870,
     "lemma": "부치다",
     "sense_index": 1,
-    "gloss": "to put as, to keep as; to spread oil in a frypan and cook something; to fan sth with a fan (부채로); to be beyond one's strength/ability",
+    "gloss": "to send by post",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "communication",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4611,
       "nikl_sense": "02",
@@ -75784,9 +75774,7 @@
       "collocation": "편지를 ~",
       "nikl_level": "초급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -75853,9 +75841,9 @@
     "frequency_rank": 3874,
     "lemma": "세",
     "sense_index": 3,
-    "gloss": "tax; A generation,age,epoch; Three; Age in years",
+    "gloss": "generation, as in second generation",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "time",
     "concreteness": "function",
     "notes": {
       "source_rank": 4618,
@@ -75864,9 +75852,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -76453,10 +76439,10 @@
     "frequency_rank": 3904,
     "lemma": "띄우다",
     "sense_index": 1,
-    "gloss": "to grant time for; to float sth on [water/air], to launch sth [on the water/in the air]; to send a letter; to express/show emotions",
+    "gloss": "to set afloat",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4687,
       "nikl_sense": "02",
@@ -76464,9 +76450,7 @@
       "collocation": "배를 ~",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -77113,10 +77097,10 @@
     "frequency_rank": 3937,
     "lemma": "건네다",
     "sense_index": 1,
-    "gloss": "Speak to a person or address; to give, hand over to sb",
+    "gloss": "to hand over, to pass",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4760,
       "nikl_sense": null,
@@ -77124,9 +77108,7 @@
       "collocation": "돈을",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -77173,10 +77155,10 @@
     "frequency_rank": 3940,
     "lemma": "곧장",
     "sense_index": 1,
-    "gloss": "Directly or straightforwardly ; to do something straight away",
+    "gloss": "straight ahead, directly",
     "part_of_speech": "adverb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "motion",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4767,
       "nikl_sense": null,
@@ -77184,9 +77166,7 @@
       "collocation": "곧장 가다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -77433,9 +77413,9 @@
     "frequency_rank": 3953,
     "lemma": "마당",
     "sense_index": 2,
-    "gloss": "An instance, case; a garden; a center/place for sth",
+    "gloss": "an occasion, a juncture",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "time",
     "concreteness": "function",
     "notes": {
       "source_rank": 4788,
@@ -77444,9 +77424,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -77533,9 +77511,9 @@
     "frequency_rank": 3958,
     "lemma": "바퀴",
     "sense_index": 1,
-    "gloss": "Wheel; Cockroach",
+    "gloss": "a lap, a turn round",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "quantity",
     "concreteness": "function",
     "notes": {
       "source_rank": 4795,
@@ -77544,9 +77522,7 @@
       "collocation": "가 돌다; 네 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -77773,10 +77749,10 @@
     "frequency_rank": 3970,
     "lemma": "안기다",
     "sense_index": 2,
-    "gloss": "(1) To fix on a person, lay the blame on a person <br>(2) to throw onto sb, to pass onto sb, to pawn off onto sb, to hand over to sb; to be embraced by sb (in their arms)",
+    "gloss": "to be held in the arms",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "state",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4813,
       "nikl_sense": "01",
@@ -77784,9 +77760,7 @@
       "collocation": "'안다'의 피동사; 아기가",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -78153,10 +78127,10 @@
     "frequency_rank": 3989,
     "lemma": "철",
     "sense_index": 1,
-    "gloss": "binding, a file; season, time of the year; Discretion, prudence (Become sensible, wise); Steel",
+    "gloss": "iron",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "nature",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4841,
       "nikl_sense": "06",
@@ -78164,9 +78138,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -78413,10 +78385,10 @@
     "frequency_rank": 4002,
     "lemma": "내외",
     "sense_index": 1,
-    "gloss": "about, approximately",
+    "gloss": "husband and wife",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "family",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4876,
       "nikl_sense": "02",
@@ -78424,9 +78396,7 @@
       "collocation": "남녀",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -78513,10 +78483,10 @@
     "frequency_rank": 4007,
     "lemma": "달다",
     "sense_index": 4,
-    "gloss": "wear; to attach, fix; To hang; to be sweet",
+    "gloss": "to be sweet",
     "part_of_speech": "adjective",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "perception",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4881,
       "nikl_sense": "07",
@@ -78524,9 +78494,7 @@
       "collocation": "맛이",
       "nikl_level": "초급",
       "topik_level": "A",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -78673,9 +78641,9 @@
     "frequency_rank": 4015,
     "lemma": "벌",
     "sense_index": 2,
-    "gloss": "A bee; Set (of clothes); Punishment",
+    "gloss": "a set of clothes",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "quantity",
     "concreteness": "function",
     "notes": {
       "source_rank": 4898,
@@ -78684,19 +78652,17 @@
       "collocation": "옷 한 ~; 옷 한 벌",
       "nikl_level": "초급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4016,
     "lemma": "뵈다",
     "sense_index": 1,
-    "gloss": "Contraction of 보이다; See (polite)",
+    "gloss": "to be seen, to show",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "perception",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4903,
       "nikl_sense": "01",
@@ -78704,9 +78670,7 @@
       "collocation": "보이다",
       "nikl_level": null,
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -78833,10 +78797,10 @@
     "frequency_rank": 4023,
     "lemma": "수시로",
     "sense_index": 1,
-    "gloss": "On demand, per the demand of the occasion ; all the time, at any time",
+    "gloss": "at any time, frequently",
     "part_of_speech": "adverb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "time",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4914,
       "nikl_sense": null,
@@ -78844,9 +78808,7 @@
       "collocation": "수시로 열다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -79213,10 +79175,10 @@
     "frequency_rank": 4042,
     "lemma": "철",
     "sense_index": 2,
-    "gloss": "binding, a file; season, time of the year; Discretion, prudence (Become sensible, wise); Steel",
+    "gloss": "a season of the year",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "time",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4945,
       "nikl_sense": "01",
@@ -79224,9 +79186,7 @@
       "collocation": "계절; 이 바뀌다",
       "nikl_level": "중급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -79293,10 +79253,10 @@
     "frequency_rank": 4046,
     "lemma": "판",
     "sense_index": 3,
-    "gloss": "a valve; a match, game, contest; a board; an event taking place, or the place where the event takes place",
+    "gloss": "a scene, a gathering",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "activity",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4950,
       "nikl_sense": "01",
@@ -79304,9 +79264,7 @@
       "collocation": "~이 벌어지다",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -79473,10 +79431,10 @@
     "frequency_rank": 4055,
     "lemma": "강도",
     "sense_index": 2,
-    "gloss": "A robber or a burglar ; the act of burglary or robbery",
+    "gloss": "a robber, a burglary",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "society",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4967,
       "nikl_sense": "06",
@@ -79484,9 +79442,7 @@
       "collocation": "은행 강도",
       "nikl_level": "중급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -79533,10 +79489,10 @@
     "frequency_rank": 4058,
     "lemma": "금하다",
     "sense_index": 1,
-    "gloss": "1) suppress or restraint 2) abstain from or restrain from",
+    "gloss": "to forbid, to prohibit",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "society",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 4976,
       "nikl_sense": "02",
@@ -79544,9 +79500,7 @@
       "collocation": "출입을",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -79793,10 +79747,10 @@
     "frequency_rank": 4071,
     "lemma": "된장",
     "sense_index": 1,
-    "gloss": "된장",
+    "gloss": "soybean paste",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "food",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 4994,
       "nikl_sense": null,
@@ -79804,9 +79758,7 @@
       "collocation": "에 찍다",
       "nikl_level": "초급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": true
+      "curated": true
     }
   },
   {
@@ -80013,10 +79965,10 @@
     "frequency_rank": 4082,
     "lemma": "묻히다",
     "sense_index": 2,
-    "gloss": "Have smeared,be covered with; Get buried, to be buried (passive of 묻다)",
+    "gloss": "to smear on, to coat",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5008,
       "nikl_sense": "01",
@@ -80024,9 +79976,7 @@
       "collocation": "손에 물을; 옷에 흙을 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -80133,10 +80083,10 @@
     "frequency_rank": 4088,
     "lemma": "삼가다",
     "sense_index": 1,
-    "gloss": "Be discreet,take care of ; to abstain (refrain) o.s. from doing",
+    "gloss": "to refrain from",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5019,
       "nikl_sense": null,
@@ -80144,9 +80094,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -80273,10 +80221,10 @@
     "frequency_rank": 4095,
     "lemma": "앉히다",
     "sense_index": 1,
-    "gloss": "To place a person in a seat (causative of 앉다) 않게 하다",
+    "gloss": "to seat someone",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5033,
       "nikl_sense": null,
@@ -80284,9 +80232,7 @@
       "collocation": "자리에",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -80353,10 +80299,10 @@
     "frequency_rank": 4099,
     "lemma": "외국어",
     "sense_index": 1,
-    "gloss": "A foreign language; sometimes, only means English",
+    "gloss": "a foreign language",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "communication",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5040,
       "nikl_sense": null,
@@ -80364,9 +80310,7 @@
       "collocation": "로 말하다",
       "nikl_level": "초급",
       "topik_level": "A",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -80533,10 +80477,10 @@
     "frequency_rank": 4108,
     "lemma": "짜다",
     "sense_index": 2,
-    "gloss": "Form, organize; Squeeze, press out; To be salty",
+    "gloss": "to squeeze, to wring",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5057,
       "nikl_sense": "02",
@@ -80544,18 +80488,16 @@
       "collocation": "빨래를 ~; 치약을",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4109,
     "lemma": "참",
     "sense_index": 3,
-    "gloss": "At the point of, when; In reality; really,truly",
+    "gloss": "just as, at the point of",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "time",
     "concreteness": "function",
     "notes": {
       "source_rank": 5058,
@@ -80564,18 +80506,16 @@
       "collocation": "집에 가던 ~에",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4110,
     "lemma": "채",
     "sense_index": 3,
-    "gloss": "thill; House counter; Still, not yet; As it is, no change",
+    "gloss": "counter for houses",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "quantity",
     "concreteness": "function",
     "notes": {
       "source_rank": 5059,
@@ -80584,9 +80524,7 @@
       "collocation": "집 한 ~",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -80633,10 +80571,10 @@
     "frequency_rank": 4113,
     "lemma": "치다",
     "sense_index": 3,
-    "gloss": "maul; (a storm, strong wind, rain, lightning) to strike, hit; to do an action with the body (헤엄을 치다 to swim); to build",
+    "gloss": "to set up a net, to pitch",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5063,
       "nikl_sense": "05",
@@ -80644,9 +80582,7 @@
       "collocation": "그물을 ~",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -80813,10 +80749,10 @@
     "frequency_rank": 4122,
     "lemma": "군",
     "sense_index": 3,
-    "gloss": "group, crowd; mister, senor; county, rural district; Mr.",
+    "gloss": "a county",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "place",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5080,
       "nikl_sense": "06",
@@ -80824,9 +80760,7 @@
       "collocation": "행정 구역",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -80893,9 +80827,9 @@
     "frequency_rank": 4126,
     "lemma": "대",
     "sense_index": 4,
-    "gloss": "versus; One piece, counter for cigarettes/buses/vehicles; a stem, stalk; era, period",
+    "gloss": "counter for cigarettes",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "quantity",
     "concreteness": "function",
     "notes": {
       "source_rank": 5090,
@@ -80904,9 +80838,7 @@
       "collocation": "가 굵다; 담배 한 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -81053,10 +80985,10 @@
     "frequency_rank": 4134,
     "lemma": "모조리",
     "sense_index": 1,
-    "gloss": "or to the last man, all and singularly, all and singular; One and all, wholly, without exception",
+    "gloss": "every last one",
     "part_of_speech": "adverb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quantity",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5104,
       "nikl_sense": "01",
@@ -81064,9 +80996,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -81593,10 +81523,10 @@
     "frequency_rank": 4161,
     "lemma": "지다",
     "sense_index": 4,
-    "gloss": "To fade away, come off; Carry (on the back); to stain (with coffee), commit a crime; Set (the sun)",
+    "gloss": "to form, as a shadow does",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "state",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5147,
       "nikl_sense": "04",
@@ -81604,9 +81534,7 @@
       "collocation": "그늘이 ~",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -81753,10 +81681,10 @@
     "frequency_rank": 4169,
     "lemma": "호남",
     "sense_index": 1,
-    "gloss": "The HONAM district, which is CHOLLA-DO in S.W south korea",
+    "gloss": "the Honam region",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "place",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5164,
       "nikl_sense": "02",
@@ -81764,9 +81692,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -81853,10 +81779,10 @@
     "frequency_rank": 4174,
     "lemma": "고르다",
     "sense_index": 2,
-    "gloss": "Choose or select; Flat or even; to make size, height, volume the same; to flatten, make level",
+    "gloss": "to be even, uniform",
     "part_of_speech": "adjective",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quality",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5175,
       "nikl_sense": "03",
@@ -81864,9 +81790,7 @@
       "collocation": "차이가 없다",
       "nikl_level": null,
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -81953,10 +81877,10 @@
     "frequency_rank": 4179,
     "lemma": "기여",
     "sense_index": 1,
-    "gloss": "Contribution or service to a community or group",
+    "gloss": "a contribution",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "social",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5184,
       "nikl_sense": "04",
@@ -81964,9 +81888,7 @@
       "collocation": "를 하다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -81993,10 +81915,10 @@
     "frequency_rank": 4181,
     "lemma": "꾸리다",
     "sense_index": 1,
-    "gloss": "Pack up or bundle up (2) to make a living, make money",
+    "gloss": "to pack up, to manage",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5186,
       "nikl_sense": "01",
@@ -82004,9 +81926,7 @@
       "collocation": "이삿짐을",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -82033,10 +81953,10 @@
     "frequency_rank": 4183,
     "lemma": "내외",
     "sense_index": 2,
-    "gloss": "about, approximately",
+    "gloss": "the interior and exterior",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "place",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5191,
       "nikl_sense": "01",
@@ -82044,9 +81964,7 @@
       "collocation": "건물 내외; 안팎",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -82133,10 +82051,10 @@
     "frequency_rank": 4188,
     "lemma": "라인",
     "sense_index": 1,
-    "gloss": "라인",
+    "gloss": "a line",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "abstract",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5202,
       "nikl_sense": "01",
@@ -82144,9 +82062,7 @@
       "collocation": "line",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": true
+      "curated": true
     }
   },
   {
@@ -82213,10 +82129,10 @@
     "frequency_rank": 4192,
     "lemma": "바람",
     "sense_index": 3,
-    "gloss": "A wish, hope; Wind; As a result,by the influence of",
+    "gloss": "a wish, a hope",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "emotion",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5210,
       "nikl_sense": "02",
@@ -82224,9 +82140,7 @@
       "collocation": "간절한 바람; 소원",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -82273,10 +82187,10 @@
     "frequency_rank": 4195,
     "lemma": "방울",
     "sense_index": 1,
-    "gloss": "A drop; A bell",
+    "gloss": "a drop of liquid",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quantity",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5213,
       "nikl_sense": "01",
@@ -82284,19 +82198,17 @@
       "collocation": "물~; 이 맺히다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4196,
     "lemma": "배",
     "sense_index": 4,
-    "gloss": "floatage; flotage; Pear; Abdomen",
+    "gloss": "a pear",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "food",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5215,
       "nikl_sense": "03",
@@ -82304,19 +82216,17 @@
       "collocation": "를 먹다; 열매",
       "nikl_level": "초급",
       "topik_level": "A",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4197,
     "lemma": "벌",
     "sense_index": 3,
-    "gloss": "A bee; Set (of clothes); Punishment",
+    "gloss": "a bee",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "nature",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5216,
       "nikl_sense": "03",
@@ -82324,9 +82234,7 @@
       "collocation": "곤충; 에 쏘이다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -82373,10 +82281,10 @@
     "frequency_rank": 4200,
     "lemma": "보완하다",
     "sense_index": 1,
-    "gloss": "to compensate for (a defect) and make complete, to complement sth",
+    "gloss": "to supplement, to make good",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5219,
       "nikl_sense": null,
@@ -82384,9 +82292,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -82413,10 +82319,10 @@
     "frequency_rank": 4202,
     "lemma": "빨다",
     "sense_index": 1,
-    "gloss": "nurse; sip,suck; Wash the laundry",
+    "gloss": "to suck",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5223,
       "nikl_sense": "01",
@@ -82424,9 +82330,7 @@
       "collocation": "빨대로; 젖을 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -82613,10 +82517,10 @@
     "frequency_rank": 4212,
     "lemma": "신기하다",
     "sense_index": 2,
-    "gloss": "To be novel,original; To be marvelous,astounding",
+    "gloss": "to be novel, new and odd",
     "part_of_speech": "adjective",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quality",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5237,
       "nikl_sense": "04",
@@ -82624,9 +82528,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -83393,10 +83295,10 @@
     "frequency_rank": 4251,
     "lemma": "하나하나",
     "sense_index": 1,
-    "gloss": "Each individual piece",
+    "gloss": "one by one",
     "part_of_speech": "adverb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quantity",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5304,
       "nikl_sense": null,
@@ -83404,9 +83306,7 @@
       "collocation": "하나하나 세다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -83473,10 +83373,10 @@
     "frequency_rank": 4255,
     "lemma": "감",
     "sense_index": 1,
-    "gloss": "Persimmon; material; Feelings",
+    "gloss": "a feeling, a sense",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "emotion",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5312,
       "nikl_sense": "12",
@@ -83484,9 +83384,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -83513,10 +83411,10 @@
     "frequency_rank": 4257,
     "lemma": "걷다",
     "sense_index": 2,
-    "gloss": "leg; a cloud vanishes; To walk; 1) Roll back /up one's sleeves 2)fold or furl up 3) finish work",
+    "gloss": "to roll up, to gather in",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5314,
       "nikl_sense": "03",
@@ -83524,9 +83422,7 @@
       "collocation": "소매를 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -83553,10 +83449,10 @@
     "frequency_rank": 4259,
     "lemma": "금",
     "sense_index": 1,
-    "gloss": "aurum, yellow metal, gold; a chink, a fissure, a flaw, a fracture, a rift, a crack; Gold; A line (draw)",
+    "gloss": "gold",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "nature",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5323,
       "nikl_sense": "06",
@@ -83564,9 +83460,7 @@
       "collocation": "황금",
       "nikl_level": "중급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -83873,10 +83767,10 @@
     "frequency_rank": 4275,
     "lemma": "면",
     "sense_index": 3,
-    "gloss": "queen; Subdivision of a county; Side; Cotton",
+    "gloss": "cotton",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "abstract",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5347,
       "nikl_sense": "07",
@@ -83884,9 +83778,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -84413,10 +84305,10 @@
     "frequency_rank": 4302,
     "lemma": "오",
     "sense_index": 1,
-    "gloss": "Oh, ah!; Five",
+    "gloss": "oh",
     "part_of_speech": "interjection",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "communication",
+    "concreteness": "function",
     "notes": {
       "source_rank": 5386,
       "nikl_sense": "02",
@@ -84424,9 +84316,7 @@
       "collocation": "오! 그래요?",
       "nikl_level": "중급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -84573,10 +84463,10 @@
     "frequency_rank": 4310,
     "lemma": "절",
     "sense_index": 3,
-    "gloss": "joss house; Bow in salutation; clause,paragraph; A Buddhist temple",
+    "gloss": "a verse, a clause",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "communication",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5401,
       "nikl_sense": "08",
@@ -84584,9 +84474,7 @@
       "collocation": "1장 1절",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -84893,10 +84781,10 @@
     "frequency_rank": 4326,
     "lemma": "판",
     "sense_index": 4,
-    "gloss": "a valve; a match, game, contest; a board; an event taking place, or the place where the event takes place",
+    "gloss": "an edition, a printing",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "communication",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5426,
       "nikl_sense": "10",
@@ -84904,19 +84792,17 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4327,
     "lemma": "평",
     "sense_index": 2,
-    "gloss": "a Pyeong, a square area about 2 square meters; A criticism",
+    "gloss": "a review, criticism",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "communication",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5427,
       "nikl_sense": "03",
@@ -84924,9 +84810,7 @@
       "collocation": "이 좋다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -85053,10 +84937,10 @@
     "frequency_rank": 4334,
     "lemma": "해답",
     "sense_index": 1,
-    "gloss": "A solution to a problem, an answer to a question",
+    "gloss": "a solution, an answer",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "cognition",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5435,
       "nikl_sense": null,
@@ -85064,9 +84948,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -85353,10 +85235,10 @@
     "frequency_rank": 4349,
     "lemma": "꼼꼼하다",
     "sense_index": 1,
-    "gloss": "very careful or meticulous, doing it in a very detailed manner",
+    "gloss": "to be meticulous",
     "part_of_speech": "adjective",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quality",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5464,
       "nikl_sense": null,
@@ -85364,9 +85246,7 @@
       "collocation": "꼼꼼하게 살펴보다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -85673,10 +85553,10 @@
     "frequency_rank": 4365,
     "lemma": "방울",
     "sense_index": 2,
-    "gloss": "A drop; A bell",
+    "gloss": "a small bell",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "abstract",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5492,
       "nikl_sense": "02",
@@ -85684,9 +85564,7 @@
       "collocation": "~이 울리다",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -86133,10 +86011,10 @@
     "frequency_rank": 4388,
     "lemma": "원",
     "sense_index": 2,
-    "gloss": "Goodness! Gracious!; A circle; A unit of south korean money, KRW",
+    "gloss": "a circle",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "quality",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5528,
       "nikl_sense": "12",
@@ -86144,9 +86022,7 @@
       "collocation": "~을 그리다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -86493,10 +86369,10 @@
     "frequency_rank": 4406,
     "lemma": "타다",
     "sense_index": 3,
-    "gloss": "Burn, blaze (firewood); Ride (bus); to cut with a saw 톱 in a back-and-forth motion; Put in, mix, dissolve",
+    "gloss": "to receive, to be paid",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "money",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5568,
       "nikl_sense": "04",
@@ -86504,9 +86380,7 @@
       "collocation": "월급을 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -86673,10 +86547,10 @@
     "frequency_rank": 4415,
     "lemma": "국내외",
     "sense_index": 1,
-    "gloss": "The inside and outside of a country or home and abroad",
+    "gloss": "at home and abroad",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "place",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5584,
       "nikl_sense": null,
@@ -86684,9 +86558,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -86733,10 +86605,10 @@
     "frequency_rank": 4418,
     "lemma": "기성",
     "sense_index": 1,
-    "gloss": "preconceived, established; To be already existing or established",
+    "gloss": "the established, ready-made",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "abstract",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5588,
       "nikl_sense": "08",
@@ -86744,9 +86616,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -86913,10 +86783,10 @@
     "frequency_rank": 4427,
     "lemma": "들이켜다",
     "sense_index": 1,
-    "gloss": "to quickly breathe in a liquid or air rather quickly",
+    "gloss": "to gulp down",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5604,
       "nikl_sense": "01",
@@ -86924,9 +86794,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -86953,10 +86821,10 @@
     "frequency_rank": 4429,
     "lemma": "라운드",
     "sense_index": 1,
-    "gloss": "라운드",
+    "gloss": "a round",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "activity",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5606,
       "nikl_sense": null,
@@ -86964,9 +86832,7 @@
       "collocation": "round",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": true
+      "curated": true
     }
   },
   {
@@ -87013,9 +86879,9 @@
     "frequency_rank": 4432,
     "lemma": "모",
     "sense_index": 2,
-    "gloss": "corner, angle, edge; A certain person, mr. Jones; a piece of hair, a toothbrush bristle",
+    "gloss": "a certain, some",
     "part_of_speech": "determiner",
-    "semantic_category": null,
+    "semantic_category": "grammar",
     "concreteness": "function",
     "notes": {
       "source_rank": 5613,
@@ -87024,19 +86890,17 @@
       "collocation": "김 모 씨",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4433,
     "lemma": "바퀴",
     "sense_index": 2,
-    "gloss": "Wheel; Cockroach",
+    "gloss": "a wheel",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "motion",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5615,
       "nikl_sense": "01",
@@ -87044,9 +86908,7 @@
       "collocation": "가 돌다; 수레 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -87333,10 +87195,10 @@
     "frequency_rank": 4448,
     "lemma": "씌우다",
     "sense_index": 1,
-    "gloss": "to force sth bad on sb by force; cover, crown, causative for the verb WEAR,PUT ON; Put a hat on somebody",
+    "gloss": "to put on someone's head",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5642,
       "nikl_sense": "01",
@@ -87344,9 +87206,7 @@
       "collocation": "아이에게 모자를 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -87653,10 +87513,10 @@
     "frequency_rank": 4464,
     "lemma": "조화되다",
     "sense_index": 1,
-    "gloss": "in harmony,agreement ; concordant, harmonious, matching, symmetrical",
+    "gloss": "to be in harmony",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "state",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5669,
       "nikl_sense": null,
@@ -87664,9 +87524,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -87733,10 +87591,10 @@
     "frequency_rank": 4468,
     "lemma": "착각하다",
     "sense_index": 1,
-    "gloss": "To misunderstand, to deceive oneself, to be having illucinations",
+    "gloss": "to be mistaken, to misperceive",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "cognition",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5680,
       "nikl_sense": null,
@@ -87744,9 +87602,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -88593,10 +88449,10 @@
     "frequency_rank": 4511,
     "lemma": "빨다",
     "sense_index": 2,
-    "gloss": "nurse; sip,suck; Wash the laundry",
+    "gloss": "to wash laundry",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5761,
       "nikl_sense": "02",
@@ -88604,9 +88460,7 @@
       "collocation": "옷을 ~",
       "nikl_level": "초급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -88653,10 +88507,10 @@
     "frequency_rank": 4514,
     "lemma": "상",
     "sense_index": 4,
-    "gloss": "Upper; his Majesty, the upper and first class, the upper, the first book of a series; a dining table; image, one's face, phase, aspect, phasis",
+    "gloss": "a dining table",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "food",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5764,
       "nikl_sense": "04",
@@ -88664,9 +88518,7 @@
       "collocation": "을 차리다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -88693,10 +88545,10 @@
     "frequency_rank": 4516,
     "lemma": "성",
     "sense_index": 3,
-    "gloss": "a stellar constellation; a castle, fortress; saint, sage; province or a provincial ministry, office, department",
+    "gloss": "a family name",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "people",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5768,
       "nikl_sense": "06",
@@ -88704,9 +88556,7 @@
       "collocation": "김 씨",
       "nikl_level": "초급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -88933,10 +88783,10 @@
     "frequency_rank": 4528,
     "lemma": "울리다",
     "sense_index": 2,
-    "gloss": "weigh; to make somebody cry, move sb to tears; To ring (a bell) ; to create an echo effect; To make (a baby) cry",
+    "gloss": "to make someone cry",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "emotion",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5793,
       "nikl_sense": "02",
@@ -88944,9 +88794,7 @@
       "collocation": "아기를 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -89473,10 +89321,10 @@
     "frequency_rank": 4555,
     "lemma": "확신",
     "sense_index": 1,
-    "gloss": "Conviction, firm belief; assuredness, certainty, certitude, confidence",
+    "gloss": "conviction, firm belief",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "cognition",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5841,
       "nikl_sense": "01",
@@ -89484,19 +89332,17 @@
       "collocation": "이 서다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4556,
     "lemma": "흐리다",
     "sense_index": 1,
-    "gloss": "Cloudy (weather); Be muddy, cloudy ; with a tint of",
+    "gloss": "to be cloudy, murky",
     "part_of_speech": "adjective",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "nature",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5845,
       "nikl_sense": "02",
@@ -89504,9 +89350,7 @@
       "collocation": "공기가; 날이 ~",
       "nikl_level": "초급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -89773,10 +89617,10 @@
     "frequency_rank": 4570,
     "lemma": "단",
     "sense_index": 2,
-    "gloss": "terrace; a column; platform, stage; stairs, a flight of stairs",
+    "gloss": "a tier, a step",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "place",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5881,
       "nikl_sense": "06",
@@ -89784,9 +89628,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -89893,10 +89735,10 @@
     "frequency_rank": 4576,
     "lemma": "뜻대로",
     "sense_index": 1,
-    "gloss": "뜻대로",
+    "gloss": "as one wishes",
     "part_of_speech": "adverb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "abstract",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5891,
       "nikl_sense": null,
@@ -89904,9 +89746,7 @@
       "collocation": "뜻대로 되다",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": true
+      "curated": true
     }
   },
   {
@@ -90013,10 +89853,10 @@
     "frequency_rank": 4582,
     "lemma": "묵다",
     "sense_index": 1,
-    "gloss": "Get old; Stay overnight s.w.",
+    "gloss": "to grow old, to age",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "state",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5902,
       "nikl_sense": "01",
@@ -90024,9 +89864,7 @@
       "collocation": "오래된 상태",
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -90133,10 +89971,10 @@
     "frequency_rank": 4588,
     "lemma": "뵈다",
     "sense_index": 2,
-    "gloss": "Contraction of 보이다; See (polite)",
+    "gloss": "to see an elder, humbly",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "social",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5914,
       "nikl_sense": "02",
@@ -90144,19 +89982,17 @@
       "collocation": "웃어른을 보다",
       "nikl_level": "중급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4589,
     "lemma": "부",
     "sense_index": 3,
-    "gloss": "mammon; A department, a part; assistant,deputy; wealth,riches",
+    "gloss": "a department, a part",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "work",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5915,
       "nikl_sense": "15",
@@ -90164,9 +90000,7 @@
       "collocation": "각 부의 책임자",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -90633,10 +90467,10 @@
     "frequency_rank": 4613,
     "lemma": "익히다",
     "sense_index": 2,
-    "gloss": "cook,boil; Habituate oneself to, to make used to",
+    "gloss": "to cook through",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "food",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 5959,
       "nikl_sense": "01",
@@ -90644,9 +90478,7 @@
       "collocation": "고기를 ~",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -90773,10 +90605,10 @@
     "frequency_rank": 4620,
     "lemma": "조정하다",
     "sense_index": 1,
-    "gloss": "To regulate,adjust,coordinate; conciliate, coordinate, reconcile, rectify",
+    "gloss": "to adjust, to coordinate",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 5971,
       "nikl_sense": "06",
@@ -90784,9 +90616,7 @@
       "collocation": null,
       "nikl_level": null,
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -91453,10 +91283,10 @@
     "frequency_rank": 4654,
     "lemma": "뒷산",
     "sense_index": 1,
-    "gloss": "a mountain or hill in the back of one's house or town",
+    "gloss": "the hill behind a house",
     "part_of_speech": "noun",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "place",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 6046,
       "nikl_sense": null,
@@ -91464,18 +91294,16 @@
       "collocation": "에 오르다",
       "nikl_level": "중급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
     "frequency_rank": 4655,
     "lemma": "땜",
     "sense_index": 1,
-    "gloss": "땜",
+    "gloss": "owing to, in casual speech",
     "part_of_speech": "bound noun",
-    "semantic_category": null,
+    "semantic_category": "grammar",
     "concreteness": "function",
     "notes": {
       "source_rank": 6047,
@@ -91484,9 +91312,7 @@
       "collocation": "때문",
       "nikl_level": null,
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": true
+      "curated": true
     }
   },
   {
@@ -91773,10 +91599,10 @@
     "frequency_rank": 4670,
     "lemma": "부르다",
     "sense_index": 2,
-    "gloss": "To be full; To call; to sing a song, read outloud a story",
+    "gloss": "to be full from eating",
     "part_of_speech": "adjective",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "state",
+    "concreteness": "abstract",
     "notes": {
       "source_rank": 6070,
       "nikl_sense": "02",
@@ -91784,9 +91610,7 @@
       "collocation": "배가 ~",
       "nikl_level": "초급",
       "topik_level": "B",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
@@ -91853,10 +91677,10 @@
     "frequency_rank": 4674,
     "lemma": "빠뜨리다",
     "sense_index": 1,
-    "gloss": "throw; Throw into (a river); entice, entrap",
+    "gloss": "to drop into, to let fall in",
     "part_of_speech": "verb",
-    "semantic_category": null,
-    "concreteness": null,
+    "semantic_category": "action",
+    "concreteness": "concrete",
     "notes": {
       "source_rank": 6077,
       "nikl_sense": null,
@@ -91864,9 +91688,7 @@
       "collocation": "바다에",
       "nikl_level": "중급",
       "topik_level": "C",
-      "curated": false,
-      "needs_review": true,
-      "no_dictionary_entry": false
+      "curated": true
     }
   },
   {
