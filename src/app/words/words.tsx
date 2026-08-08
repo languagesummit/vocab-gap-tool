@@ -15,12 +15,14 @@ import {
   tally,
   STATUS_FILTERS,
   RECALL_FILTERS,
+  SORTS,
   type BrowseRow,
   type Filters,
   type StatusFilter,
 } from "@/lib/local/browse";
 import type { Recall } from "@/lib/local/analysis";
 import { patternFor } from "@/lib/local/patterns";
+import { englishFor } from "@/lib/local/gaps";
 import {
   addPart,
   deckSize,
@@ -145,11 +147,29 @@ export function Words() {
           className="h-11 w-full rounded-lg border border-zinc-300 bg-transparent px-3 text-black placeholder:text-zinc-400 dark:border-zinc-700 dark:text-zinc-50"
         />
 
+        <label className="flex flex-col gap-1">
+          <span className="text-xs text-zinc-500">Sort by</span>
+          <select
+            value={filters.sort}
+            onChange={(e) =>
+              set("sort", e.target.value as (typeof SORTS)[number]["value"])
+            }
+            className="h-11 rounded-lg border border-zinc-300 bg-transparent px-2 text-sm text-black dark:border-zinc-700 dark:text-zinc-50"
+          >
+            {SORTS.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
+        </label>
+
         <div className="grid grid-cols-2 gap-3">
           <Select
             label="Category"
             value={filters.category}
             options={f.categories.map((c) => c.label)}
+            format={(v) => (englishFor(v) ? `${v} — ${englishFor(v)}` : v)}
             onChange={(v) => setFilters((p) => ({ ...p, category: v, sub: null }))}
           />
           <Select
@@ -157,6 +177,7 @@ export function Words() {
             value={filters.sub}
             options={subs}
             disabled={!filters.category}
+            format={(v) => (englishFor(v) ? `${v} — ${englishFor(v)}` : v)}
             onChange={(v) => set("sub", v)}
           />
           <Select
@@ -199,6 +220,7 @@ export function Words() {
             filters.level ||
             filters.statuses.size > 0 ||
             filters.recalls.size > 0 ||
+            filters.sort !== "frequency" ||
             filters.search) && (
             <button
               onClick={() => setFilters(emptyFilters())}

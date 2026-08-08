@@ -56,6 +56,21 @@ export const PATTERNS: Record<string, Pattern> = {
   "나가다#2": { form: "-아/어 나가다", means: "to go on doing" },
   "가지다#2": { form: "-아/어 가지고", means: "having done, and then" },
 
+  "드리다#1": { form: "-아/어 드리다", means: "to do for someone (humble)" },
+  "달다#1": { form: "-아/어 달라고 하다", means: "to ask someone to do it" },
+  "계시다#2": { form: "-고 계시다", means: "to be doing (honorific)" },
+  "아니하다#1": { form: "-지 아니하다", means: "to not do (formal)" },
+  "들다#3": { form: "-아/어 들다", means: "to set about doing" },
+  "척하다#1": { form: "-(으)ㄴ/는 척하다", means: "to pretend to" },
+  "갖다#2": { form: "-아/어 갖고", means: "having done, and then" },
+  "뻔하다#2": { form: "-(으)ㄹ 뻔하다", means: "to have nearly done" },
+  "듯싶다#1": { form: "-(으)ㄴ/는 듯싶다", means: "to seem like" },
+  "먹다#2": { form: "-아/어 먹다", means: "to do completely" },
+  "체하다#1": { form: "-(으)ㄴ/는 체하다", means: "to pretend to" },
+  "싶어지다#1": { form: "-고 싶어지다", means: "to come to want to" },
+  "죽다#2": { form: "-아/어 죽다", means: "to be dying of (intensely)" },
+  "치우다#2": { form: "-아/어 치우다", means: "to finish it off" },
+
   // Bound nouns that only appear inside a frame.
   "수#1": { form: "-(으)ㄹ 수 있다 / 없다", means: "can / cannot" },
   "것#1": { form: "-는 것", means: "the act of, the thing that" },
@@ -100,6 +115,22 @@ export function patternFor(key: string): Pattern | null {
 /** The answer a pattern should be tested against, falling back to the gloss. */
 export function patternMeaning(key: string, gloss: string): string {
   return PATTERNS[key]?.means ?? gloss;
+}
+
+/**
+ * Parts of speech that are bound by definition. A 보조용언 attaches to a main
+ * verb through a connective ending and a 의존명사 needs a modifier in front of
+ * it — neither ever stands alone, so the bare lemma is never the right prompt.
+ *
+ * Where no curated pattern exists the word is still *marked* as bound rather
+ * than given an invented one. Counters are the reason: 마리 takes a native
+ * numeral (한 마리) and 개월 a Sino-Korean one (삼 개월), and guessing wrong
+ * would teach bad Korean to someone with no way to notice.
+ */
+const BOUND_POS = new Set(["auxiliary", "bound noun"]);
+
+export function isBoundPos(pos: string | null): boolean {
+  return pos !== null && BOUND_POS.has(pos);
 }
 
 /**

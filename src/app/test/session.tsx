@@ -18,7 +18,7 @@ import {
   type Goal,
 } from "@/lib/local/goals";
 import { Intro } from "./intro";
-import { patternFor, patternMeaning } from "@/lib/local/patterns";
+import { isBoundPos, patternFor, patternMeaning } from "@/lib/local/patterns";
 
 // Distractors are drawn from nearby ranks so the wrong answers are plausible
 // rather than obviously advanced vocabulary.
@@ -468,9 +468,19 @@ export function Session() {
               </span>
             </>
           ) : (
-            <div className="text-7xl font-semibold text-black dark:text-zinc-50">
-              {current.lemma}
-            </div>
+            <>
+              <div className="text-7xl font-semibold text-black dark:text-zinc-50">
+                {current.lemma}
+              </div>
+              {isBoundPos(current.pos) && (
+                // No curated pattern for this one, but it is still bound —
+                // saying so beats letting it look like an ordinary word you
+                // ought to recognise on its own.
+                <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs text-zinc-500 dark:bg-zinc-900">
+                  never used alone — attaches to another word
+                </span>
+              )}
+            </>
           )}
           {/* Only set where the lemma repeats, so its presence is itself the
               signal that this word has more than one sense in the list. */}

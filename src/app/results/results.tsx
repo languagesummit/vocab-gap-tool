@@ -5,7 +5,7 @@ import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, saveProgress, type Progress } from "@/lib/local/progress";
 import { BasisToggle, SplitBar, type Basis } from "@/components/split-bar";
-import { PATTERNS } from "@/lib/local/patterns";
+import { allStaleKeys, staleAnswers } from "@/lib/local/revisions";
 import { saveGoal } from "@/lib/local/goals";
 import {
   analyse,
@@ -70,20 +70,15 @@ export function Results() {
   const knownTimed =
     a.recall.automatic.length + a.recall.solid.length + a.recall.effortful.length;
 
-  /**
-   * Grammar patterns answered before the test showed them as patterns. Those
-   * answers judged a bare 수 or auxiliary 있다, which is a different question
-   * from the one the words are now asked as, so they are worth redoing.
-   */
-  const answeredPatterns = Object.keys(PATTERNS).filter(
-    (key) => progress?.words[key]
-  );
+  // Answers given before a change to how their word is asked.
+  const stale = staleAnswers(progress, words);
+  const staleKeys = allStaleKeys(stale);
 
-  /** Re-asks the grammar patterns, now that they're shown in context. */
-  function retestPatterns() {
+  /** Clears the stale answers and queues exactly those words. */
+  function retestStale() {
     if (!words) return;
     const next = loadProgress();
-    for (const key of answeredPatterns) delete next.words[key];
+    for (const key of staleKeys) delete next.words[key];
     let highest = 0;
     for (const word of words) {
       if (next.words[word.key] && word.rank > highest) highest = word.rank;
@@ -93,8 +88,8 @@ export function Results() {
     setProgress({ ...next });
     saveGoal({
       kind: "words",
-      keys: answeredPatterns,
-      label: `${answeredPatterns.length} grammar patterns`,
+      keys: staleKeys,
+      label: `${staleKeys.length} words to re-ask`,
     });
   }
 
@@ -192,32 +187,38 @@ export function Results() {
         </Card>
       )}
 
-      {answeredPatterns.length > 0 && (
-        <Card>
-          <h2 className="font-semibold text-black dark:text-zinc-50">
-            Grammar patterns are now asked in context
+      {stale.length > 0 && (
+        <Card tone="amber">
+          <h2 className="font-semibold text-amber-900 dark:text-amber-200">
+            {staleKeys.length.toLocaleString()}{" "}
+            {staleKeys.length === 1 ? "answer predates" : "answers predate"} a
+            change
           </h2>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            Words like 수 and auxiliary 있다 don&apos;t exist on their own — you
-            know them as{" "}
-            <span className="font-medium text-black dark:text-zinc-50">
-              -(으)ㄹ 수 있다
-            </span>{" "}
-            and{" "}
-            <span className="font-medium text-black dark:text-zinc-50">
-              -고 있다
-            </span>
-            . Asked bare, they test whether you know grammar terminology rather
-            than whether you can use the language, so the test now shows the
-            pattern. {answeredPatterns.length} of them were answered under the
-            old prompt.
+          <p className="mt-1 text-sm text-amber-900/80 dark:text-amber-200/80">
+            The rest of your data is unaffected — only words whose question
+            actually changed are listed here.
           </p>
+          <ul className="mt-3 flex flex-col gap-3">
+            {stale.map(({ revision, keys }) => (
+              <li key={revision.id} className="text-sm">
+                <span className="font-medium text-amber-900 dark:text-amber-200">
+                  {revision.title}
+                </span>
+                <span className="ml-2 text-xs text-amber-900/60 dark:text-amber-200/60">
+                  {revision.date} · {keys.length.toLocaleString()} affected
+                </span>
+                <span className="mt-0.5 block text-amber-900/80 dark:text-amber-200/80">
+                  {revision.detail}
+                </span>
+              </li>
+            ))}
+          </ul>
           <Link
             href="/test"
-            onClick={retestPatterns}
-            className="mt-4 flex h-12 items-center justify-center rounded-lg border border-zinc-300 px-5 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+            onClick={retestStale}
+            className="mt-4 flex h-12 items-center justify-center rounded-lg bg-amber-600 px-5 font-medium text-white transition hover:bg-amber-700"
           >
-            Re-ask those {answeredPatterns.length} in context
+            Re-ask those {staleKeys.length.toLocaleString()}
           </Link>
         </Card>
       )}

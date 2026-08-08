@@ -104,11 +104,39 @@ prompt, because those answers judged a different question.
 
 Ordinary words are untouched — for them the bare lemma *is* the question.
 
+Round five:
+
+- **All 33 auxiliaries now carry patterns**, not just the frequent ones. Checked
+  the question directly: there is no "plain auxiliary" category to leave alone.
+  A 보조용언 attaches to a main verb through a connective ending and a 의존명사
+  needs a modifier — being bound is what those parts of speech *are*, so the
+  part-of-speech tag is itself the signal.
+- **Bound words with no curated pattern are still marked as bound** rather than
+  given an invented one. 98 bound nouns are uncurated, mostly counters, and
+  guessing between a native numeral (한 마리) and a Sino-Korean one (삼 개월)
+  would teach bad Korean to someone with no way to notice. They show "never
+  used alone — attaches to another word" instead.
+- **Sorting on `/words`**: commonest first (default), A–Z in 가나다 order, TOPIK
+  level, slowest-recall first. Frequency stays the tie-breaker under all of them.
+- **English in the category and subject dropdowns**, matching the rest of the UI.
+- **Changes that invalidate answers are now tracked** (`revisions.ts`). A dated
+  entry lists what changed and which words it touches; `/results` shows how many
+  of your answers predate it, says the rest are unaffected, and offers to re-ask
+  exactly those. This exists because "I'm unsure what's changing and whether to
+  restart my data" is a question the tool should answer rather than leave to
+  guesswork. Only list changes that alter *the question* — renaming a button
+  doesn't belong, and padding the list would train people to ignore it.
+
 Still open:
 
+- **Multi-language UI.** Everything explanatory is English-only, which is fine
+  for an English-speaking Korean learner and wrong for anyone else. Wanted:
+  interface strings translatable, and a switch to turn menu translation *off*
+  entirely so someone who wants only the target language sees only that. Worth
+  doing before a second target language, since the same machinery serves both.
 - **`/read` has no sample text**, so it opens on an empty box.
-- **The pattern list stops at rank ~700.** 163 bound entries exist in total;
-  the 51 curated are the frequent ones. The rest still show bare.
+- **The pattern list stops at rank ~700 for bound nouns.** 65 are curated; 98
+  remain, and those now show the bound marker rather than a fabricated form.
 - **A built-in flashcard reviewer** is the eventual goal; Anki export is the
   stopgap.
 - **Commercial framing.** If this ever competes with LingQ, the difference to

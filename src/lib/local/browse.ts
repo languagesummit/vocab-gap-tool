@@ -32,7 +32,17 @@ export const RECALL_FILTERS: Array<{ value: Recall; label: string }> = [
   { value: "effortful", label: "Slow — worth drilling" },
 ];
 
+export type SortKey = "frequency" | "alphabetical" | "level" | "recall";
+
+export const SORTS: Array<{ value: SortKey; label: string }> = [
+  { value: "frequency", label: "Commonest first" },
+  { value: "alphabetical", label: "A–Z (가나다)" },
+  { value: "level", label: "TOPIK level" },
+  { value: "recall", label: "Slowest first" },
+];
+
 export type Filters = {
+  sort: SortKey;
   category: string | null;
   sub: string | null;
   pos: string | null;
@@ -43,6 +53,7 @@ export type Filters = {
 };
 
 export const emptyFilters = (): Filters => ({
+  sort: "frequency",
   category: null,
   sub: null,
   pos: null,
@@ -98,8 +109,32 @@ export function filterWords(
     rows.push({ word, status, recall });
   }
 
-  // Commonest first, always. Everything else is a filter, not an ordering.
-  return rows.sort((a, b) => a.word.rank - b.word.rank);
+  // Frequency is the tie-breaker under every other ordering, since within any
+  // equal group the commoner word is still the one worth meeting first.
+  const byRank = (a: BrowseRow, b: BrowseRow) => a.word.rank - b.word.rank;
+  const RANK: Record<Recall, number> = { effortful: 0, solid: 1, automatic: 2 };
+
+  switch (filters.sort) {
+    case "alphabetical":
+      return rows.sort(
+        (a, b) => a.word.lemma.localeCompare(b.word.lemma, "ko") || byRank(a, b)
+      );
+    case "level":
+      // Ungraded words sort last rather than first, where a missing level would
+      // otherwise masquerade as level zero.
+      return rows.sort(
+        (a, b) =>
+          (a.word.lv.topik ?? 99) - (b.word.lv.topik ?? 99) || byRank(a, b)
+      );
+    case "recall":
+      return rows.sort(
+        (a, b) =>
+          (a.recall ? RANK[a.recall] : 3) - (b.recall ? RANK[b.recall] : 3) ||
+          byRank(a, b)
+      );
+    default:
+      return rows.sort(byRank);
+  }
 }
 
 /** Counts per status for the current slice, so the filter bar can show them. */
