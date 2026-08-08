@@ -57,11 +57,45 @@ content recommendation to fill gaps).
    coverage), top 200 ranks hand-curated with categories.
 4. ✅ Per-word test UI: translation MCQ, 3s timer, keyboard 1–4 and space,
    frontier progress, resumable sessions.
-5. Curate glosses beyond rank 200 (5,644 rows still flagged `needs_review`).
-6. Pre-generated constrained-definition test mode.
-7. Analytics: category × status heatmap, coverage breakdown.
+5. 🔄 Curate glosses beyond rank 200. Ranks 1–1000 clean; ~694 left at
+   rank 1001+. See [GLOSSING.md](GLOSSING.md) — conventions, the batch loop,
+   and which glosses are known to be shaky. `node scripts/audit-glosses.mjs`
+   is the live count.
+6. ✅ Results page: known-count as a range, breakdown by frequency band and
+   part of speech, missed/timed-out word lists, recall speed.
+7. Cloze mode — pick which of two Korean words fits a sentence. Tests usage
+   rather than recognition, and is the only way to test words that resist a
+   one-line gloss (어쩌다). Needs one example sentence per entry, generated at
+   build time. Route to it from the recall bands: automatic → done, effortful
+   or timed-out → confirm by cloze.
 8. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
-9. Image-based MCQ for concrete nouns (after sourcing decision).
+   **Blocked on a validity question** — see "Open questions" below.
+9. Analytics: category × status heatmap. Blocked: `category` is null for
+   5,697 of 5,897 entries; only the curated top 200 carry one. Curation
+   fills this in as it goes.
+10. Coverage engine — Korean lemmatiser plus scoring a text against the known
+    set. The shared spine both content features need; neither YouTube
+    matching nor graded readers can start before it exists.
+11. Graded readers (shared, not individualised; reviewable). Then YouTube
+    discovery by transcript coverage — note the official API only returns
+    captions for videos you own, so transcript access needs a decision.
+12. Image-based MCQ for concrete nouns (after sourcing decision).
+
+## Open questions
+
+- **Does recognition testing overstate coverage?** The 95/98% comprehension
+  thresholds may have been validated against a deeper level of word knowledge
+  than 2-choice recognition. If so, the scorer in phase 8 would read
+  optimistic and needs recalibrating before anything is built on it.
+- **Do the coverage thresholds transfer to Korean?** They come mostly from
+  English research, where "word family" is a cleaner unit than in an
+  agglutinative language.
+- **L1 vs L2 study at intermediate level.** Working hypothesis: difficulty
+  reading authentic Korean at TOPIK 4 is a coverage threshold effect, not a
+  learning-style one — below the threshold, monolingual input isn't
+  comprehensible enough to learn from. If true, this tool measures exactly
+  the thing that answers the question, and the results page should report
+  distance to the next threshold rather than a bare word count.
 
 ## Regenerating the word data
 
