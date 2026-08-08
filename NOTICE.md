@@ -16,7 +16,19 @@ The user-facing version of this lives at `/credits`.
 | 국립국어원 국제 통용 한국어 표준 교육과정 적용 연구 4단계 (2017) | TOPIK levels 1–6 | 공공누리 제1유형 | Attribution |
 | 국립국어원 한국어 교육 어휘 내용 개발 4단계 (2015) | Semantic categories (대범주/소범주) | 공공누리 제1유형 | Attribution |
 | TOPIK 어휘 목록 (한국어능력시험, 2015) | TOPIK I / II tier | Believed 공공누리; **not yet confirmed** | Attribution, pending confirmation |
+| 국립국어원 국제 통용 한국어 표준 교육과정 4단계 — 문법 sheet (2017) | 336 grammar points graded 1급–6급 | 공공누리 제1유형 | Attribution |
+| [Tatoeba](https://tatoeba.org/) | 15,868 Korean sentences — the corpus the lemmatiser is measured against | CC BY 2.0 FR | Attribution |
 | [combined_korean_vocabulary_list](https://github.com/julienshim/combined_korean_vocabulary_list) | The merged NIKL + TOPIK TSV we ingested | No licence file | Credited as the intermediate; the underlying data is the two government lists above |
+
+## Not sourced — written for this project
+
+Listed apart because presenting editorial work as published data would be the
+most misleading thing here. The rewritten English meanings, the grammar patterns
+for bound words, and the English names given to the subject categories were all
+produced for this project with AI assistance. They carry no authority beyond it
+and no Korean speaker has reviewed them. The lemmatiser is likewise written
+here, rule-based, with its accuracy measured against Tatoeba rather than
+asserted.
 
 ## kengdic and MPL 2.0 — the one with real obligations
 

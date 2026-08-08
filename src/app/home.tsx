@@ -272,12 +272,12 @@ export function Home() {
       </section>
 
       <footer className="text-xs text-zinc-500">
-        Word list, meanings, levels and categories come from 국립국어원, TOPIK
-        and kengdic —{" "}
+        Word list, meanings, levels, categories and grammar come from 국립국어원,
+        TOPIK, kengdic and Tatoeba —{" "}
         <Link href="/credits" className="underline hover:text-black dark:hover:text-zinc-50">
-          credits and licences
+          sources and method
         </Link>
-        .
+        , including how every number here is worked out.
       </footer>
     </main>
   );
