@@ -64,9 +64,26 @@ Round two:
   asked. Same mechanism as the from-a-text loop.
 - **TOPIK 3** added to the goal list.
 
+Round three — Anki deck building:
+
+- **Decks are built from several slices, not one filter.** Filter, "Add these N
+  words", change the filters, add again. Colours + animals + jobs + the slow
+  ones come out as a single deck. Overlap is deduplicated, so a word in two
+  slices exports once; verified on a 4-slice build that 401 raw became 396
+  unique with zero duplicate fronts in the file.
+- **Filter by recall speed.** "Slow — worth drilling" selects known words that
+  took a long time. They count as known and still break reading, which makes
+  them exactly the flashcard pile, and they were previously unreachable.
+- Every axis is now exportable: status (didn't know / timed out / never asked),
+  recall speed, subject, word type, TOPIK level, free-text search — and the
+  unknown words of a scored text, via a button on `/read`.
+- The basket lives in localStorage, so it survives navigating away and back.
+
 Still open:
 
 - **`/read` has no sample text**, so it opens on an empty box.
+- **A built-in flashcard reviewer** is the eventual goal; Anki export is the
+  stopgap.
 - **Commercial framing.** If this ever competes with LingQ, the difference to
   lead with is that LingQ counts word *forms* — Korean inflection inflates its
   numbers badly, which is why it felt useless — while this is lemma-based and

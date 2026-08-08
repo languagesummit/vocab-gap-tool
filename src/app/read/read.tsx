@@ -5,6 +5,7 @@ import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
 import { loadProgress, type Progress } from "@/lib/local/progress";
 import { saveGoal } from "@/lib/local/goals";
+import { addPart, loadDeck, saveDeck } from "@/lib/local/deck";
 import { useRouter } from "next/navigation";
 import { buildIndex } from "@/lib/korean/lemmatize";
 import {
@@ -165,6 +166,21 @@ function Result({
             className="mt-4 flex h-12 w-full items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black"
           >
             Test me on these {score.toLearn.length.toLocaleString()} words
+          </button>
+          <button
+            onClick={() => {
+              saveDeck(
+                addPart(
+                  loadDeck(),
+                  `${score.toLearn.length} words from a text`,
+                  score.toLearn.map((t) => t.word.key)
+                )
+              );
+              router.push("/words");
+            }}
+            className="mt-2 flex h-12 w-full items-center justify-center rounded-lg border border-zinc-300 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+          >
+            Add them to an Anki deck
           </button>
           <ul className="mt-4 flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
             {score.toLearn.slice(0, 60).map(({ word, count }) => (

@@ -14,10 +14,22 @@ import {
   sliceLabel,
   tally,
   STATUS_FILTERS,
+  RECALL_FILTERS,
   type BrowseRow,
   type Filters,
   type StatusFilter,
 } from "@/lib/local/browse";
+import type { Recall } from "@/lib/local/analysis";
+import {
+  addPart,
+  deckSize,
+  deckWords,
+  loadDeck,
+  overlapWith,
+  removePart,
+  saveDeck,
+  type Deck,
+} from "@/lib/local/deck";
 import {
   downloadText,
   exportFilename,
@@ -34,15 +46,23 @@ export function Words() {
   const [error, setError] = useState<string | null>(null);
   const [filters, setFilters] = useState<Filters>(emptyFilters);
   const [side, setSide] = useState<CardSide>("recognition");
+  const [deck, setDeck] = useState<Deck>({ parts: [] });
 
   useEffect(() => {
     // localStorage is client-only, so state has to be filled in after mount.
-    /* eslint-disable-next-line react-hooks/set-state-in-effect */
+    /* eslint-disable react-hooks/set-state-in-effect */
     setProgress(loadProgress());
+    setDeck(loadDeck());
+    /* eslint-enable react-hooks/set-state-in-effect */
     loadWords()
       .then(setWords)
       .catch((e: Error) => setError(e.message));
   }, []);
+
+  function updateDeck(next: Deck) {
+    saveDeck(next);
+    setDeck(next);
+  }
 
   const f = useMemo(() => (words ? facets(words) : null), [words]);
   const rows = useMemo(
@@ -76,6 +96,15 @@ export function Words() {
     setFilters((prev) => ({ ...prev, [key]: value }));
   }
 
+  function toggleRecall(value: Recall) {
+    setFilters((prev) => {
+      const next = new Set(prev.recalls);
+      if (next.has(value)) next.delete(value);
+      else next.add(value);
+      return { ...prev, recalls: next };
+    });
+  }
+
   function toggleStatus(value: StatusFilter) {
     setFilters((prev) => {
       const next = new Set(prev.statuses);
@@ -86,15 +115,11 @@ export function Words() {
   }
 
   function exportDeck() {
-    if (!progress) return;
-    downloadText(
-      exportFilename(sliceLabel(filters)),
-      toAnkiTsv(
-        rows.map((r) => r.word),
-        progress,
-        side
-      )
-    );
+    if (!progress || !words) return;
+    const chosen = deckWords(deck, words);
+    const name =
+      deck.parts.length === 1 ? deck.parts[0].label : `${deck.parts.length}-part`;
+    downloadText(exportFilename(name), toAnkiTsv(chosen, progress, side));
   }
 
   return (
@@ -172,6 +197,7 @@ export function Words() {
             filters.pos ||
             filters.level ||
             filters.statuses.size > 0 ||
+            filters.recalls.size > 0 ||
             filters.search) && (
             <button
               onClick={() => setFilters(emptyFilters())}
@@ -180,6 +206,25 @@ export function Words() {
               Clear
             </button>
           )}
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {RECALL_FILTERS.map((r) => {
+            const on = filters.recalls.has(r.value);
+            return (
+              <button
+                key={r.value}
+                onClick={() => toggleRecall(r.value)}
+                className={`rounded-full border px-3 py-1.5 text-xs transition ${
+                  on
+                    ? "border-black bg-black text-white dark:border-zinc-50 dark:bg-zinc-50 dark:text-black"
+                    : "border-zinc-300 text-zinc-600 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-900"
+                }`}
+              >
+                {r.label}
+              </button>
+            );
+          })}
         </div>
 
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
@@ -229,41 +274,103 @@ export function Words() {
 
       <section className="flex flex-col gap-3 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
         <h2 className="font-semibold text-black dark:text-zinc-50">
-          Send to Anki
+          Build an Anki deck
         </h2>
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          Exports the {rows.length.toLocaleString()} words currently filtered, as
-          a tab-separated file Anki imports directly. Category, part of speech,
-          level, rank band and status all come across as tags, so the deck can
-          be re-sliced after import.
+          Add this slice, change the filters, add another. Colours, then animals,
+          then job words — they come out as one deck. Words in more than one
+          slice are only exported once.
         </p>
-        <div className="flex gap-2">
-          {(
-            [
-              ["recognition", "Korean → English"],
-              ["recall", "English → Korean"],
-            ] as const
-          ).map(([value, label]) => (
-            <button
-              key={value}
-              onClick={() => setSide(value)}
-              className={`flex-1 rounded-lg border px-3 py-2 text-sm transition ${
-                side === value
-                  ? "border-black bg-black text-white dark:border-zinc-50 dark:bg-zinc-50 dark:text-black"
-                  : "border-zinc-300 text-black hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+
         <button
-          onClick={exportDeck}
+          onClick={() =>
+            updateDeck(
+              addPart(
+                deck,
+                sliceLabel(filters) ?? "all words",
+                rows.map((r) => r.word.key)
+              )
+            )
+          }
           disabled={rows.length === 0}
-          className="flex h-12 items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 disabled:opacity-40 dark:bg-zinc-50 dark:text-black"
+          className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 font-medium text-black transition hover:bg-zinc-50 disabled:opacity-30 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
         >
-          Download {rows.length.toLocaleString()} cards
+          Add these {rows.length.toLocaleString()} words
+          {deck.parts.length > 0 && overlapWith(deck, rows.map((r) => r.word.key)) > 0 && (
+            <span className="ml-2 text-xs font-normal text-zinc-500">
+              {overlapWith(deck, rows.map((r) => r.word.key)).toLocaleString()}{" "}
+              already in
+            </span>
+          )}
         </button>
+
+        {deck.parts.length > 0 && (
+          <>
+            <ul className="flex flex-col divide-y divide-zinc-100 dark:divide-zinc-800">
+              {deck.parts.map((part) => (
+                <li
+                  key={part.id}
+                  className="flex items-baseline justify-between gap-3 py-2 text-sm"
+                >
+                  <span className="min-w-0 truncate text-black dark:text-zinc-50">
+                    {part.label}
+                  </span>
+                  <span className="flex shrink-0 items-baseline gap-3">
+                    <span className="text-zinc-500">
+                      {part.keys.length.toLocaleString()}
+                    </span>
+                    <button
+                      onClick={() => updateDeck(removePart(deck, part.id))}
+                      className="text-xs text-zinc-400 underline hover:text-red-600"
+                    >
+                      remove
+                    </button>
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="flex gap-2">
+              {(
+                [
+                  ["recognition", "Korean → English"],
+                  ["recall", "English → Korean"],
+                ] as const
+              ).map(([value, label]) => (
+                <button
+                  key={value}
+                  onClick={() => setSide(value)}
+                  className={`flex-1 rounded-lg border px-3 py-2 text-sm transition ${
+                    side === value
+                      ? "border-black bg-black text-white dark:border-zinc-50 dark:bg-zinc-50 dark:text-black"
+                      : "border-zinc-300 text-black hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={exportDeck}
+              className="flex h-12 items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black"
+            >
+              Download {deckSize(deck).toLocaleString()} cards
+            </button>
+            <button
+              onClick={() => updateDeck({ parts: [] })}
+              className="text-xs text-zinc-500 underline"
+            >
+              Empty the deck
+            </button>
+          </>
+        )}
+
+        <p className="text-xs text-zinc-500">
+          Tab-separated, with Anki&apos;s import settings in the header. Subject,
+          word type, TOPIK level, rank band, status and recall speed all travel
+          as tags, so the deck can be re-sliced after import.
+        </p>
       </section>
 
       <div className="flex flex-col divide-y divide-zinc-100 rounded-xl border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">

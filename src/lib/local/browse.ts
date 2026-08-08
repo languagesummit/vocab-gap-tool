@@ -21,12 +21,24 @@ export const STATUS_FILTERS: Array<{ value: StatusFilter; label: string }> = [
   { value: "untested", label: "Never asked" },
 ];
 
+/**
+ * Known words split by how readily they came back. "Slow" is the interesting
+ * one for study: it counts as known, but a word you have to dig for still
+ * breaks reading, and it is exactly the pile worth putting on a flashcard.
+ */
+export const RECALL_FILTERS: Array<{ value: Recall; label: string }> = [
+  { value: "automatic", label: "Instant" },
+  { value: "solid", label: "Solid" },
+  { value: "effortful", label: "Slow — worth drilling" },
+];
+
 export type Filters = {
   category: string | null;
   sub: string | null;
   pos: string | null;
   level: number | null;
   statuses: Set<StatusFilter>;
+  recalls: Set<Recall>;
   search: string;
 };
 
@@ -36,6 +48,7 @@ export const emptyFilters = (): Filters => ({
   pos: null,
   level: null,
   statuses: new Set<StatusFilter>(),
+  recalls: new Set<Recall>(),
   search: "",
 });
 
@@ -66,6 +79,14 @@ export function filterWords(
     const status = statusOf(progress, word);
     if (filters.statuses.size > 0 && !filters.statuses.has(status)) continue;
 
+    const record = progress.words[word.key];
+    const recall = record ? recallOf(record) : null;
+    // Recall only exists for known words that carry a timing, so filtering on
+    // it necessarily excludes everything else rather than silently keeping it.
+    if (filters.recalls.size > 0 && (!recall || !filters.recalls.has(recall))) {
+      continue;
+    }
+
     if (
       needle &&
       !word.lemma.toLowerCase().includes(needle) &&
@@ -74,12 +95,7 @@ export function filterWords(
       continue;
     }
 
-    const record = progress.words[word.key];
-    rows.push({
-      word,
-      status,
-      recall: record ? recallOf(record) : null,
-    });
+    rows.push({ word, status, recall });
   }
 
   // Commonest first, always. Everything else is a filter, not an ordering.
@@ -126,5 +142,13 @@ export function facets(words: Word[]) {
 
 /** A short name for the current slice, used for the export filename. */
 export function sliceLabel(filters: Filters): string | null {
-  return filters.sub ?? filters.category ?? filters.pos ?? null;
+  const parts = [
+    filters.sub ?? filters.category ?? null,
+    filters.pos,
+    filters.level ? `TOPIK ${filters.level}` : null,
+    filters.recalls.size === 1 ? [...filters.recalls][0] : null,
+    filters.statuses.size === 1 ? [...filters.statuses][0] : null,
+    filters.search.trim() || null,
+  ].filter(Boolean);
+  return parts.length > 0 ? parts.join(" · ") : null;
 }
