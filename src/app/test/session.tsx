@@ -18,7 +18,13 @@ import {
   type Goal,
 } from "@/lib/local/goals";
 import { Intro } from "./intro";
-import { isBoundPos, patternFor, patternMeaning } from "@/lib/local/patterns";
+import {
+  counterCount,
+  counterUnits,
+  isBoundPos,
+  patternFor,
+  patternMeaning,
+} from "@/lib/local/patterns";
 
 // Distractors are drawn from nearby ranks so the wrong answers are plausible
 // rather than obviously advanced vocabulary.
@@ -52,6 +58,13 @@ export function Session() {
   const [expired, setExpired] = useState<Word | null>(null);
 
   const progressRef = useRef<Progress | null>(null);
+  /**
+   * Words taken back with Undo. Once a word and its options have been seen,
+   * answering it again measures recognition-after-exposure rather than recall,
+   * so a fast second attempt is not the same evidence as a fast first one and
+   * must not be recorded as though it were.
+   */
+  const reAsked = useRef<Set<string>>(new Set());
   // Time left on the current word, carried across pauses.
   const remainingRef = useRef(0);
   const startedAt = useRef(0);
@@ -131,6 +144,31 @@ export function Session() {
     }
 
     const answer = patternMeaning(current.key, current.gloss);
+
+    // A counter asked against ordinary glosses gives itself away: only one
+    // option is a countable unit. So the wrong answers are other counters,
+    // all wearing the same number as the question.
+    const count = counterCount(current.key);
+    if (count) {
+      const others = counterUnits().filter((u) => u.key !== current.key);
+      const chosen: string[] = [];
+      let n = current.rank * 2654435761;
+      while (chosen.length < choices - 1 && others.length > 0) {
+        n = (n * 1103515245 + 12345) & 0x7fffffff;
+        const pick = others.splice(n % others.length, 1)[0];
+        const text = `${count} ${pick.unit}`;
+        if (text !== answer && !chosen.includes(text)) chosen.push(text);
+      }
+      const all = [answer, ...chosen];
+      let cs = current.rank * 40503;
+      for (let i = all.length - 1; i > 0; i--) {
+        cs = (cs * 1103515245 + 12345) & 0x7fffffff;
+        const j = cs % (i + 1);
+        [all[i], all[j]] = [all[j], all[i]];
+      }
+      return all;
+    }
+
     const picked: string[] = [];
     const seen = new Set<string>([answer, current.gloss]);
     // Deterministic per word so a re-render doesn't reshuffle mid-question.
@@ -172,7 +210,8 @@ export function Session() {
       saved.words[word.key] = {
         status,
         at: Date.now(),
-        ms: timedOut ? null : activeMs,
+        // No timing for a word already seen this session — see `reAsked`.
+        ms: timedOut || reAsked.current.has(word.key) ? null : activeMs,
         chars: options.reduce((n, o) => n + o.length, 0),
       };
       saved.frontierRank = Math.max(saved.frontierRank, word.rank);
@@ -196,6 +235,7 @@ export function Session() {
     const undone = saved.words[previous.key];
     if (undone) {
       delete saved.words[previous.key];
+      reAsked.current.add(previous.key);
       setTally((t) => ({
         ...t,
         [undone.status]: Math.max(0, t[undone.status] - 1),

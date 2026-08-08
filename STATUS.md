@@ -127,6 +127,28 @@ Round five:
   guesswork. Only list changes that alter *the question* — renaming a button
   doesn't belong, and padding the list would train people to ignore it.
 
+Round six:
+
+- **Counter distractors carry the same number as the question.** Asked 세 개
+  against "items, pieces" / "minute" / "of that amount", the numeral gave the
+  answer away — only one option was countable that way. Every option for a
+  counter is now another counter wearing the same number: "three items, pieces"
+  / "three won" / "three percent". Units are stored plural and no counter uses
+  "one", so any unit reads correctly with any other counter's number.
+- **Undo no longer hands out a free fast time.** Taking a word back and
+  answering it again used to restart the clock, so a word you had struggled
+  with could be recorded as instant. Once a word and its options have been
+  seen, a quick second answer measures recognition-after-exposure rather than
+  recall, so re-asked words now record **no timing** — the status still counts,
+  the speed doesn't.
+- **Any slice can be re-asked, not just untested ones.** Filter to the instant
+  words, or a category you've finished, and "Re-ask these N" clears those
+  answers and takes fresh ones including fresh timings.
+- **The intro says speed is part of the answer** — that a word returning
+  instantly counts as more securely known than one dug for, that both are
+  "known" but only one won't interrupt reading, and that a re-asked word records
+  no time.
+
 Still open:
 
 - **Multi-language UI.** Everything explanatory is English-only, which is fine

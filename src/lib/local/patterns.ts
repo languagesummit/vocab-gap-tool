@@ -24,6 +24,16 @@ export type Pattern = {
   /** How the word is actually met. */
   form: string;
   /**
+   * Counters carry their meaning split from their number, because the number
+   * must not be a clue. Asked "한 개" against answers "item, piece" / "minute"
+   * / "of that amount", the numeral gives it away — only one option is even
+   * countable that way. So every option for a counter is rendered with the
+   * same number, and the counter itself becomes the question.
+   */
+  unit?: string;
+  /** The English number to put in front of every option. */
+  count?: string;
+  /**
    * What the *pattern* means, which is not what the bare word means. Asking
    * "-(으)ㄹ 수 있다" and answering "possibility" would be incoherent: the
    * dictionary gloss describes the bound noun in the abstract, while the
@@ -90,22 +100,22 @@ export const PATTERNS: Record<string, Pattern> = {
   "터#1": { form: "-(으)ㄹ 터이다", means: "intend to, be about to" },
 
   // Counters and units — met with a number, never bare.
-  "년#1": { form: "이천 년", means: null },
-  "일#2": { form: "삼 일", means: null },
-  "명#1": { form: "두 명", means: null },
-  "개#1": { form: "한 개", means: null },
-  "번#1": { form: "세 번", means: null },
-  "원#1": { form: "천 원", means: null },
-  "시#1": { form: "세 시", means: null },
-  "분#1": { form: "십 분", means: null },
-  "살#1": { form: "스무 살", means: null },
-  "달#1": { form: "두 달", means: null },
-  "가지#1": { form: "몇 가지", means: null },
-  "퍼센트#1": { form: "십 퍼센트", means: null },
-  "년대#1": { form: "구십 년대", means: null },
-  "씨#1": { form: "마이클 씨", means: null },
-  "분#2": { form: "한 분", means: null },
-  "대#1": { form: "삼십 대", means: null },
+  "년#1": { form: "삼 년", means: null, unit: "years", count: "three" },
+  "일#2": { form: "삼 일", means: null, unit: "days", count: "three" },
+  "명#1": { form: "두 명", means: null, unit: "people", count: "two" },
+  "개#1": { form: "세 개", means: null, unit: "items, pieces", count: "three" },
+  "번#1": { form: "세 번", means: null, unit: "times", count: "three" },
+  "원#1": { form: "천 원", means: null, unit: "won", count: "a thousand" },
+  "시#1": { form: "세 시", means: null, unit: "o'clock", count: "three" },
+  "분#1": { form: "십 분", means: null, unit: "minutes", count: "ten" },
+  "살#1": { form: "스무 살", means: null, unit: "years old", count: "twenty" },
+  "달#1": { form: "두 달", means: null, unit: "months", count: "two" },
+  "가지#1": { form: "몇 가지", means: null, unit: "kinds, sorts", count: "a few" },
+  "퍼센트#1": { form: "십 퍼센트", means: null, unit: "percent", count: "ten" },
+  "년대#1": { form: "구십 년대", means: "the nineties (decade)" },
+  "씨#1": { form: "마이클 씨", means: "Mr./Ms." },
+  "분#2": { form: "세 분", means: null, unit: "people (honorific)", count: "three" },
+  "대#1": { form: "삼십 대", means: "age bracket, one's thirties" },
 };
 
 export function patternFor(key: string): Pattern | null {
@@ -114,7 +124,21 @@ export function patternFor(key: string): Pattern | null {
 
 /** The answer a pattern should be tested against, falling back to the gloss. */
 export function patternMeaning(key: string, gloss: string): string {
-  return PATTERNS[key]?.means ?? gloss;
+  const p = PATTERNS[key];
+  if (!p) return gloss;
+  if (p.unit && p.count) return `${p.count} ${p.unit}`;
+  return p.means ?? gloss;
+}
+
+/** Counters, keyed for building distractors that share the same number. */
+export function counterUnits(): Array<{ key: string; unit: string }> {
+  return Object.entries(PATTERNS)
+    .filter(([, p]) => p.unit)
+    .map(([key, p]) => ({ key, unit: p.unit as string }));
+}
+
+export function counterCount(key: string): string | null {
+  return PATTERNS[key]?.count ?? null;
 }
 
 /**

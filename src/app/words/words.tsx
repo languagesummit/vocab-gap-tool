@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { loadWords, type Word } from "@/lib/local/words";
-import { loadProgress, type Progress } from "@/lib/local/progress";
+import { loadProgress, saveProgress, type Progress } from "@/lib/local/progress";
 import { pct } from "@/lib/local/analysis";
 import { estimateMinutes, saveGoal } from "@/lib/local/goals";
 import { useRouter } from "next/navigation";
@@ -74,6 +74,7 @@ export function Words() {
   );
   /** Words in the current slice that haven't been answered yet. */
   const untestedRows = rowsUntested(rows);
+  const answeredRows = rows.filter((r) => r.status !== "untested");
 
   if (error) {
     return (
@@ -291,6 +292,46 @@ export function Words() {
             className="flex h-12 items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-50 dark:text-black"
           >
             Test me on these {untestedRows.length.toLocaleString()} words
+          </button>
+        </section>
+      )}
+
+      {answeredRows.length > 0 && (
+        <section className="flex flex-col gap-3 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800">
+          <h2 className="font-semibold text-black dark:text-zinc-50">
+            Test this slice again
+          </h2>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            {answeredRows.length.toLocaleString()} of these have been answered
+            before. Re-asking clears those answers and takes fresh ones,
+            including a fresh time — useful for confirming the ones you were
+            slow on, or checking that something has stuck.
+          </p>
+          <button
+            onClick={() => {
+              const keys = answeredRows.map((r) => r.word.key);
+              const next = loadProgress();
+              for (const key of keys) delete next.words[key];
+              let highest = 0;
+              if (words) {
+                for (const w of words) {
+                  if (next.words[w.key] && w.rank > highest) highest = w.rank;
+                }
+              }
+              next.frontierRank = highest;
+              saveProgress(next);
+              saveGoal({
+                kind: "words",
+                keys,
+                label: sliceLabel(filters)
+                  ? `${sliceLabel(filters)} — retest`
+                  : `${keys.length} words to retest`,
+              });
+              router.push("/test");
+            }}
+            className="flex h-12 items-center justify-center rounded-lg border border-zinc-300 font-medium text-black transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+          >
+            Re-ask these {answeredRows.length.toLocaleString()} words
           </button>
         </section>
       )}

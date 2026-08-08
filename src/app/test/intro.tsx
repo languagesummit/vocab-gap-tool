@@ -107,13 +107,24 @@ export function Intro({
           </li>
           <li>
             <strong className="font-medium text-black dark:text-zinc-50">
+              Speed is part of the answer.
+            </strong>{" "}
+            How long you take is recorded, and a word that comes back instantly
+            counts as more securely known than one you had to dig for — both are
+            &ldquo;known&rdquo;, but only one won&apos;t interrupt your reading.
+            Answer at your natural pace rather than deliberating.
+          </li>
+          <li>
+            <strong className="font-medium text-black dark:text-zinc-50">
               You can undo.
             </strong>{" "}
             <strong className="font-medium text-black dark:text-zinc-50">
               ← Undo last
             </strong>{" "}
             takes back the answer you just gave and asks that word again — for a
-            mis-tap, or when you realise you did know it after all.
+            mis-tap, or when you realise you did know it after all. A word asked
+            twice records no time, since you&apos;ve already seen it and a quick
+            second answer wouldn&apos;t mean the same thing.
           </li>
         </ul>
       </section>
