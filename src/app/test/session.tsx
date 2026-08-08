@@ -471,7 +471,7 @@ export function Session() {
         </span>
       </div>
 
-      <div className="relative flex flex-1 flex-col items-center justify-center gap-10 px-6 pb-16">
+      <div className="relative flex flex-1 flex-col items-center justify-center gap-5 px-6 pb-10">
         {expired && (
           // Sits over the answers so a click thrown just after the buzzer is
           // swallowed here instead of answering the next word.
@@ -479,7 +479,7 @@ export function Session() {
             <span className="rounded-full bg-amber-100 px-3 py-1 text-sm font-medium text-amber-700 dark:bg-amber-950 dark:text-amber-300">
               Time&apos;s up — marked unsure
             </span>
-            <div className="text-center text-5xl font-semibold text-zinc-400 dark:text-zinc-600">
+            <div className="text-center text-4xl font-semibold text-zinc-400 dark:text-zinc-600">
               {patternFor(expired.key)?.form ?? expired.lemma}
             </div>
             {expired.hint && (
@@ -500,7 +500,7 @@ export function Session() {
             // The pattern leads and the lemma sits under it, so what is being
             // asked about stays clear.
             <>
-              <div className="text-center text-5xl font-semibold text-black dark:text-zinc-50">
+              <div className="text-center text-4xl font-semibold text-black dark:text-zinc-50">
                 {patternFor(current.key)?.form}
               </div>
               <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs text-zinc-500 dark:bg-zinc-900">
@@ -509,7 +509,7 @@ export function Session() {
             </>
           ) : (
             <>
-              <div className="text-7xl font-semibold text-black dark:text-zinc-50">
+              <div className="text-5xl font-semibold text-black dark:text-zinc-50">
                 {current.lemma}
               </div>
               {isBoundPos(current.pos) && (
@@ -531,14 +531,14 @@ export function Session() {
           )}
         </div>
 
-        <div className="grid w-full max-w-xl grid-cols-1 gap-3">
+        <div className="grid w-full max-w-sm grid-cols-1 gap-2">
           {options.map((option, i) => (
             <button
               key={option}
               onClick={() => choose(option)}
-              className="flex items-center gap-3 rounded-lg border border-zinc-300 px-4 py-3 text-left text-black transition hover:border-zinc-500 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
+              className="relative flex items-center justify-center rounded-lg border border-zinc-300 px-10 py-3 text-center text-black transition hover:border-zinc-500 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50 dark:hover:bg-zinc-900"
             >
-              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded border border-zinc-300 text-xs text-zinc-500 dark:border-zinc-700">
+              <span className="absolute left-3 hidden h-6 w-6 items-center justify-center rounded border border-zinc-300 text-xs text-zinc-500 sm:flex dark:border-zinc-700">
                 {i + 1}
               </span>
               <span>{option}</span>
@@ -552,7 +552,7 @@ export function Session() {
         */}
         <button
           onClick={answerUnknown}
-          className="flex h-14 w-full max-w-xl items-center justify-center gap-2 rounded-lg border border-dashed border-zinc-300 text-zinc-600 transition hover:border-zinc-500 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-900"
+          className="flex h-12 w-full max-w-sm items-center justify-center gap-2 rounded-lg border border-dashed border-zinc-300 text-zinc-600 transition hover:border-zinc-500 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-900"
         >
           I don&apos;t know
           <span className="hidden text-xs text-zinc-400 sm:inline">(space)</span>

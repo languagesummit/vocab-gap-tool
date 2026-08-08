@@ -149,6 +149,37 @@ Round six:
   "known" but only one won't interrupt reading, and that a re-asked word records
   no time.
 
+Round seven:
+
+- **The test layout is tighter.** Eye travel repeated once per word, hundreds of
+  times a session, is fatigue that slows testing down. The prompt dropped from
+  7xl to 5xl, the gap between question and answers from 40px to 20px, options
+  narrowed to max-w-sm with **centred** text so the eye lands in the column it
+  left rather than scanning to a left margin each time. Measured on a 390px
+  screen: the whole question block is now 302px tall with the first option 44px
+  below the word's centre.
+- **Stale answers are flagged on the home page**, not only buried in results.
+
+### Grammar endings — sourced, not yet testable
+
+잖아, 자마자, 거든, 느라고, 텐데 are **not in the word list**, and that is
+correct rather than an oversight: the NIKL list is a vocabulary list, and 어미
+are inflectional morphemes rather than words. Only 의존명사 and 보조용언 appear,
+because those genuinely are words.
+
+The proper source is the grammar sheet of the same standard-curriculum file
+already used for TOPIK levels — **336 items graded 1급–6급**, now committed as
+`data/korean_grammar_raw.tsv`. It contains exactly the missing pieces: -잖아
+(3급), -자마자 (3급), -거든 (3급), -느라고 (3급), -을 텐데 (3급), -을수록 (4급).
+Same 공공누리 제1유형 licence, already attributed.
+
+**The blocker is meanings.** Only 91 of the 336 rows carry one; the other 245
+are form and category only. Testing them needs an English meaning per item, and
+inventing 245 grammar glosses is exactly the kind of confident-and-wrong that a
+learner cannot catch. Options: hand-write them, find a second source that
+already has them, or test grammar by cloze instead of by translation — which
+sidesteps meanings entirely and is already on the roadmap as phase 12.
+
 Still open:
 
 - **Multi-language UI.** Everything explanatory is English-only, which is fine

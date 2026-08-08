@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { loadWords, type Word } from "@/lib/local/words";
+import { allStaleKeys, staleAnswers } from "@/lib/local/revisions";
 import {
   CHOICE_OPTIONS,
   countByStatus,
@@ -21,12 +23,16 @@ const TOTAL_WORDS = 5897;
 export function Home() {
   const [progress, setProgress] = useState<Progress | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+  const [words, setWords] = useState<Word[] | null>(null);
   const fileInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     // localStorage is client-only, so state has to be filled in after mount.
     /* eslint-disable-next-line react-hooks/set-state-in-effect */
     setProgress(loadProgress());
+    loadWords()
+      .then(setWords)
+      .catch(() => setWords([]));
   }, []);
 
   function update(next: Progress) {
@@ -45,6 +51,7 @@ export function Home() {
   }
 
   const counts = countByStatus(progress);
+  const staleKeys = words ? allStaleKeys(staleAnswers(progress, words)) : [];
   const pctTested = Math.round((counts.tested / TOTAL_WORDS) * 100);
 
   async function onImportFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -70,6 +77,20 @@ export function Home() {
           Korean · tested by frequency, one word at a time
         </p>
       </header>
+
+      {staleKeys.length > 0 && (
+        <Link
+          href="/results"
+          className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950/40 dark:text-amber-200"
+        >
+          <strong className="font-semibold">
+            {staleKeys.length.toLocaleString()}{" "}
+            {staleKeys.length === 1 ? "answer needs" : "answers need"} re-asking
+          </strong>{" "}
+          — the way those words are tested has changed since you answered them.
+          Everything else still stands.
+        </Link>
+      )}
 
       <section className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
         <div className="flex items-baseline justify-between">
