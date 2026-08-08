@@ -6,9 +6,48 @@ import type { Word } from "@/lib/local/words";
 import type { Progress } from "@/lib/local/progress";
 import {
   estimateMinutes,
+  goalLabel,
   goalProgress,
   type Goal,
 } from "@/lib/local/goals";
+
+/**
+ * The three questions people actually arrive with. Asking which of these you
+ * want is fewer decisions than the list of scopes it replaces, not more: six
+ * options that all looked like the same kind of thing gave no basis for
+ * choosing between them, whereas these differ in what they answer and each one
+ * settles its own scope.
+ *
+ * They are genuinely different bodies of words. Rank order covers the most text
+ * per word tested; TOPIK front-loads what a syllabus teaches; daily life sits at
+ * a median rank of 3,166 and overlaps TOPIK 1 by only a quarter, so neither of
+ * the others reaches it early.
+ */
+const INTENTS: Array<{
+  id: string;
+  question: string;
+  why: string;
+  goal: Goal | null;
+}> = [
+  {
+    id: "read",
+    question: "I want to read more Korean",
+    why: "Commonest words first — the most reading unlocked per word tested",
+    goal: { kind: "all" },
+  },
+  {
+    id: "exam",
+    question: "I'm working towards a TOPIK level",
+    why: "The vocabulary a curriculum teaches for that level, and a level finishes",
+    goal: null,
+  },
+  {
+    id: "life",
+    question: "I want to handle daily life in Korean",
+    why: "Food, home, clothes, shopping, transport, health — words rank order reaches late",
+    goal: { kind: "everyday" },
+  },
+];
 
 /**
  * What someone sees before their first session.
@@ -31,15 +70,8 @@ export function Intro({
   onStart: (goal: Goal) => void;
 }) {
   const [choice, setChoice] = useState<Goal | null>(null);
+  const [open, setOpen] = useState<string | null>(null);
 
-  const options: Goal[] = [
-    { kind: "count", n: 300 },
-    { kind: "topik", level: 1 },
-    { kind: "topik", level: 2 },
-    { kind: "topik", level: 3 },
-    { kind: "topik", level: 4 },
-    { kind: "all" },
-  ];
 
   return (
     <main className="mx-auto flex min-h-[100dvh] max-w-2xl flex-col gap-6 bg-white px-6 py-12 dark:bg-black">
@@ -131,50 +163,91 @@ export function Intro({
 
       <section className="rounded-xl border border-zinc-200 p-6 dark:border-zinc-800">
         <h2 className="font-semibold text-black dark:text-zinc-50">
-          How much do you want to test?
+          What do you want to find out?
         </h2>
         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          You can stop any time and pick up where you left off — and change this
-          later. Smaller scopes still give a real answer over their own range.
-        </p>
-        <p className="mt-2 text-sm text-zinc-500">
-          New to Korean? Take <strong className="font-medium">TOPIK 1</strong> —
-          it finishes, and it front-loads the everyday words. Further along?{" "}
-          <strong className="font-medium">Commonest first</strong> finds your
-          gaps faster, since it covers more reading per word tested.
+          Different questions are best answered by testing different words, so
+          this picks where to start. Nothing is locked in:{" "}
+          <strong className="font-medium text-black dark:text-zinc-50">
+            every answer counts toward all of them
+          </strong>
+          , and you can change this whenever you like without losing anything.
         </p>
 
         <div className="mt-4 flex flex-col gap-2">
-          {options.map((goal) => {
-            const { total, remaining } = goalProgress(goal, words, progress);
-            if (total === 0) return null;
-            const selected =
-              choice !== null && JSON.stringify(choice) === JSON.stringify(goal);
+          {INTENTS.map((intent) => {
+            const active = open === intent.id;
             return (
-              <button
-                key={JSON.stringify(goal)}
-                onClick={() => setChoice(goal)}
-                className={`flex items-baseline justify-between gap-3 rounded-lg border p-4 text-left transition ${
-                  selected
-                    ? "border-black bg-zinc-50 dark:border-zinc-50 dark:bg-zinc-900"
-                    : "border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
-                }`}
-              >
-                <span>
-                  <span className="font-medium text-black dark:text-zinc-50">
-                    {describe(goal)}
+              <div key={intent.id}>
+                <button
+                  onClick={() => {
+                    setOpen(intent.id);
+                    if (intent.goal) setChoice(intent.goal);
+                    else setChoice(null);
+                  }}
+                  className={`flex w-full items-baseline justify-between gap-3 rounded-lg border p-4 text-left transition ${
+                    active
+                      ? "border-black bg-zinc-50 dark:border-zinc-50 dark:bg-zinc-900"
+                      : "border-zinc-200 hover:bg-zinc-50 dark:border-zinc-800 dark:hover:bg-zinc-900"
+                  }`}
+                >
+                  <span>
+                    <span className="font-medium text-black dark:text-zinc-50">
+                      {intent.question}
+                    </span>
+                    <span className="mt-0.5 block text-xs text-zinc-500">
+                      {intent.why}
+                    </span>
                   </span>
-                  <span className="mt-0.5 block text-xs text-zinc-500">
-                    {why(goal)}
-                  </span>
-                </span>
-                <span className="shrink-0 text-right text-xs text-zinc-500">
-                  {remaining.toLocaleString()} left
-                  <span className="block text-zinc-400">
-                    ≈{estimateMinutes(remaining)} min
-                  </span>
-                </span>
-              </button>
+                  {intent.goal && (
+                    <span className="shrink-0 text-right text-xs text-zinc-500">
+                      {goalProgress(intent.goal, words, progress).remaining.toLocaleString()}{" "}
+                      left
+                      <span className="block text-zinc-400">
+                        ≈
+                        {estimateMinutes(
+                          goalProgress(intent.goal, words, progress).remaining
+                        )}{" "}
+                        min
+                      </span>
+                    </span>
+                  )}
+                </button>
+
+                {active && intent.id === "exam" && (
+                  <div className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-6">
+                    {[1, 2, 3, 4, 5, 6].map((level) => {
+                      const goal: Goal = { kind: "topik", level };
+                      const { total, remaining } = goalProgress(
+                        goal,
+                        words,
+                        progress
+                      );
+                      if (total === 0) return null;
+                      const on =
+                        choice?.kind === "topik" && choice.level === level;
+                      return (
+                        <button
+                          key={level}
+                          onClick={() => setChoice(goal)}
+                          className={`rounded-lg border p-2 text-center text-xs transition ${
+                            on
+                              ? "border-black bg-black text-white dark:border-zinc-50 dark:bg-zinc-50 dark:text-black"
+                              : "border-zinc-300 text-black hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-50"
+                          }`}
+                        >
+                          <span className="block font-medium">TOPIK {level}</span>
+                          <span
+                            className={on ? "opacity-70" : "text-zinc-400"}
+                          >
+                            {remaining.toLocaleString()}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
             );
           })}
         </div>
@@ -184,7 +257,7 @@ export function Intro({
           disabled={!choice}
           className="mt-5 flex h-12 w-full items-center justify-center rounded-lg bg-black font-medium text-white transition hover:bg-zinc-800 disabled:opacity-30 dark:bg-zinc-50 dark:text-black"
         >
-          {choice ? "Start testing" : "Pick one to start"}
+          {choice ? `Start — ${goalLabel(choice)}` : "Pick one to start"}
         </button>
       </section>
 
@@ -198,43 +271,4 @@ export function Intro({
   );
 }
 
-function describe(goal: Goal): string {
-  switch (goal.kind) {
-    case "count":
-      return `The ${goal.n.toLocaleString()} most common words`;
-    case "topik":
-      return `TOPIK level ${goal.level}`;
-    case "all":
-      return "Everything";
-    case "words":
-      return goal.label;
-  }
-}
 
-/**
- * What each goal actually buys, measured rather than asserted.
- *
- * The two orderings genuinely disagree. Frequency order covers more text per
- * word — its first 795 words account for 61% of running Korean against TOPIK
- * 1's 52% — because that is what frequency ordering is for. But TOPIK 1 carries
- * 462 words frequency would not reach for thousands of ranks, and they are
- * numbers, shops and everyday places: rare on a page, unavoidable in a day.
- *
- * So neither is simply better. A beginner needs 편의점 and 여덟 sooner than they
- * need 때문 and 대하다, and gets a finishable target as well; someone already
- * past that gets more from the frequency order, where their gaps actually are.
- */
-function why(goal: Goal): string {
-  switch (goal.kind) {
-    case "count":
-      return "A quick sample of the commonest words — the fastest read on where you stand";
-    case "topik":
-      return goal.level === 1
-        ? "A finishable target. Covers everyday things — numbers, shops, food — that frequency order won't reach for thousands of words"
-        : `Everything the curriculum expects by level ${goal.level}`;
-    case "all":
-      return "The full census, commonest first. Covers the most reading per word tested, and the only route to complete gap analysis";
-    case "words":
-      return "The words from the text you scored";
-  }
-}

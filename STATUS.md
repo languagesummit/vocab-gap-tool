@@ -195,6 +195,29 @@ Round eight — level badges:
   is a strong, true, checkable claim; "you'll pass" is not one this tool can
   make, and it is the same overreach already removed from the levels verdict.
 
+Round nine — the test asks what you want to find out:
+
+The picker used to offer six scopes that all looked like the same kind of thing
+— 300 words, TOPIK 1, TOPIK 2, TOPIK 3, TOPIK 4, everything — with nothing to
+choose between them on. It now asks one question with three answers, and each
+answer settles its own scope. Fewer decisions, not more.
+
+- **"I want to read more Korean"** → commonest first, the most reading unlocked
+  per word tested.
+- **"I'm working towards a TOPIK level"** → expands inline to the six levels.
+- **"I want to handle daily life"** → 730 words of food, home, clothing,
+  shopping, transport and health. **Median rank 3,504**, and only 168 overlap
+  TOPIK 1, so this is genuinely a third body of words rather than a relabelling
+  of either ordering. Nothing else front-loads 신발, 김치, 계단 or 설탕.
+- **The intro says the choice is free**: every answer counts toward all three,
+  and switching loses nothing. That fact is what makes offering the choice cheap
+  — and it was true all along without ever being stated.
+
+A first cut of the daily-life set swept in 시간 and 위치 및 방향, two large
+abstract subjects, and the session opened on 수 "possibility" at rank 6. Those
+words are common enough that rank order reaches them immediately anyway. Dropped
+them and the set now opens on 집, 먹다, 눈, 돈, 몸, 얼굴, 물, 길.
+
 Still open:
 
 - **Multi-language UI.** Everything explanatory is English-only, which is fine

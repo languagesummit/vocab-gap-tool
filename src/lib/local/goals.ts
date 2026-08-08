@@ -22,8 +22,38 @@ export type Goal =
   | { kind: "topik"; level: number }
   /** The first N words by frequency. */
   | { kind: "count"; n: number }
+  /** The vocabulary of daily life, by subject rather than by rank. */
+  | { kind: "everyday" }
   /** A specific set of words, e.g. the unknown words of an article. */
   | { kind: "words"; keys: string[]; label: string };
+
+/**
+ * Subjects that make up getting through a day: eating, housing, clothing,
+ * shopping, plus transport, illness and the household things scattered across
+ * other categories.
+ *
+ * Deliberately concrete. An earlier draft swept in 시간 and 위치 및 방향, which
+ * are large abstract subjects — the set then opened on 수 "possibility" at rank
+ * 6, which is not what anyone means by getting through a day. Those words are
+ * common enough that rank order reaches them almost immediately anyway.
+ *
+ * What remains is neither of the other two orderings, because it is neither:
+ * rank order reaches it late and TOPIK 1 covers only part of it, so someone
+ * asking "can I manage here" is asking about a body of words that nothing else
+ * front-loads.
+ */
+const EVERYDAY_CATEGORIES = ["식생활", "주생활", "의생활", "경제생활"];
+const EVERYDAY_SUBJECTS = [
+  "교통수단", "교통 이용 장소", "교통 이용 행위",
+  "병과 증상", "치료 시설", "치료 행위", "약품류", "신체 부위",
+];
+
+function isEveryday(word: Word): boolean {
+  return (
+    (word.category !== null && EVERYDAY_CATEGORIES.includes(word.category)) ||
+    (word.sub !== null && EVERYDAY_SUBJECTS.includes(word.sub))
+  );
+}
 
 const STORAGE_KEY = "vocab-gap-tool:goal:ko";
 
@@ -57,6 +87,8 @@ export function goalLabel(goal: Goal): string {
       return `TOPIK level ${goal.level} and below`;
     case "count":
       return `The ${goal.n.toLocaleString()} most common words`;
+    case "everyday":
+      return "The vocabulary of daily life";
     case "words":
       return goal.label;
   }
@@ -77,6 +109,8 @@ export function wordsFor(goal: Goal, words: Word[]): Word[] {
         );
       case "count":
         return words.filter((w) => w.rank <= goal.n);
+      case "everyday":
+        return words.filter(isEveryday);
       case "words": {
         const keys = new Set(goal.keys);
         return words.filter((w) => keys.has(w.key));
