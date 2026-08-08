@@ -17,9 +17,14 @@ Run the audit for the live number — never trust a figure written here:
 node scripts/audit-glosses.mjs
 ```
 
-At last commit: **694 entries left, all at rank 1001+. Ranks 1–1000 report
-zero faults.** The user tests from rank 1 upward and was at rank 78, so
-nothing outstanding is in their path yet.
+At last commit: **0 faults across all 5,897 entries.** 1,024 are now
+hand-curated, up from 200; the rest passed on their own once the automated
+capitalisation fault was fixed by rule.
+
+Zero faults is not the same as zero errors. The audit checks what a rule can
+check — Korean left in the English field, a word restated as its own meaning,
+over-length, piled-up senses, two senses sharing an answer. It cannot tell
+whether a gloss is *right*. See "Trust and verification" below.
 
 ## The loop
 
@@ -85,19 +90,30 @@ The hanja is the strongest signal for homographs — 군 漢軍 is the military,
 not the county 郡 the dictionary offered. The collocation resolves the rest.
 Where neither exists, the choice is weaker and should be marked for review.
 
-Glosses written so far were checked against their source candidates: 134 of
-178 shared vocabulary with a dictionary candidate, 37 diverged (mostly
-because the dictionary was describing a different homograph), 4 had no source
-at all. Entries known to be shaky:
+An early sample of 178 was checked against its source candidates: 134 shared
+vocabulary with a dictionary candidate, 37 diverged (mostly because the
+dictionary was describing a different homograph), 4 had no source at all.
+That check has not been repeated across the full 1,024 — **the accuracy of
+these glosses has not been independently verified by anyone who reads
+Korean.** That is the outstanding risk on this work, not the fault count.
+
+Entries known to read awkwardly even where the sense is right:
 
 | rank | word | gloss | problem |
 |---|---|---|---|
-| 725 | 어쩌다 | to do what about it | tagged verb, but the common 어쩌다 is the adverb "by chance" |
 | 7 | 하다 | turns a noun into a verb | a description, not a translation — may stand out as the odd option |
 | 831 | 달다 | asking someone to do it for you | correct but clumsy as a button label |
 | 502 | 가지다 | having done, and then | same problem; `-어 가지고` resists a short gloss |
 | 399 | 고개 | head, as in turning or bowing it | wordy; "neck, head" may be cleaner |
 
-Some words resist glossing entirely — 어쩌다 is the clear case. Those are
+Some words resist glossing entirely. 어쩌다 at 725 was reworded twice and is
+still unsatisfying, because no one-line English equivalent exists. Those are
 arguments for the planned cloze mode (pick which of two Korean words fits a
 sentence), not for a better gloss.
+
+Verification worth building, in order of value: a flag button during testing,
+so a wrong gloss gets caught at the moment it bites; then a review page
+showing gloss, part of speech, hanja, collocation and the original dictionary
+line side by side. A second Claude session can proofread for consistency and
+length but shares the same blind spots on sense selection, so it is a
+proofreader rather than an authority.

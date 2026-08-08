@@ -57,10 +57,11 @@ content recommendation to fill gaps).
    coverage), top 200 ranks hand-curated with categories.
 4. ✅ Per-word test UI: translation MCQ, 3s timer, keyboard 1–4 and space,
    frontier progress, resumable sessions.
-5. 🔄 Curate glosses beyond rank 200. Ranks 1–1000 clean; ~694 left at
-   rank 1001+. See [GLOSSING.md](GLOSSING.md) — conventions, the batch loop,
-   and which glosses are known to be shaky. `node scripts/audit-glosses.mjs`
-   is the live count.
+5. ✅ Curate glosses beyond rank 200. All 5,897 entries pass
+   `scripts/audit-glosses.mjs`; 1,024 are hand-curated, up from 200. Note
+   that a clean audit means no rule-detectable fault, not verified accuracy —
+   nobody who reads Korean has checked these yet. See
+   [GLOSSING.md](GLOSSING.md).
 6. ✅ Results page: known-count as a range, breakdown by frequency band and
    part of speech, missed/timed-out word lists, recall speed.
 7. Cloze mode — pick which of two Korean words fits a sentence. Tests usage
@@ -70,9 +71,9 @@ content recommendation to fill gaps).
    or timed-out → confirm by cloze.
 8. Comprehensible-input scorer (paste text → % known, 95–98% sweet spot).
    **Blocked on a validity question** — see "Open questions" below.
-9. Analytics: category × status heatmap. Blocked: `category` is null for
-   5,697 of 5,897 entries; only the curated top 200 carry one. Curation
-   fills this in as it goes.
+9. Analytics: category × status heatmap. Curation raised coverage from 200
+   to 1,024 entries carrying a semantic category, so the early ranks are now
+   usable; the long tail is still untagged.
 10. Coverage engine — Korean lemmatiser plus scoring a text against the known
     set. The shared spine both content features need; neither YouTube
     matching nor graded readers can start before it exists.
