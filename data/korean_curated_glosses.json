@@ -2885,6 +2885,526 @@
       "gloss": "to reckon, to count as",
       "semantic_category": "cognition",
       "concreteness": "abstract"
+    },
+    "2201": {
+      "gloss": "to breathe",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "2211": {
+      "gloss": "to grind, to sharpen",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2220": {
+      "gloss": "hundred",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "2228": {
+      "gloss": "to shoot",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2235": {
+      "gloss": "to dance",
+      "semantic_category": "activity",
+      "concreteness": "concrete"
+    },
+    "2236": {
+      "gloss": "to switch on, to light",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2239": {
+      "gloss": "a detective",
+      "semantic_category": "work",
+      "concreteness": "concrete"
+    },
+    "2272": {
+      "gloss": "a bridge",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "2284": {
+      "gloss": "to support, to back",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "2291": {
+      "gloss": "surface",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "2310": {
+      "gloss": "a Buddhist temple",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "2322": {
+      "gloss": "a ministry, a division",
+      "semantic_category": "society",
+      "concreteness": "abstract"
+    },
+    "2332": {
+      "gloss": "luggage, a load",
+      "semantic_category": "abstract",
+      "concreteness": "concrete"
+    },
+    "2333": {
+      "gloss": "grass",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "2342": {
+      "gloss": "to stretch out, to extend",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "2348": {
+      "gloss": "to be early",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "2349": {
+      "gloss": "to agree, to coincide",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "2362": {
+      "gloss": "wildly, without restraint",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "2372": {
+      "gloss": "a brief moment",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "2395": {
+      "gloss": "just a second, briefly",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "2409": {
+      "gloss": "to drop, to let fall",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2411": {
+      "gloss": "instant noodles",
+      "semantic_category": "food",
+      "concreteness": "concrete"
+    },
+    "2412": {
+      "gloss": "a horse",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "2421": {
+      "gloss": "to go bad, to spoil",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "2441": {
+      "gloss": "a city",
+      "semantic_category": "place",
+      "concreteness": "concrete"
+    },
+    "2447": {
+      "gloss": "a chapter",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "2453": {
+      "gloss": "total, in all",
+      "semantic_category": "quantity",
+      "concreteness": "function"
+    },
+    "2455": {
+      "gloss": "a table, a chart",
+      "semantic_category": "communication",
+      "concreteness": "concrete"
+    },
+    "2463": {
+      "gloss": "particular, special",
+      "semantic_category": "quality",
+      "concreteness": "function"
+    },
+    "2470": {
+      "gloss": "expectation, forecast",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "2471": {
+      "gloss": "a threat",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "2472": {
+      "gloss": "a tooth",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "2473": {
+      "gloss": "an ideal",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "2474": {
+      "gloss": "to be submerged, to sink",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "2482": {
+      "gloss": "sightseeing, looking around",
+      "semantic_category": "activity",
+      "concreteness": "abstract"
+    },
+    "2512": {
+      "gloss": "of course, certainly",
+      "semantic_category": "communication",
+      "concreteness": "function"
+    },
+    "2518": {
+      "gloss": "left and right, both sides",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "2519": {
+      "gloss": "main, principal",
+      "semantic_category": "quality",
+      "concreteness": "function"
+    },
+    "2520": {
+      "gloss": "to set, as the sun does",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "2555": {
+      "gloss": "to pull out of water, to rescue",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2559": {
+      "gloss": "travelling together",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "2560": {
+      "gloss": "a field, an open plain",
+      "semantic_category": "nature",
+      "concreteness": "concrete"
+    },
+    "2561": {
+      "gloss": "a flock, a crowd",
+      "semantic_category": "quantity",
+      "concreteness": "concrete"
+    },
+    "2568": {
+      "gloss": "to be any way at all",
+      "semantic_category": "quality",
+      "concreteness": "function"
+    },
+    "2572": {
+      "gloss": "to remove, to eliminate",
+      "semantic_category": "action",
+      "concreteness": "abstract"
+    },
+    "2575": {
+      "gloss": "to erase, to rub out",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2577": {
+      "gloss": "a bucket, a tub",
+      "semantic_category": "abstract",
+      "concreteness": "concrete"
+    },
+    "2579": {
+      "gloss": "a frying pan",
+      "semantic_category": "food",
+      "concreteness": "concrete"
+    },
+    "2586": {
+      "gloss": "to turn around, to turn away",
+      "semantic_category": "motion",
+      "concreteness": "concrete"
+    },
+    "2587": {
+      "gloss": "a fairy tale",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "2595": {
+      "gloss": "third, the third one",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "2598": {
+      "gloss": "to tell, to say to",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "2615": {
+      "gloss": "to stand out, to be conspicuous",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "2624": {
+      "gloss": "a person, a national",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "2644": {
+      "gloss": "overdoing it, unreasonableness",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "2651": {
+      "gloss": "to be out of the blue, absurd",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "2655": {
+      "gloss": "sculpture",
+      "semantic_category": "activity",
+      "concreteness": "concrete"
+    },
+    "2656": {
+      "gloss": "to burn something",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2658": {
+      "gloss": "to cover, to block from view",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2681": {
+      "gloss": "to lean on, to prop with",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2691": {
+      "gloss": "to look after, to care for",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "2698": {
+      "gloss": "to deny, to negate",
+      "semantic_category": "communication",
+      "concreteness": "abstract"
+    },
+    "2704": {
+      "gloss": "to not go well",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "2709": {
+      "gloss": "to ripen, to become cooked",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "2721": {
+      "gloss": "upside down, the wrong way round",
+      "semantic_category": "place",
+      "concreteness": "abstract"
+    },
+    "2722": {
+      "gloss": "ultimate, final",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "2724": {
+      "gloss": "to contribute",
+      "semantic_category": "social",
+      "concreteness": "abstract"
+    },
+    "2725": {
+      "gloss": "tightly, firmly",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "2728": {
+      "gloss": "very, awfully",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "2734": {
+      "gloss": "to be unavoidable",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "2750": {
+      "gloss": "to recover, to regain",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "2755": {
+      "gloss": "to dream a dream",
+      "semantic_category": "cognition",
+      "concreteness": "abstract"
+    },
+    "2762": {
+      "gloss": "a joint, a knuckle",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "2769": {
+      "gloss": "at a glance, fleetingly",
+      "semantic_category": "perception",
+      "concreteness": "abstract"
+    },
+    "2772": {
+      "gloss": "a piece, a fragment",
+      "semantic_category": "quantity",
+      "concreteness": "concrete"
+    },
+    "2774": {
+      "gloss": "tea",
+      "semantic_category": "food",
+      "concreteness": "concrete"
+    },
+    "2776": {
+      "gloss": "spit, saliva",
+      "semantic_category": "body",
+      "concreteness": "concrete"
+    },
+    "2783": {
+      "gloss": "a set of values",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "2785": {
+      "gloss": "to go through hardship",
+      "semantic_category": "state",
+      "concreteness": "abstract"
+    },
+    "2789": {
+      "gloss": "to break off, to snap",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2791": {
+      "gloss": "as many as, no less than",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "2792": {
+      "gloss": "to be buried",
+      "semantic_category": "state",
+      "concreteness": "concrete"
+    },
+    "2797": {
+      "gloss": "this child, hey you",
+      "semantic_category": "people",
+      "concreteness": "function"
+    },
+    "2800": {
+      "gloss": "a schedule",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "2804": {
+      "gloss": "devotion, sincerity",
+      "semantic_category": "emotion",
+      "concreteness": "abstract"
+    },
+    "2807": {
+      "gloss": "thousand",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "2818": {
+      "gloss": "a faculty, a course of study",
+      "semantic_category": "education",
+      "concreteness": "abstract"
+    },
+    "2825": {
+      "gloss": "to bore, to make a hole",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2826": {
+      "gloss": "the upper, the top grade",
+      "semantic_category": "quality",
+      "concreteness": "abstract"
+    },
+    "2827": {
+      "gloss": "an interval, the gap between",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "2833": {
+      "gloss": "the truth, the real thing",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "2834": {
+      "gloss": "all along, constantly",
+      "semantic_category": "time",
+      "concreteness": "abstract"
+    },
+    "2836": {
+      "gloss": "a difference, a gap",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "2837": {
+      "gloss": "to clear away, to tidy up",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2842": {
+      "gloss": "to pull",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2843": {
+      "gloss": "the way, a moral path",
+      "semantic_category": "abstract",
+      "concreteness": "abstract"
+    },
+    "2844": {
+      "gloss": "to set about doing insistently",
+      "semantic_category": "grammar",
+      "concreteness": "function"
+    },
+    "2845": {
+      "gloss": "to pour into a glass",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2868": {
+      "gloss": "a painter",
+      "semantic_category": "work",
+      "concreteness": "concrete"
+    },
+    "2875": {
+      "gloss": "to spread out, to lay down",
+      "semantic_category": "action",
+      "concreteness": "concrete"
+    },
+    "2882": {
+      "gloss": "to be pitiful",
+      "semantic_category": "emotion",
+      "concreteness": "abstract"
+    },
+    "2893": {
+      "gloss": "all, the whole",
+      "semantic_category": "quantity",
+      "concreteness": "abstract"
+    },
+    "2895": {
+      "gloss": "to lose a contest",
+      "semantic_category": "activity",
+      "concreteness": "abstract"
+    },
+    "2898": {
+      "gloss": "to weave, to knit",
+      "semantic_category": "action",
+      "concreteness": "concrete"
     }
   }
 }

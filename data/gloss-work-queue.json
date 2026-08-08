@@ -1,1334 +1,5 @@
 [
  {
-  "key": "내일#1",
-  "rank": 1196,
-  "lemma": "내일",
-  "gloss": "tomorrow",
-  "pos": "noun",
-  "category": "time",
-  "hint": "로 미루다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "매일#1",
-  "rank": 1198,
-  "lemma": "매일",
-  "gloss": "every day",
-  "pos": "adverb",
-  "category": "time",
-  "hint": "매일 만나다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "아까#1",
-  "rank": 1282,
-  "lemma": "아까",
-  "gloss": "a little while ago",
-  "pos": "adverb",
-  "category": "time",
-  "hint": "아까 먹다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "인제#1",
-  "rank": 1502,
-  "lemma": "인제",
-  "gloss": "now",
-  "pos": "adverb",
-  "category": null,
-  "hint": "adverb",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "누르다#1",
-  "rank": 1507,
-  "lemma": "누르다",
-  "gloss": "press or push down; muffle, quash, restrain, tame",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "기#1",
-  "rank": 1515,
-  "lemma": "기",
-  "gloss": "tinge, tint; mist; energy",
-  "pos": "noun",
-  "category": null,
-  "hint": "noun",
-  "faults": [
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "담기다#1",
-  "rank": 1523,
-  "lemma": "담기다",
-  "gloss": "to fill; to put in; to serve; to bottle; to include or comprise",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "마당#1",
-  "rank": 1524,
-  "lemma": "마당",
-  "gloss": "an instance, case; a garden; a center/place for sth",
-  "pos": "noun",
-  "category": null,
-  "hint": "이 넓다",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "뛰다#1",
-  "rank": 1532,
-  "lemma": "뛰다",
-  "gloss": "dance, hop, jump, ran",
-  "pos": "verb",
-  "category": null,
-  "hint": "빨리 나아가다; 운동장을",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "깊이#1",
-  "rank": 1540,
-  "lemma": "깊이",
-  "gloss": "deepness; Depth",
-  "pos": "adverb",
-  "category": null,
-  "hint": "깊이 묻다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "꾸미다#1",
-  "rank": 1541,
-  "lemma": "꾸미다",
-  "gloss": "machinate; weave; Decorate to plan sth, to dream up a scheme",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "무릎#1",
-  "rank": 1543,
-  "lemma": "무릎",
-  "gloss": "knee; marrowbone; A knee",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "겨우#1",
-  "rank": 1552,
-  "lemma": "겨우",
-  "gloss": "barely or narrowly. 간신히",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "korean-in-english"
-  ]
- },
- {
-  "key": "둘째#1",
-  "rank": 1563,
-  "lemma": "둘째",
-  "gloss": "second",
-  "pos": "numeral",
-  "category": null,
-  "hint": "둘째 딸",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "바람#2",
-  "rank": 1566,
-  "lemma": "바람",
-  "gloss": "a wish, hope; Wind; As a result,by the influence of",
-  "pos": "bound noun",
-  "category": null,
-  "hint": "눈이 오는 ~에",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "역#1",
-  "rank": 1570,
-  "lemma": "역",
-  "gloss": "contra-, counter, inverse, inversion; A part, a role; A railroad station/depot",
-  "pos": "noun",
-  "category": null,
-  "hint": "noun",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "자#3",
-  "rank": 1572,
-  "lemma": "자",
-  "gloss": "a person; A ruler; gauge, rule, scale, square, T square; A chinese character, a letter.thingie of an alphabet; Well!!",
-  "pos": "noun",
-  "category": null,
-  "hint": "이름 석 ~; 하늘 천 자",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "뜨다#2",
-  "rank": 1575,
-  "lemma": "뜨다",
-  "gloss": "float; rise; scoop, ladle up; scoop up with the spoon; leave one`s seat, go away from a place",
-  "pos": "verb",
-  "category": null,
-  "hint": "눈을 ~",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "대체로#1",
-  "rank": 1586,
-  "lemma": "대체로",
-  "gloss": "in substance; Generally, on the whole, for the most part",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "때리다#1",
-  "rank": 1587,
-  "lemma": "때리다",
-  "gloss": "trim; walk; belt, clock, clout, strike, thrash",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "저기#1",
-  "rank": 1592,
-  "lemma": "저기",
-  "gloss": "“hey,look here,now”; That place, there",
-  "pos": "pronoun",
-  "category": null,
-  "hint": "장소",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "가까이#1",
-  "rank": 1595,
-  "lemma": "가까이",
-  "gloss": "close to, not far",
-  "pos": "adverb",
-  "category": null,
-  "hint": "가까이 다가오다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "낫다#1",
-  "rank": 1596,
-  "lemma": "낫다",
-  "gloss": "to get better; Superior",
-  "pos": "adjective",
-  "category": null,
-  "hint": "더 낫다; 더 좋다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "언젠가#1",
-  "rank": 1600,
-  "lemma": "언젠가",
-  "gloss": "some; One of these days, at some time in the future",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "대개#1",
-  "rank": 1608,
-  "lemma": "대개",
-  "gloss": "mostly, for the most part",
-  "pos": "adverb",
-  "category": null,
-  "hint": "대개의 경우",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "한때#1",
-  "rank": 1611,
-  "lemma": "한때",
-  "gloss": "for a time; For a while, temporarily; at one time",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "조#1",
-  "rank": 1624,
-  "lemma": "조",
-  "gloss": "article,clause; A company,group",
-  "pos": "bound noun",
-  "category": null,
-  "hint": "bound noun",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "첫째#1",
-  "rank": 1625,
-  "lemma": "첫째",
-  "gloss": "the first",
-  "pos": "numeral",
-  "category": null,
-  "hint": "첫째 시간",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "풀리다#1",
-  "rank": 1631,
-  "lemma": "풀리다",
-  "gloss": "eth is returning back to normal or falling in place; To come loose",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "아주머니#1",
-  "rank": 1637,
-  "lemma": "아주머니",
-  "gloss": "an aunt, a respectable word for a married, older woman",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "떠올리다#1",
-  "rank": 1643,
-  "lemma": "떠올리다",
-  "gloss": "떠올리다",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "korean-in-english",
-   "restates-the-word"
-  ]
- },
- {
-  "key": "군#2",
-  "rank": 1652,
-  "lemma": "군",
-  "gloss": "group, crowd; mister, senor; county, rural district; Mr.",
-  "pos": "bound noun",
-  "category": null,
-  "hint": "bound noun",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "프로#1",
-  "rank": 1662,
-  "lemma": "프로",
-  "gloss": "professional; Program",
-  "pos": "noun",
-  "category": null,
-  "hint": "professional; 프로 야구",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "동료#1",
-  "rank": 1666,
-  "lemma": "동료",
-  "gloss": "associate, colleague, companion, comrade, fellow",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "지다#1",
-  "rank": 1668,
-  "lemma": "지다",
-  "gloss": "to fade away, come off; Carry; to stain, commit a crime; Set",
-  "pos": "verb",
-  "category": null,
-  "hint": "등에 ~; 배낭을",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "채우다#1",
-  "rank": 1669,
-  "lemma": "채우다",
-  "gloss": "line; To fill up, complete, fulfill; to carry on the hip",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "띄다#1",
-  "rank": 1681,
-  "lemma": "띄다",
-  "gloss": "to put a space between two things; to be opened, awake, come to understand; to be seen because it`s conspicuous and eye-catching; to float up in the sky",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "쓰다#3",
-  "rank": 1684,
-  "lemma": "쓰다",
-  "gloss": "write; to use as sth, to use for doing sth; to cover lightly with a powder, to have dust everywhere; To write",
-  "pos": "verb",
-  "category": null,
-  "hint": "모자를 ~",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "참#2",
-  "rank": 1688,
-  "lemma": "참",
-  "gloss": "at the point of, when; In reality; really,truly",
-  "pos": "interjection",
-  "category": null,
-  "hint": "이것 ~",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "실제#1",
-  "rank": 1697,
-  "lemma": "실제",
-  "gloss": "the truth, a fact",
-  "pos": "noun",
-  "category": null,
-  "hint": "실제 일어나다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "종#1",
-  "rank": 1698,
-  "lemma": "종",
-  "gloss": "a bell; A sort,kind,species",
-  "pos": "noun",
-  "category": null,
-  "hint": "noun",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "강#1",
-  "rank": 1700,
-  "lemma": "강",
-  "gloss": "river; atrium, cavity; steel; a recitation or recital",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "뜻하다#1",
-  "rank": 1703,
-  "lemma": "뜻하다",
-  "gloss": "to be meaningful; what you are tring to say, to try to convey, your import",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "막#2",
-  "rank": 1704,
-  "lemma": "막",
-  "gloss": "curtain, screen, veil; booth, temporary shelter; Carelessly, at random; at exactly that time; Just now",
-  "pos": "adverb",
-  "category": null,
-  "hint": "막 출발하다; 바로 지금",
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "열#1",
-  "rank": 1708,
-  "lemma": "열",
-  "gloss": "heat; a line; Ten",
-  "pos": "noun",
-  "category": null,
-  "hint": "이 나다",
-  "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "저#3",
-  "rank": 1718,
-  "lemma": "저",
-  "gloss": "polite first person pronoun, me/I; Uh, well, ...",
-  "pos": "interjection",
-  "category": null,
-  "hint": "저, 있잖아요.",
-  "faults": [
-   "too-long",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "붓다#1",
-  "rank": 1724,
-  "lemma": "붓다",
-  "gloss": "to be swollen; to pour; to become angry and get swollen up in the face; to pay in installments, to make regular deposits into an account",
-  "pos": "verb",
-  "category": null,
-  "hint": "물을 ~",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "딱#1",
-  "rank": 1734,
-  "lemma": "딱",
-  "gloss": "exactly match, to be exactly right",
-  "pos": "adverb",
-  "category": null,
-  "hint": "딱 알맞다; 바라진 모양",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "뛰다#2",
-  "rank": 1735,
-  "lemma": "뛰다",
-  "gloss": "dance, hop, jump, ran",
-  "pos": "verb",
-  "category": null,
-  "hint": "빨리 뛰다; 심장이 ~",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "달다#2",
-  "rank": 1755,
-  "lemma": "달다",
-  "gloss": "wear; to attach, fix; To hang; to be sweet",
-  "pos": "verb",
-  "category": null,
-  "hint": "단추를 ~",
-  "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "굽다#1",
-  "rank": 1767,
-  "lemma": "굽다",
-  "gloss": "angle, crook, flex, lean, sag, skew; To roast or bake",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "익히다#1",
-  "rank": 1774,
-  "lemma": "익히다",
-  "gloss": "cook,boil; Habituate oneself to, to make used to",
-  "pos": "verb",
-  "category": null,
-  "hint": "기술을 ~",
-  "faults": [
-   "too-long",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "미치다#2",
-  "rank": 1787,
-  "lemma": "미치다",
-  "gloss": "be crazy; To reach; to have an effect on",
-  "pos": "verb",
-  "category": null,
-  "hint": "정신에 이상이 생기다; 정신이",
-  "faults": [
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "굵다#1",
-  "rank": 1801,
-  "lemma": "굵다",
-  "gloss": "be thick or fat; to be coarsely-grained, to be in large powdered pieces",
-  "pos": "adjective",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "올#1",
-  "rank": 1814,
-  "lemma": "올",
-  "gloss": "this year; a strand of hair; Coming",
-  "pos": "determiner",
-  "category": null,
-  "hint": "올해",
-  "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "매달리다#1",
-  "rank": 1824,
-  "lemma": "매달리다",
-  "gloss": "be suspended, to be hanging down; to stick to a job, to persevere with just one thing",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "병#2",
-  "rank": 1838,
-  "lemma": "병",
-  "gloss": "sickness; A bottle; GI, grade of soldier",
-  "pos": "noun",
-  "category": null,
-  "hint": "을 깨다",
-  "faults": [
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "출발하다#1",
-  "rank": 1844,
-  "lemma": "출발하다",
-  "gloss": "march; To depart, shove off, have started on a trip",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "단#1",
-  "rank": 1861,
-  "lemma": "단",
-  "gloss": "terrace; a column; platform, stage; stairs, a flight of stairs",
-  "pos": "determiner",
-  "category": null,
-  "hint": "determiner",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "실리다#1",
-  "rank": 1865,
-  "lemma": "실리다",
-  "gloss": "to be printed,recorded; to be loaded onto a truck",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "물다#1",
-  "rank": 1874,
-  "lemma": "물다",
-  "gloss": "to put responsibility on sb; bite,put in the mouth",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "선진국#1",
-  "rank": 1875,
-  "lemma": "선진국",
-  "gloss": "a developed country, an advanced nation, the first world",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "약#2",
-  "rank": 1876,
-  "lemma": "약",
-  "gloss": "doctor's stuff; About, approximately; Medicine; Get angry,take offense",
-  "pos": "noun",
-  "category": null,
-  "hint": "을 먹다",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "초#2",
-  "rank": 1882,
-  "lemma": "초",
-  "gloss": "initial, in the beginning, first; vinegar; A second; a candle",
-  "pos": "bound noun",
-  "category": null,
-  "hint": "시간",
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "회복#1",
-  "rank": 1884,
-  "lemma": "회복",
-  "gloss": "recovery, recuperation; cure, repair, restoration, resumption",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "무시하다#1",
-  "rank": 1904,
-  "lemma": "무시하다",
-  "gloss": "disregard,ignore; to be defiant and fail to observe",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "살짝#1",
-  "rank": 1906,
-  "lemma": "살짝",
-  "gloss": "softly,lightly,just a little furtively, stealthily",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "괜히#1",
-  "rank": 1914,
-  "lemma": "괜히",
-  "gloss": "in vain or useless or fruitless, for a stupid reason",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "끼다#1",
-  "rank": 1915,
-  "lemma": "끼다",
-  "gloss": "to put on or wear, to wear; To smoke",
-  "pos": "verb",
-  "category": null,
-  "hint": "끼우다; 단추를",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "두르다#1",
-  "rank": 1920,
-  "lemma": "두르다",
-  "gloss": "to grease a pan; enclose, enwreathe, surround, wreathe",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "드디어#1",
-  "rank": 1921,
-  "lemma": "드디어",
-  "gloss": "at last; at length; 마침내. finally.",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "korean-in-english",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "표#1",
-  "rank": 1930,
-  "lemma": "표",
-  "gloss": "crisscross; chart, list, register, tabulation, tally; A marker, indication; denotation, mark, note, ticket, token",
-  "pos": "noun",
-  "category": null,
-  "hint": "를 끊다",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "모#1",
-  "rank": 1934,
-  "lemma": "모",
-  "gloss": "corner, angle, edge; A certain person, mr. Jones; a piece of hair, a toothbrush bristle",
-  "pos": "pronoun",
-  "category": null,
-  "hint": "김 모 씨",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "싸다#1",
-  "rank": 1939,
-  "lemma": "싸다",
-  "gloss": "clothe, cover, encase, enfold, envelop, infold; Wrap in, bundle; Be inexpensive",
-  "pos": "verb",
-  "category": null,
-  "hint": "보자기에 ~; 짐을",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "아울러#1",
-  "rank": 1940,
-  "lemma": "아울러",
-  "gloss": "in the meanwhile, besides; And, both together; furthermore",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "딴#1",
-  "rank": 1947,
-  "lemma": "딴",
-  "gloss": "pulled; other; in your own way, from your point of view. 내 딴은 as for myself",
-  "pos": "determiner",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "korean-in-english",
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "타다#2",
-  "rank": 1957,
-  "lemma": "타다",
-  "gloss": "burn, blaze; Ride; to cut with a saw 톱 in a back-and-forth motion; Put in, mix, dissolve",
-  "pos": "verb",
-  "category": null,
-  "hint": "불에; 장작이 ~",
-  "faults": [
-   "korean-in-english",
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "가지#2",
-  "rank": 1960,
-  "lemma": "가지",
-  "gloss": "tine; a tree branch; One of the kind or a sort; Eggplant",
-  "pos": "noun",
-  "category": null,
-  "hint": "~를 치다; 를 꺾다",
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "감다#1",
-  "rank": 1961,
-  "lemma": "감다",
-  "gloss": "wind; Close; Wind up; to wash",
-  "pos": "verb",
-  "category": null,
-  "hint": "눈을 ~",
-  "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "어제#1",
-  "rank": 1974,
-  "lemma": "어제",
-  "gloss": "yesterday",
-  "pos": "adverb",
-  "category": null,
-  "hint": "오늘",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "미루다#1",
-  "rank": 1989,
-  "lemma": "미루다",
-  "gloss": "postpone; to guess, infer and make an educated guess",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "또다시#1",
-  "rank": 2008,
-  "lemma": "또다시",
-  "gloss": "또다시",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "korean-in-english",
-   "restates-the-word"
-  ]
- },
- {
-  "key": "불안하다#1",
-  "rank": 2011,
-  "lemma": "불안하다",
-  "gloss": "to be anxious, fidgety, insecure, restless, uneasy, unsafe; To be uneasy, anxious",
-  "pos": "adjective",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "주#1",
-  "rank": 2014,
-  "lemma": "주",
-  "gloss": "a week, 7 days",
-  "pos": "noun",
-  "category": null,
-  "hint": "이번 주",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "자격#1",
-  "rank": 2033,
-  "lemma": "자격",
-  "gloss": "qualification; claim, credential, qualifications",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "높이#1",
-  "rank": 2039,
-  "lemma": "높이",
-  "gloss": "high, aloft; Height",
-  "pos": "noun",
-  "category": null,
-  "hint": "가 높다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "차다#2",
-  "rank": 2051,
-  "lemma": "차다",
-  "gloss": "lunge; To be full, to be filled with; to be pleasing, to be satisfactory to sb; to kick",
-  "pos": "verb",
-  "category": null,
-  "hint": "공을 ~",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "취하다#2",
-  "rank": 2053,
-  "lemma": "취하다",
-  "gloss": "to be drunk; To adopt, assume, take; to take, to have",
-  "pos": "verb",
-  "category": null,
-  "hint": "술에",
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "마련#2",
-  "rank": 2061,
-  "lemma": "마련",
-  "gloss": "planning, making arrangements; provisions, preparations",
-  "pos": "noun",
-  "category": null,
-  "hint": "학비 마련",
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "살#2",
-  "rank": 2062,
-  "lemma": "살",
-  "gloss": "tine; flesh,muscle; Years old",
-  "pos": "noun",
-  "category": null,
-  "hint": "~을 빼다; 이 찌다",
-  "faults": [
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "싸다#2",
-  "rank": 2068,
-  "lemma": "싸다",
-  "gloss": "clothe, cover, encase, enfold, envelop, infold; Wrap in, bundle; Be inexpensive",
-  "pos": "adjective",
-  "category": null,
-  "hint": "가격이; 집값이 ~",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "어제#2",
-  "rank": 2078,
-  "lemma": "어제",
-  "gloss": "yesterday",
-  "pos": "noun",
-  "category": null,
-  "hint": "어저께; 오늘",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "정확히#1",
-  "rank": 2083,
-  "lemma": "정확히",
-  "gloss": "properly, rightly, true, truly; aright, plumb; Exactly",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "정#1",
-  "rank": 2095,
-  "lemma": "정",
-  "gloss": "feeling of attachment; counter for a spaceship; a measure of distance; the good, right, and just way",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long",
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "한꺼번에#1",
-  "rank": 2100,
-  "lemma": "한꺼번에",
-  "gloss": "한꺼번에",
-  "pos": "adverb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "korean-in-english",
-   "restates-the-word"
-  ]
- },
- {
-  "key": "깨다#1",
-  "rank": 2103,
-  "lemma": "깨다",
-  "gloss": "chip; Wake up from sleep; Break or crack",
-  "pos": "verb",
-  "category": null,
-  "hint": "술이 ~; 잠이",
-  "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "묻다#2",
-  "rank": 2108,
-  "lemma": "묻다",
-  "gloss": "to Stain; to Bury; to Ask",
-  "pos": "verb",
-  "category": null,
-  "hint": "때가; 옷에 흙이 ~",
-  "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "위주#1",
-  "rank": 2116,
-  "lemma": "위주",
-  "gloss": "put first in importance; -oriented, -centered, for the purpose of",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "가리다#1",
-  "rank": 2131,
-  "lemma": "가리다",
-  "gloss": "choose or select; Pile up or stack up or heap up; conceal, hide; to give one`s hair a quick brushing or combing",
-  "pos": "verb",
-  "category": null,
-  "hint": "시비를 ~",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "줄기#1",
-  "rank": 2149,
-  "lemma": "줄기",
-  "gloss": "caulis; A trunk, stem, stalk; stripes, vein",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "신#2",
-  "rank": 2162,
-  "lemma": "신",
-  "gloss": "sour; joy,delight; God; shoes",
-  "pos": "noun",
-  "category": null,
-  "hint": "~이 나다",
-  "faults": [
-   "piled-up-senses"
-  ]
- },
- {
-  "key": "쏟다#1",
-  "rank": 2164,
-  "lemma": "쏟다",
-  "gloss": "to pour . 붓다",
-  "pos": "verb",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "korean-in-english"
-  ]
- },
- {
-  "key": "극#1",
-  "rank": 2170,
-  "lemma": "극",
-  "gloss": "drama or play; north polar, pole, extreme point of a sphere",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "신청#1",
-  "rank": 2176,
-  "lemma": "신청",
-  "gloss": "an application, a request; an offer, proposal, tender",
-  "pos": "noun",
-  "category": null,
-  "hint": null,
-  "faults": [
-   "too-long"
-  ]
- },
- {
-  "key": "치다#2",
-  "rank": 2188,
-  "lemma": "치다",
-  "gloss": "maul; to strike, hit; to do an action with the body; to build",
-  "pos": "verb",
-  "category": null,
-  "hint": "셈을 맞추다",
-  "faults": [
-   "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "쉬다#2",
   "rank": 2201,
   "lemma": "쉬다",
@@ -1548,18 +219,6 @@
   ]
  },
  {
-  "key": "높이#2",
-  "rank": 2357,
-  "lemma": "높이",
-  "gloss": "high, aloft; Height",
-  "pos": "adverb",
-  "category": null,
-  "hint": "높이 날다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "마구#1",
   "rank": 2362,
   "lemma": "마구",
@@ -1580,18 +239,6 @@
   "pos": "noun",
   "category": null,
   "hint": "잠깐 기다리다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "주#2",
-  "rank": 2375,
-  "lemma": "주",
-  "gloss": "a week, 7 days",
-  "pos": "bound noun",
-  "category": null,
-  "hint": "이번 주",
   "faults": [
    "same-as-another-sense"
   ]
@@ -1706,20 +353,7 @@
   "hint": "로 나타내다",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "둘째#2",
-  "rank": 2461,
-  "lemma": "둘째",
-  "gloss": "second",
-  "pos": "determiner",
-  "category": null,
-  "hint": "둘째 딸",
-  "faults": [
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -1857,18 +491,6 @@
   "faults": [
    "too-long",
    "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "프로#2",
-  "rank": 2551,
-  "lemma": "프로",
-  "gloss": "professional; Program",
-  "pos": "noun",
-  "category": null,
-  "hint": "program",
-  "faults": [
    "same-as-another-sense"
   ]
  },
@@ -2122,8 +744,7 @@
   "hint": "시야를 ~; 얼굴을",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -2727,30 +1348,6 @@
   ]
  },
  {
-  "key": "깊이#2",
-  "rank": 2912,
-  "lemma": "깊이",
-  "gloss": "deepness; Depth",
-  "pos": "noun",
-  "category": null,
-  "hint": "가 깊다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "낫다#2",
-  "rank": 2914,
-  "lemma": "낫다",
-  "gloss": "to get better; Superior",
-  "pos": "verb",
-  "category": null,
-  "hint": "병이 ~",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "대가#1",
   "rank": 2916,
   "lemma": "대가",
@@ -2847,8 +1444,7 @@
   "category": null,
   "hint": "시체를 ~",
   "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -3013,8 +1609,7 @@
   "category": null,
   "hint": "그릇을 ~",
   "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -3159,30 +1754,6 @@
   ]
  },
  {
-  "key": "내일#2",
-  "rank": 3147,
-  "lemma": "내일",
-  "gloss": "tomorrow",
-  "pos": "adverb",
-  "category": null,
-  "hint": "로 미루다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "딱#2",
-  "rank": 3149,
-  "lemma": "딱",
-  "gloss": "exactly match, to be exactly right",
-  "pos": "adverb",
-  "category": null,
-  "hint": "멎는 모양",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "모색하다#1",
   "rank": 3153,
   "lemma": "모색하다",
@@ -3192,18 +1763,6 @@
   "hint": null,
   "faults": [
    "too-long"
-  ]
- },
- {
-  "key": "가까이#2",
-  "rank": 3174,
-  "lemma": "가까이",
-  "gloss": "close to, not far",
-  "pos": "noun",
-  "category": null,
-  "hint": "가까이 다가오다",
-  "faults": [
-   "same-as-another-sense"
   ]
  },
  {
@@ -3292,18 +1851,6 @@
   "faults": [
    "too-long",
    "piled-up-senses"
-  ]
- },
- {
-  "key": "실제#2",
-  "rank": 3232,
-  "lemma": "실제",
-  "gloss": "the truth, a fact",
-  "pos": "adverb",
-  "category": null,
-  "hint": "실제 일어나다",
-  "faults": [
-   "same-as-another-sense"
   ]
  },
  {
@@ -3837,8 +2384,7 @@
   "category": null,
   "hint": "붕대를; 실을 ~",
   "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -3913,8 +2459,7 @@
   "hint": "에 내리다",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -3928,18 +2473,6 @@
   "faults": [
    "too-long",
    "piled-up-senses",
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "대개#2",
-  "rank": 3571,
-  "lemma": "대개",
-  "gloss": "mostly, for the most part",
-  "pos": "noun",
-  "category": null,
-  "hint": "대개의 경우",
-  "faults": [
    "same-as-another-sense"
   ]
  },
@@ -4127,18 +2660,6 @@
   ]
  },
  {
-  "key": "끼다#2",
-  "rank": 3696,
-  "lemma": "끼다",
-  "gloss": "to put on or wear, to wear; To smoke",
-  "pos": "verb",
-  "category": null,
-  "hint": "구름이 ~",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "신세#1",
   "rank": 3712,
   "lemma": "신세",
@@ -4148,18 +2669,6 @@
   "hint": null,
   "faults": [
    "too-long"
-  ]
- },
- {
-  "key": "아까#2",
-  "rank": 3713,
-  "lemma": "아까",
-  "gloss": "a little while ago",
-  "pos": "noun",
-  "category": null,
-  "hint": "아까 먹다",
-  "faults": [
-   "same-as-another-sense"
   ]
  },
  {
@@ -4209,18 +2718,6 @@
   "hint": null,
   "faults": [
    "too-long"
-  ]
- },
- {
-  "key": "첫째#2",
-  "rank": 3731,
-  "lemma": "첫째",
-  "gloss": "the first",
-  "pos": "determiner",
-  "category": null,
-  "hint": "첫째 시간",
-  "faults": [
-   "same-as-another-sense"
   ]
  },
  {
@@ -4344,8 +2841,7 @@
   "category": null,
   "hint": "올 삼월; 올해",
   "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -4535,8 +3031,7 @@
   "hint": "bound noun",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -4827,8 +3322,7 @@
   "hint": "집에 가던 ~에",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -4869,8 +3363,7 @@
   "hint": "행정 구역",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -4997,8 +3490,7 @@
   "hint": "간절한 바람; 소원",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -5084,18 +3576,6 @@
   "pos": "interjection",
   "category": null,
   "hint": "interjection",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
-  "key": "종#2",
-  "rank": 4235,
-  "lemma": "종",
-  "gloss": "a bell; A sort,kind,species",
-  "pos": "noun",
-  "category": null,
-  "hint": "noun",
   "faults": [
    "same-as-another-sense"
   ]
@@ -5354,8 +3834,7 @@
   "hint": "김 모 씨",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -5496,8 +3975,7 @@
   "hint": "noun",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -5561,8 +4039,7 @@
   "category": null,
   "hint": "고기를 ~",
   "faults": [
-   "too-long",
-   "same-as-another-sense"
+   "too-long"
   ]
  },
  {
@@ -6032,18 +4509,6 @@
   ]
  },
  {
-  "key": "매일#2",
-  "rank": 4894,
-  "lemma": "매일",
-  "gloss": "every day",
-  "pos": "noun",
-  "category": null,
-  "hint": "매일 만나다",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "영#1",
   "rank": 4905,
   "lemma": "영",
@@ -6273,18 +4738,6 @@
   ]
  },
  {
-  "key": "저기#2",
-  "rank": 5031,
-  "lemma": "저기",
-  "gloss": "“hey,look here,now”; That place, there",
-  "pos": "interjection",
-  "category": null,
-  "hint": "저기, 잠깐만요",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "쪽#3",
   "rank": 5037,
   "lemma": "쪽",
@@ -6369,8 +4822,7 @@
   "category": null,
   "hint": "멀리 있는 대상; 이도 저도",
   "faults": [
-   "too-long",
-   "same-as-another-sense"
+   "too-long"
   ]
  },
  {
@@ -6409,8 +4861,7 @@
   "hint": "떠나다",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -6667,8 +5118,7 @@
   "hint": "얼굴이 ~",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -6705,8 +5155,7 @@
   "hint": "~로 재다",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -6859,8 +5308,7 @@
   "hint": "~이 오르다",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -6872,8 +5320,7 @@
   "category": null,
   "hint": "숫자",
   "faults": [
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
@@ -7161,18 +5608,6 @@
   ]
  },
  {
-  "key": "인제#2",
-  "rank": 5640,
-  "lemma": "인제",
-  "gloss": "now",
-  "pos": "noun",
-  "category": null,
-  "hint": "noun",
-  "faults": [
-   "same-as-another-sense"
-  ]
- },
- {
   "key": "철#3",
   "rank": 5650,
   "lemma": "철",
@@ -7246,8 +5681,7 @@
   "hint": "나물이 ~; 맛이",
   "faults": [
    "too-long",
-   "piled-up-senses",
-   "same-as-another-sense"
+   "piled-up-senses"
   ]
  },
  {
